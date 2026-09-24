@@ -3,10 +3,9 @@
 @import "tailwindcss" source(none);
 @import "./tokens.css";
 
-@source "../index.html";
-@source "../mentions-legales.html";
-@source "../confidentialite.html";
+@source "./site";
 @source "../assets/js";
+@source inline("aspect-[4/5] aspect-[4/3] aspect-[1/1] aspect-[3/2]");
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
@@ -72,6 +71,9 @@
     font-family: var(--font-display);
     font-weight: 600;
     text-wrap: balance;
+    /* Mots longs ("confidentialite", "instruments") : coupure plutot que debordement a 280px, meme en texte agrandi */
+    overflow-wrap: anywhere;
+    hyphens: auto;
   }
 
   p { text-wrap: pretty; }
@@ -193,6 +195,21 @@
   }
   .photo-frame.is-missing img { visibility: hidden; }
   .photo-frame.is-missing figcaption.photo-fallback { display: block; }
+
+  /* Contenu redactionnel des pages interieures */
+  .prose-site { color: var(--color-text-secondary); max-inline-size: 68ch; }
+  .prose-site > * + * { margin-block-start: 1rem; }
+  .prose-site h2 {
+    margin-block-start: 2.5rem;
+    color: var(--color-text-primary);
+    font-size: 1.875rem;
+    line-height: 1.2;
+  }
+  .prose-site strong { color: var(--color-text-primary); font-weight: 600; }
+  .prose-site ul, .prose-site ol { display: grid; gap: 0.625rem; padding-inline-start: 1.25rem; }
+  .prose-site ul { list-style: disc; }
+  .prose-site ol { list-style: decimal; }
+  .prose-site li::marker { color: var(--color-text-link); }
 
   /* FAQ : details/summary natifs, clavier gratuit */
   .faq-item summary {

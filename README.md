@@ -1,38 +1,58 @@
 # site-maroc
 
-Site vitrine d'antiquaire et expert en objets d'art au Maroc : HTML5 + Tailwind CSS v4, déployé sur Vercel.
+Site de Florian Messeau, antiquaire et expert en objets d'art au Maroc. Site statique multi-pages pensé pour le
+référencement : HTML5 + Tailwind CSS v4, généré par un petit script Node, déployé sur Vercel.
 
 ## Développement
 
 ```bash
 npm install
-npm run build   # genere src/tokens.css puis assemble dist/
+npm run build   # genere src/tokens.css puis les 34 pages dans dist/
 npm run dev     # build + serveur local sur dist/
 ```
 
-- `index.html` : page d'accueil. `mentions-legales.html`, `confidentialite.html` : pages légales.
-- `design-tokens.json` : **source unique** des couleurs, rayons, ombres et durées (clair et sombre).
-  `scripts/build-tokens.mjs` en génère `src/tokens.css` ; ne pas éditer ce fichier à la main.
-- `src/styles.css` : point d'entrée Tailwind (utilitaires sémantiques : `bg-page`, `text-ink`, `btn-primary`...).
-- `assets/js/main.js` : menu mobile, repli des photos, année du pied de page.
-- `public/` : favicon, `robots.txt`, `sitemap.xml`, `site.webmanifest`, `llms.txt`.
+## Architecture
+
+| Fichier | Rôle |
+|---|---|
+| `src/site/config.mjs` | **Toutes les informations à remplacer** : domaine, coordonnées, horaires, formulaire Tally, photos |
+| `src/site/content/objets.mjs` | Les 15 catégories d'objets recherchés (une page chacune) |
+| `src/site/content/services.mjs` | Les 4 services (estimation, expertise, achat, successions) |
+| `src/site/content/villes.mjs` | Les 6 pages ville (Marrakech, Casablanca, Rabat, Tanger, Fès, Agadir) |
+| `src/site/pages.mjs` | Accueil, présentation, pages hub, contact, pages légales, 404 |
+| `src/site/layout.mjs` | `<head>` SEO, header, fil d'Ariane, pied de page, composants |
+| `scripts/build.mjs` | Génère les pages, `sitemap.xml`, `robots.txt` et `llms.txt` |
+| `design-tokens.json` | Source unique des couleurs, rayons, ombres et durées (clair et sombre) |
+
+Plan du site généré :
+
+```
+/                                   Accueil
+/presentation                       Florian Messeau
+/expertise-achat                    + 4 services
+/objets-recherches                  + 15 catégories
+/zones-intervention                 + 6 villes
+/contact                            Formulaire Tally (a brancher)
+/mentions-legales, /confidentialite, /404
+```
+
+Chaque page a son titre, sa description, son URL canonique, son fil d'Ariane (visible et en JSON-LD
+`BreadcrumbList`) et ses données structurées (`AntiqueStore`, `Person`, `Service`, `ItemList`).
 
 ## Déploiement Vercel
 
-Importer le dépôt dans Vercel : `vercel.json` fixe la commande de build (`npm run build`) et le dossier publié
-(`dist/`). Seul `dist/` est servi ; `.claude/`, `src/` et `scripts/` ne sont jamais exposés.
+Importer le dépôt dans Vercel : `vercel.json` fixe la commande de build et le dossier publié (`dist/`), avec des
+URL propres (`/objets-recherches/tapis`). Seul `dist/` est servi.
 
 ## Avant la mise en ligne
 
-Rechercher `A REMPLACER`, `A CONFIRMER` et `PHOTO COMMERCIAL` dans le code :
+Tout se règle dans `src/site/config.mjs`, sauf mention contraire :
 
-1. **Florian Messeau** : parcours réel à compléter dans la section « L'antiquaire », portrait à fournir.
-2. **Domaine** : `https://site-maroc.vercel.app` (canonical, OpenGraph, JSON-LD, `robots.txt`, `sitemap.xml`).
-3. **Coordonnées (NAP)** : téléphone, WhatsApp, e-mail, adresse, horaires. Identiques dans le header,
-   le formulaire, le pied de page, le JSON-LD et la fiche Google Business Profile. Ajouter `geo` et `sameAs` au JSON-LD.
-4. **Photos** : 9 emplacements `PHOTO COMMERCIAL` avec les formats exacts. Mettre à jour le `alt` de chaque photo.
-   Les visuels Unsplash actuels sont provisoires ; si l'un ne charge pas, le cadre affiche « Photo à venir ».
-5. **Formulaire Tally** : suivre le commentaire de la section `#estimation` (identifiant `TALLY_FORM_ID`,
-   attribut `data-tally-pending` à renommer en `data-tally-src`). En attendant, la section propose WhatsApp et e-mail.
-6. **Engagements commerciaux** à valider : délai de réponse (48 h), modes de paiement, véhicule banalisé, certificat.
+1. **Domaine** (`url`), **coordonnées** (téléphone, WhatsApp, e-mail, adresse), **horaires**, `geo`, `sameAs`.
+2. **Formulaire Tally** : renseigner `tallyFormId`. L'iframe et le script Tally sont alors générés sur `/contact`.
+3. **Photos** (`IMAGES`) : les visuels Unsplash sont provisoires ; déposer les photos dans `public/images/` et
+   remplacer les URL. Les emplacements sont aussi signalés `PHOTO COMMERCIAL` dans le HTML généré.
+4. **Portrait de Florian Messeau** : emplacement réservé dans `src/site/pages.mjs` (`portraitPlaceholder`).
+5. **Parcours de Florian Messeau** : bloc `A COMPLETER` de la page Présentation.
+6. **À confirmer** : délai de réponse annoncé (48 h), modes de paiement, cadre légal du rachat de vins et spiritueux.
 7. **Mentions légales et confidentialité** : RC, ICE, IF, numéro CNDP (loi 09-08), durée de conservation.
