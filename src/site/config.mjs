@@ -30,13 +30,14 @@ export const SITE = {
   tallyFormId: null,
   lastmod: '2026-09-24',
   // Conception et realisation du site (mentions legales). Aucune personne physique n'est citee :
-  // seule la societe apparait. A COMPLETER : forme juridique, siege, RCS (null = ligne non affichee).
+  // seule la societe apparait (ni dirigeant, ni nom commercial).
   realisation: {
     name: 'PSA',
     siren: '909 703 324',
-    legalForm: null,
-    address: null,
-    rcs: null,
+    legalForm: 'SASU au capital de 10 000 €',
+    address: '2 avenue des Lyonnais, 21200 Beaune, France',
+    rcs: '909 703 324 R.C.S. Dijon',
+    tva: 'FR46909703324',
   },
 };
 

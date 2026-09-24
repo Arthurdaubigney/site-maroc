@@ -540,7 +540,7 @@ const mentions = () => legal('/mentions-legales', 'Mentions légales', 'Mentions
     const r = SITE.realisation;
     return [
       `Site conçu et réalisé par ${r.name}${r.legalForm ? `, ${r.legalForm}` : ''}.`,
-      [`SIREN : ${r.siren}`, r.rcs && `RCS : ${r.rcs}`].filter(Boolean).join(' · ') + '.',
+      [`SIREN : ${r.siren}`, r.rcs && `RCS : ${r.rcs}`, r.tva && `TVA intracommunautaire : ${r.tva}`].filter(Boolean).join(' · ') + '.',
       ...(r.address ? [`Siège : ${r.address}.`] : []),
     ];
   })()],
