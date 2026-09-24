@@ -7,7 +7,7 @@ export const VILLES = [
     ville: 'Marrakech',
     title: 'Antiquaire à Marrakech : estimation et rachat | Florian Messeau',
     description: 'Antiquaire et expert à Marrakech : estimation gratuite et rachat d\'antiquités, de tapis anciens, de mobilier et d\'objets d\'art, de la Médina à la Palmeraie.',
-    lead: 'De la Médina à la Palmeraie, Florian Messeau estime et achète les antiquités et objets d\'art des particuliers, des riads et des villas de Marrakech.',
+    lead: 'Installé à Marrakech, Florian Messeau estime et achète les antiquités et objets d\'art des particuliers, des riads et des villas, de la Médina à la Palmeraie.',
     contexte: [
       'Marrakech concentre des collections d\'une grande diversité : objets marocains transmis dans les familles, mais aussi mobilier, tableaux et objets d\'art européens rassemblés par les résidents étrangers installés dans les riads et les villas depuis les années 1960.',
       'Lors d\'une vente de riad ou d\'un départ, le contenu de la maison mérite d\'être examiné avant d\'être dispersé : tapis anciens du Haut Atlas, luminaires en cuivre, portes sculptées et peinture orientaliste s\'y côtoient souvent.',

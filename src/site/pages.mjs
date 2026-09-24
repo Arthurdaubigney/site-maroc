@@ -49,9 +49,9 @@ const serviceNode = (name, path, description, area = areaServed) => ({
 const steps = () => `<ol class="grid gap-x-10 gap-y-10 sm:grid-cols-2">
   ${[
     ['Envoyez quelques photos', 'Vue d\'ensemble, signature, poinçons, dessous et défauts éventuels.'],
-    ['Recevez un premier avis', 'Sous 48 heures ouvrées : intérêt de l\'objet et fourchette de valeur.'], // A CONFIRMER : delai
+    ['Recevez un premier avis', 'Rapidement, par retour : intérêt de l\'objet et fourchette de valeur.'],
     ['Examen de l\'objet', 'Chez vous ou à la galerie, partout au Maroc, sur rendez-vous.'],
-    ['Offre ou rapport écrit', 'Offre d\'achat ferme ou rapport d\'expertise. Vous restez libre de refuser.'],
+    ['Offre ou rapport écrit', 'Proposition de rachat ou rapport d\'expertise. Vous restez libre de refuser.'],
   ].map(([t, d], i) => `<li class="border-t border-control pt-6">
     <span class="font-display text-5xl font-semibold text-link" aria-hidden="true">${i + 1}</span>
     <h3 class="mt-3 font-sans text-lg font-semibold">${t}</h3>
@@ -94,7 +94,7 @@ const generalFaq = [
   // Pas de liens dans les reponses repliees : le maillage vers ces pages passe par les sections Objets et Zones.
   ['Quels objets achetez-vous ?', 'Mobilier, tableaux, tapis, argenterie, bijoux et montres, bronzes, verrerie d\'art, luminaires, arts asiatiques et africains, vêtements et sacs de marque, instruments de musique, et bien d\'autres objets de collection.'],
   ['Vous déplacez-vous à domicile ?', `Oui, partout au Maroc, sur rendez-vous : ${VILLES.map((v) => v.ville).join(', ')} et ailleurs.`],
-  ['Comment suis-je payé si je vends ?', 'Par virement bancaire ou chèque de banque, le jour de l\'enlèvement, contre un bon d\'achat détaillé.'],
+  ['Combien de temps faut-il pour avoir un avis ?', 'Peu de temps : Florian Messeau répond rapidement, dès réception de photos exploitables.'],
   ['Mes informations restent-elles confidentielles ?', 'Oui. Vos photos et coordonnées servent uniquement à répondre à votre demande et ne sont jamais publiées ni transmises.'],
 ];
 
@@ -105,16 +105,16 @@ function home() {
 <section aria-labelledby="hero-titre">
   <div class="mx-auto grid max-w-7xl gap-12 px-4 pb-20 pt-12 sm:px-6 sm:pt-16 lg:grid-cols-12 lg:gap-8 lg:px-8 lg:pb-28 lg:pt-20">
     <div class="lg:col-span-7 lg:pe-8 lg:pt-8">
-      ${eyebrow('Florian Messeau, antiquaire et expert')}
+      ${eyebrow('Antiquaire à Marrakech, partout au Maroc')}
       <h1 id="hero-titre" class="mt-5 max-w-[16ch] text-[2.75rem] leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">Antiquaire et expert en objets d'art au Maroc</h1>
-      <p class="mt-7 max-w-[58ch] text-lg text-muted">Estimation gratuite, expertise et achat d'antiquités : mobilier, tableaux, tapis, argenterie, bijoux, bronzes et objets de collection. Florian Messeau se déplace chez vous, partout au Maroc, et vous paie immédiatement.</p>
+      <p class="mt-7 max-w-[58ch] text-lg text-muted">Estimation gratuite, expertise et achat d'antiquités : mobilier, tableaux, tapis, argenterie, bijoux, bronzes et objets de collection. Basé à Marrakech, Florian Messeau se déplace chez vous partout au Maroc.</p>
       <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
         <a href="/contact" class="btn btn-primary min-h-12 px-6 text-base">Demander une estimation gratuite ${icon('arrow-right')}</a>
         <a href="/objets-recherches" class="btn btn-secondary min-h-12 px-6 text-base">Voir les objets recherchés</a>
       </div>
       <ul class="mt-12 grid gap-4 border-t border-hairline pt-8 sm:grid-cols-3" aria-label="Nos engagements">
         <li class="flex items-start gap-3">${icon('search', 'mt-0.5 size-5 flex-none text-link')}<span class="text-sm text-muted"><strong class="block font-semibold text-ink">Avis gratuit</strong>sur simples photos</span></li>
-        <li class="flex items-start gap-3">${icon('banknote', 'mt-0.5 size-5 flex-none text-link')}<span class="text-sm text-muted"><strong class="block font-semibold text-ink">Paiement immédiat</strong>virement ou chèque de banque</span></li>
+        <li class="flex items-start gap-3">${icon('clock', 'mt-0.5 size-5 flex-none text-link')}<span class="text-sm text-muted"><strong class="block font-semibold text-ink">Réponse rapide</strong>par un seul interlocuteur</span></li>
         <li class="flex items-start gap-3">${icon('truck', 'mt-0.5 size-5 flex-none text-link')}<span class="text-sm text-muted"><strong class="block font-semibold text-ink">À domicile</strong>partout au Maroc</span></li>
       </ul>
     </div>
@@ -135,14 +135,14 @@ function home() {
         ${eyebrow('Expertise & achat')}
         <h2 id="services-titre" class="mt-4 max-w-[20ch] text-4xl leading-[1.1] sm:text-5xl">Estimer, expertiser, acheter : un seul interlocuteur</h2>
       </div>
-      <p class="max-w-[52ch] text-muted lg:col-span-5">Du premier avis à l'enlèvement, vous traitez avec Florian Messeau en personne. Pas d'intermédiaire, pas de commission cachée.</p>
+      <p class="max-w-[52ch] text-muted lg:col-span-5">Du premier avis à l'enlèvement, vous traitez avec Florian Messeau en personne. Pas d'intermédiaire, et un avis toujours expliqué.</p>
     </div>
     <div class="mt-14 grid gap-5 lg:grid-cols-12">
       ${SERVICES.map((s, i) => `<article class="relative flex flex-col rounded-card border border-hairline bg-card p-6 sm:p-8 ${i === 0 ? 'lg:col-span-6 lg:row-span-3' : 'lg:col-span-6'}">
         ${icon(s.icon, 'size-7 text-link')}
         <h3 class="mt-5 ${i === 0 ? 'text-4xl' : 'text-2xl sm:text-3xl'} leading-tight"><a href="/expertise-achat/${s.slug}" class="text-ink no-underline after:absolute after:inset-0 hover:text-link">${s.nav}</a></h3>
         <p class="mt-3 max-w-[56ch] text-muted">${i === 0 ? s.lead : s.summary}</p>
-        ${i === 0 ? `<ul class="mt-6 space-y-2 text-sm">${['Premier avis sur photos sous 48 heures ouvrées', 'Examen à domicile partout au Maroc', 'Aucune obligation de vendre'].map((t) => `<li class="flex items-start gap-2">${icon('check', 'mt-0.5 size-4 flex-none text-link')}${t}</li>`).join('')}</ul>` : ''}
+        ${i === 0 ? `<ul class="mt-6 space-y-2 text-sm">${['Premier avis rapide sur simples photos', 'Examen à domicile partout au Maroc', 'Aucune obligation de vendre'].map((t) => `<li class="flex items-start gap-2">${icon('check', 'mt-0.5 size-4 flex-none text-link')}${t}</li>`).join('')}</ul>` : ''}
         <span class="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-semibold text-link">En savoir plus ${icon('arrow-right', 'size-4')}</span>
       </article>`).join('\n      ')}
     </div>
@@ -211,8 +211,8 @@ ${faq(generalFaq)}
 ${ctaBand()}`;
   return {
     path: '/',
-    title: 'Florian Messeau, antiquaire au Maroc : estimation et achat',
-    description: 'Antiquaire et expert au Maroc : estimation gratuite, expertise et achat d\'antiquités, mobilier, tableaux, tapis, bijoux et objets d\'art. Déplacement à domicile.',
+    title: 'Florian Messeau, antiquaire à Marrakech et partout au Maroc',
+    description: 'Antiquaire et expert à Marrakech : estimation gratuite, expertise et achat d\'antiquités, tableaux, tapis, bijoux. Déplacement partout au Maroc.',
     body,
     jsonld: [businessNode(), personNode(), websiteNode()],
   };
@@ -225,18 +225,19 @@ function presentation() {
 ${pageHero({
     kicker: 'Présentation',
     h1: 'Florian Messeau, antiquaire et expert en objets d\'art',
-    lead: 'Estimer juste, acheter au bon prix, expliquer chaque décision : voici la manière dont Florian Messeau exerce le métier d\'antiquaire au Maroc.',
+    lead: 'Estimer juste, expliquer chaque décision, traiter chaque objet avec soin : voici la manière dont Florian Messeau exerce le métier d\'antiquaire, depuis Marrakech et partout au Maroc.',
     aside: portraitPlaceholder(),
   })}
 <section aria-labelledby="parcours-titre" class="bg-band py-16 lg:py-24">
   <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
     <h2 id="parcours-titre" class="text-4xl leading-[1.1] lg:col-span-4">Le parcours</h2>
     <div class="prose-site lg:col-span-8">
-      <!-- A COMPLETER avec Florian Messeau : formation, annees d'experience, specialites, maisons ou salles de ventes
-           frequentees, installation au Maroc, affiliations professionnelles. Rien n'est invente ici : ce bloc reste
-           volontairement factuel tant que le parcours n'est pas valide. -->
-      <p>Florian Messeau est antiquaire et expert en objets d'art au Maroc. Il estime, expertise et achète mobilier, tableaux, tapis, argenterie, bijoux, bronzes et objets de collection auprès des particuliers, des familles et des professionnels.</p>
-      <p>Son activité repose sur la connaissance du marché de l'art et des antiquités, au Maroc comme en Europe, et sur un contact direct avec chaque client, du premier échange jusqu'à l'enlèvement.</p>
+      <!-- Parcours redige sans dates ni references precises : a enrichir si des elements verifiables
+           (formation, annee d'installation, affiliations) deviennent disponibles. -->
+      <p>Voilà quelques années que Florian Messeau a fait des antiquités son métier. Une passion d'abord, née du goût des beaux objets et des histoires qu'ils portent, devenue au fil des rencontres une véritable expertise.</p>
+      <p>Chaque estimation, chaque maison visitée, chaque pièce tenue en main a affûté son regard : reconnaître une essence de bois ou une patine d'origine, lire un poinçon, repérer la restauration discrète ou la copie habile. C'est ce savoir patiemment accumulé qu'il met aujourd'hui au service de ses clients.</p>
+      <p>Installé à Marrakech, il sillonne tout le Maroc à la rencontre des familles, des collectionneurs et des professionnels. Il suit de près le marché de l'art et des antiquités, au Maroc comme en Europe, pour que chaque avis de valeur colle à la réalité des ventes du moment.</p>
+      <p>Sa façon de travailler n'a pas changé depuis ses débuts : un seul interlocuteur du premier message jusqu'à l'enlèvement, des explications franches, et le respect absolu de la discrétion de chacun.</p>
     </div>
   </div>
 </section>
@@ -297,7 +298,7 @@ ${ctaBand()}`;
   return {
     path: '/expertise-achat', trail,
     title: 'Expertise et achat d\'antiquités au Maroc | Florian Messeau',
-    description: 'Estimation gratuite, rapport d\'expertise écrit, achat d\'antiquités avec paiement immédiat, successions et débarras : les services de Florian Messeau au Maroc.',
+    description: 'Estimation gratuite, rapport d\'expertise écrit, achat d\'antiquités, successions et débarras : les services de Florian Messeau au Maroc.',
     body,
     jsonld: [{ '@type': 'ItemList', name: 'Services', itemListElement: SERVICES.map((s, i) => ({ '@type': 'ListItem', position: i + 1, url: abs(`/expertise-achat/${s.slug}`), name: s.nav })) }],
   };
@@ -411,7 +412,7 @@ ${ctaBand()}`;
 function zonesHub() {
   const trail = [HOME, { name: 'Zones d\'intervention', href: '/zones-intervention' }];
   const body = `
-${pageHero({ kicker: 'Zones d\'intervention', h1: 'Antiquaire à domicile dans tout le Maroc', lead: `Florian Messeau est installé à ${SITE.address.city} et se déplace chez vous pour examiner vos objets, où que vous soyez au Maroc. Voici les villes où il intervient le plus souvent.` })}
+${pageHero({ kicker: 'Zones d\'intervention', h1: 'Antiquaire à domicile dans tout le Maroc', lead: `Basé à ${SITE.address.city}, Florian Messeau se déplace chez vous pour examiner vos objets, où que vous soyez au Maroc. Voici les villes où il intervient le plus souvent.` })}
 <section aria-label="Villes" class="bg-band py-16 lg:py-24">
   <div class="mx-auto grid max-w-7xl gap-5 px-4 sm:px-6 md:grid-cols-2 lg:grid-cols-3 lg:px-8">
     ${VILLES.map((v) => `<article class="relative flex flex-col rounded-card border border-hairline bg-card p-6">
@@ -516,7 +517,7 @@ ${faq(generalFaq)}`;
   return {
     path: '/contact', trail,
     title: 'Contact et estimation gratuite | Florian Messeau, antiquaire',
-    description: 'Contactez Florian Messeau, antiquaire au Maroc : estimation gratuite par téléphone, WhatsApp ou e-mail. Envoyez vos photos, réponse personnalisée sous 48 h.',
+    description: 'Contactez Florian Messeau, antiquaire au Maroc : estimation gratuite par téléphone, WhatsApp ou e-mail. Envoyez vos photos, réponse rapide et personnalisée.',
     body,
     jsonld: [businessNode()],
     scripts: SITE.tallyFormId ? '  <script src="https://tally.so/widgets/embed.js" async></script>' : '',

@@ -53,6 +53,6 @@ Tout se règle dans `src/site/config.mjs`, sauf mention contraire :
 3. **Photos** (`IMAGES`) : les visuels Unsplash sont provisoires ; déposer les photos dans `public/images/` et
    remplacer les URL. Les emplacements sont aussi signalés `PHOTO COMMERCIAL` dans le HTML généré.
 4. **Portrait de Florian Messeau** : emplacement réservé dans `src/site/pages.mjs` (`portraitPlaceholder`).
-5. **Parcours de Florian Messeau** : bloc `A COMPLETER` de la page Présentation.
-6. **À confirmer** : délai de réponse annoncé (48 h), modes de paiement, cadre légal du rachat de vins et spiritueux.
+5. **Parcours de Florian Messeau** : rédigé sans dates ni références précises (« quelques années dans le métier ») ; à enrichir si des éléments vérifiables deviennent disponibles.
+6. **Choix éditoriaux** : aucun délai chiffré (« réponse rapide ») et aucune mention de paiement. La page Vins et spiritueux est centrée sur l'estimation, sans engagement de rachat.
 7. **Mentions légales et confidentialité** : RC, ICE, IF, numéro CNDP (loi 09-08), durée de conservation.

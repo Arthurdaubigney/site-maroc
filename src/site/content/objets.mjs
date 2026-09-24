@@ -339,8 +339,9 @@ export const OBJETS = [
     title: 'Estimation de vins et spiritueux de collection | Florian Messeau',
     description: 'Grands crus de Bordeaux et de Bourgogne, champagnes, cognacs et whiskies anciens : estimation gratuite de vins et spiritueux de collection au Maroc.',
     img: { key: 'vins-spiritueux', alt: 'Bouteilles de vin anciennes couchées dans une cave voûtée', fallback: 'vins et spiritueux', note: 'Bouteilles en cave, etiquettes lisibles' },
-    // A CONFIRMER : cadre reglementaire marocain applicable au rachat de vins et spiritueux (licence).
-    intro: 'Une cave de collection s\'estime bouteille par bouteille : millésime, niveau, étiquette et conditions de conservation. Florian Messeau vous aide à connaître la valeur d\'une cave ou de quelques bouteilles d\'exception.',
+    // Page d'appel : centree sur l'estimation et le conseil (pas d'engagement de rachat), pour capter la recherche
+    // sans presumer de la licence de vente d'alcool.
+    intro: 'Une cave de collection s\'estime bouteille par bouteille : millésime, niveau, étiquette et conditions de conservation. Florian Messeau vous aide à connaître la valeur d\'une cave ou de quelques bouteilles d\'exception, et vous oriente vers la meilleure façon de les valoriser.',
     recherche: [
       'Grands crus de Bordeaux et de Bourgogne, vins du Rhône et d\'Italie',
       'Champagnes millésimés et cuvées de prestige',

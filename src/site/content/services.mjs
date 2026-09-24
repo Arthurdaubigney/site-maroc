@@ -13,7 +13,7 @@ export const SERVICES = [
     sections: [
       ['Comment se déroule l\'estimation', null, [
         '<strong>Vous envoyez quelques photos</strong> par WhatsApp, par e-mail ou via le formulaire : vue d\'ensemble, signature, poinçons, dessous.',
-        '<strong>Vous recevez un premier avis</strong> : intérêt de l\'objet, piste d\'attribution et fourchette de valeur quand les photos le permettent.',
+        '<strong>Vous recevez rapidement un premier avis</strong> : intérêt de l\'objet, piste d\'attribution et fourchette de valeur quand les photos le permettent.',
         '<strong>L\'objet est examiné</strong> chez vous ou à la galerie. L\'examen physique confirme l\'époque, l\'authenticité et l\'état.',
         '<strong>Vous décidez</strong> : conserver, vendre à Florian Messeau, ou demander un rapport d\'expertise écrit.',
       ]],
@@ -21,7 +21,7 @@ export const SERVICES = [
       ['Gratuite, vraiment', 'Le premier avis et l\'examen en vue d\'un achat ne vous coûtent rien et ne vous engagent à rien. Seul le rapport d\'expertise écrit, destiné à une succession, à un partage ou à une assurance, fait l\'objet d\'un devis préalable.', null],
     ],
     faq: [
-      ['Combien de temps faut-il pour obtenir un premier avis ?', 'Généralement sous 48 heures ouvrées après réception de photos exploitables.'],
+      ['Combien de temps faut-il pour obtenir un premier avis ?', 'Peu de temps : Florian Messeau répond rapidement dès réception de photos exploitables.'],
       ['Puis-je faire estimer un objet sans vouloir le vendre ?', 'Oui. Beaucoup de demandes viennent de familles qui veulent simplement connaître la valeur d\'un objet hérité.'],
       ['Estimez-vous à distance ?', 'Le premier avis se donne sur photos. Une estimation ferme demande toujours de voir l\'objet.'],
     ],
@@ -56,23 +56,22 @@ export const SERVICES = [
     nav: 'Achat d\'antiquités',
     icon: 'banknote',
     h1: 'Achat d\'antiquités et d\'objets d\'art au Maroc',
-    title: 'Achat d\'antiquités au Maroc, paiement immédiat | Florian Messeau',
-    description: 'Florian Messeau achète vos antiquités, objets d\'art et objets de collection au Maroc : offre ferme après examen, paiement immédiat, enlèvement pris en charge.',
-    summary: 'Offre ferme après examen, paiement immédiat, enlèvement pris en charge.',
-    lead: 'Vous souhaitez vendre un objet ancien, une collection ou le mobilier d\'une maison ? Florian Messeau vous fait une offre ferme après examen, vous paie immédiatement et s\'occupe de l\'enlèvement.',
+    title: 'Achat d\'antiquités à Marrakech et au Maroc | Florian Messeau',
+    description: 'Florian Messeau achète vos antiquités et objets de collection à Marrakech et partout au Maroc : proposition claire après examen, enlèvement pris en charge.',
+    summary: 'Proposition claire après examen, enlèvement pris en charge.',
+    lead: 'Vous souhaitez vendre un objet ancien, une collection ou le mobilier d\'une maison ? Florian Messeau examine vos objets, vous fait une proposition claire et s\'occupe de l\'enlèvement.',
     sections: [
-      ['Une offre claire', 'Après examen, vous recevez une offre ferme et chiffrée, objet par objet si vous le souhaitez. Vous êtes libre de l\'accepter ou de la refuser, sans frais.', null],
-      ['Paiement et enlèvement', null, [
-        'Paiement le jour de l\'enlèvement, par virement bancaire ou chèque de banque',
-        'Bon d\'achat détaillé remis pour chaque objet',
-        'Emballage, démontage et transport pris en charge',
+      ['Une proposition claire', 'Après examen, vous recevez une proposition de rachat détaillée, objet par objet si vous le souhaitez. Vous êtes libre de l\'accepter ou de la refuser, sans frais.', null],
+      ['Enlèvement', null, [
+        'Démontage et emballage soignés, même pour les pièces fragiles',
+        'Transport pris en charge',
         'Enlèvement partout au Maroc, sur rendez-vous',
       ]],
       ['Ce que nous achetons', 'Mobilier, tableaux, tapis, argenterie, bijoux et montres, bronzes, verrerie d\'art, luminaires, objets asiatiques et africains, et bien d\'autres. Consultez la liste complète des objets recherchés.', null],
     ],
     faq: [
       ['Achetez-vous des objets à l\'unité ?', 'Oui, une pièce isolée comme une collection entière.'],
-      ['Comment suis-je payé ?', 'Par virement bancaire ou chèque de banque, le jour de l\'enlèvement, contre un bon d\'achat détaillé.'],
+      ['Qui s\'occupe du transport ?', 'Florian Messeau organise l\'enlèvement, l\'emballage et le transport, où que vous soyez au Maroc.'],
     ],
   },
   {
@@ -92,7 +91,7 @@ export const SERVICES = [
         'Enlèvement organisé à la date qui vous convient',
       ]],
       ['Discrétion et respect', 'Vider la maison d\'un proche est un moment délicat. Les visites se font sur rendez-vous, sans publicité, et chaque objet est traité avec soin.', null],
-      ['Pour les héritiers à l\'étranger', 'Si vous vivez hors du Maroc, l\'essentiel peut se faire à distance : visite en votre absence avec une personne de confiance, compte rendu photographié et paiement par virement.', null],
+      ['Pour les héritiers à l\'étranger', 'Si vous vivez hors du Maroc, l\'essentiel peut se faire à distance : visite en votre absence avec une personne de confiance, compte rendu photographié et échanges à distance.', null],
     ],
     faq: [
       ['Travaillez-vous avec les notaires ?', 'Oui. L\'inventaire et le rapport d\'expertise peuvent être remis directement à l\'étude notariale.'],
