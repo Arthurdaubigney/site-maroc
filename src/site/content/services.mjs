@@ -8,16 +8,16 @@ export const SERVICES = [
     h1: 'Estimation gratuite d\'antiquités et d\'objets d\'art',
     title: 'Estimation gratuite d\'antiquités au Maroc | Florian Messeau',
     description: 'Faites estimer gratuitement vos antiquités et objets d\'art au Maroc : premier avis sur photos, examen à domicile, estimation argumentée et sans engagement.',
-    summary: 'Premier avis gratuit sur photos, puis examen de l\'objet chez vous ou en galerie. Sans engagement.',
+    summary: 'Premier avis gratuit sur photos, puis examen de l\'objet chez vous. Sans engagement.',
     lead: 'Vous souhaitez connaître la valeur d\'un objet avant de décider quoi en faire ? Florian Messeau vous donne un premier avis gratuit sur photos, puis une estimation argumentée après examen, sans aucune obligation de vendre.',
     sections: [
       ['Comment se déroule l\'estimation', null, [
-        '<strong>Vous envoyez quelques photos</strong> par WhatsApp, par e-mail ou via le formulaire : vue d\'ensemble, signature, poinçons, dessous.',
+        '<strong>Vous décrivez votre objet</strong> via le formulaire de contact, photos à l\'appui : vue d\'ensemble, signature, poinçons, dessous.',
         '<strong>Vous recevez rapidement un premier avis</strong> : intérêt de l\'objet, piste d\'attribution et fourchette de valeur quand les photos le permettent.',
-        '<strong>L\'objet est examiné</strong> chez vous ou à la galerie. L\'examen physique confirme l\'époque, l\'authenticité et l\'état.',
+        '<strong>L\'objet est examiné</strong> chez vous, partout au Maroc. L\'examen physique confirme l\'époque, l\'authenticité et l\'état.',
         '<strong>Vous décidez</strong> : conserver, vendre à Florian Messeau, ou demander un rapport d\'expertise écrit.',
       ]],
-      ['Une estimation argumentée', 'Chaque estimation s\'appuie sur des ventes comparables récentes, en galerie et en ventes publiques. Florian Messeau vous explique comment il arrive au chiffre : l\'époque, l\'état, la rareté et la demande actuelle du marché.', null],
+      ['Une estimation argumentée', 'Chaque estimation s\'appuie sur des ventes comparables récentes, chez les marchands et en ventes publiques. Florian Messeau vous explique comment il arrive au chiffre : l\'époque, l\'état, la rareté et la demande actuelle du marché.', null],
       ['Gratuite, vraiment', 'Le premier avis et l\'examen en vue d\'un achat ne vous coûtent rien et ne vous engagent à rien. Seul le rapport d\'expertise écrit, destiné à une succession, à un partage ou à une assurance, fait l\'objet d\'un devis préalable.', null],
     ],
     faq: [
@@ -65,7 +65,7 @@ export const SERVICES = [
       ['Enlèvement', null, [
         'Démontage et emballage soignés, même pour les pièces fragiles',
         'Transport pris en charge',
-        'Enlèvement partout au Maroc, sur rendez-vous',
+        'Enlèvement partout au Maroc, au moment qui vous convient',
       ]],
       ['Ce que nous achetons', 'Mobilier, tableaux, tapis, argenterie, bijoux et montres, bronzes, verrerie d\'art, luminaires, objets asiatiques et africains, et bien d\'autres. Consultez la liste complète des objets recherchés.', null],
     ],
@@ -75,14 +75,14 @@ export const SERVICES = [
     ],
   },
   {
-    slug: 'succession-debarras',
-    nav: 'Successions et débarras',
+    slug: 'successions-inventaires',
+    nav: 'Successions et inventaires',
     icon: 'home',
-    h1: 'Successions, inventaires et débarras de maisons',
-    title: 'Succession et débarras de maison au Maroc | Florian Messeau',
+    h1: 'Successions et inventaires de maisons',
+    title: 'Succession et inventaire de maison au Maroc | Florian Messeau',
     description: 'Inventaire, estimation et rachat du contenu d\'une maison ou d\'un appartement lors d\'une succession ou d\'un déménagement au Maroc, en toute discrétion.',
     summary: 'Inventaire, estimation et rachat du contenu d\'une maison, en toute discrétion.',
-    lead: 'Une succession ou un départ à l\'étranger oblige souvent à vider une maison entière. Florian Messeau vous accompagne de l\'inventaire à l\'enlèvement, avec tact et discrétion.',
+    lead: 'Une succession ou un départ à l\'étranger amène souvent à se séparer du contenu de toute une maison. Florian Messeau vous accompagne de l\'inventaire à l\'enlèvement, avec tact et discrétion.',
     sections: [
       ['Un accompagnement complet', null, [
         'Visite de la maison et repérage des objets de valeur, pièce par pièce',
@@ -90,7 +90,7 @@ export const SERVICES = [
         'Offre de rachat globale ou objet par objet',
         'Enlèvement organisé à la date qui vous convient',
       ]],
-      ['Discrétion et respect', 'Vider la maison d\'un proche est un moment délicat. Les visites se font sur rendez-vous, sans publicité, et chaque objet est traité avec soin.', null],
+      ['Discrétion et respect', 'Se séparer des objets d\'un proche est un moment délicat. Les visites se font en toute discrétion, sans publicité, et chaque objet est traité avec soin.', null],
       ['Pour les héritiers à l\'étranger', 'Si vous vivez hors du Maroc, l\'essentiel peut se faire à distance : visite en votre absence avec une personne de confiance, compte rendu photographié et échanges à distance.', null],
     ],
     faq: [

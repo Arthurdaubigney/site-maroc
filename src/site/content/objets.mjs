@@ -8,7 +8,7 @@ export const OBJETS = [
     h1: 'Rachat de mobilier ancien et design au Maroc',
     title: 'Rachat de mobilier ancien et design au Maroc | Florian Messeau',
     description: 'Commodes, coffres en cèdre, mobilier Art déco, design du XXe siècle : estimation gratuite et rachat de meubles anciens et contemporains partout au Maroc.',
-    img: { key: 'mobilier', alt: 'Coffre ancien en cèdre sculpté aux ferrures d\'origine', fallback: 'mobilier ancien', note: 'Meuble ancien en situation (commode, coffre, porte sculptee)' },
+    img: { key: 'mobilier', alt: 'Coffre ancien en cèdre sculpté aux ferrures d\'origine', fallback: 'mobilier ancien', note: 'Coffre en cèdre, commode ancienne ou porte sculptée, patine visible, lumière naturelle' },
     intro: 'Un meuble raconte son époque par son bois, ses assemblages et sa patine. Florian Messeau examine le mobilier européen, marocain et le design du XX<sup>e</sup> siècle, de la pièce unique au contenu complet d\'une maison.',
     recherche: [
       'Mobilier marocain ancien : coffres et portes en cèdre peint ou sculpté, tables en thuya, banquettes, <em>mesnedas</em>',
@@ -37,7 +37,7 @@ export const OBJETS = [
     h1: 'Estimation et rachat de pâte de verre et verrerie d\'art',
     title: 'Pâte de verre Gallé, Daum : estimation au Maroc | Florian Messeau',
     description: 'Vases et lampes Gallé, Daum, Argy-Rousseau, Schneider : faites estimer gratuitement votre pâte de verre et votre verrerie Art nouveau ou Art déco au Maroc.',
-    img: { key: 'pate-de-verre', alt: 'Vase en verre multicouche dégagé à l\'acide, décor floral Art nouveau', fallback: 'pâte de verre', note: 'Vase ou lampe en pate de verre, fond neutre' },
+    img: { key: 'pate-de-verre', alt: 'Vase en verre multicouche dégagé à l\'acide, décor floral Art nouveau', fallback: 'pâte de verre', note: 'Vase ou lampe Art nouveau en verre multicouche, fond neutre' },
     intro: 'La verrerie d\'art de l\'École de Nancy et de l\'Art déco est l\'un des domaines où l\'œil de l\'expert compte le plus : les copies abondent, et les écarts de prix entre un original et une réédition sont considérables.',
     recherche: [
       'Émile Gallé : vases et lampes en verre multicouche gravé ou dégagé à l\'acide',
@@ -65,7 +65,7 @@ export const OBJETS = [
     h1: 'Rachat d\'argenterie, de cristal et de vaisselle ancienne',
     title: 'Rachat d\'argenterie et cristal au Maroc | Florian Messeau',
     description: 'Ménagères Christofle et Puiforcat, cristal Baccarat et Saint-Louis, porcelaine de Limoges : estimation et rachat d\'argenterie et de vaisselle ancienne au Maroc.',
-    img: { key: 'vaisselle-verre-argenterie', alt: 'Service à thé en argent massif et verres en cristal taillé', fallback: 'argenterie et cristal', note: 'Argenterie ou service en cristal, fond neutre' },
+    img: { key: 'vaisselle-verre-argenterie', alt: 'Service à thé en argent massif et verres en cristal taillé', fallback: 'argenterie et cristal', note: 'Théière marocaine ancienne, plateau ou ménagère en argent patiné, verres anciens' },
     intro: 'Une ménagère en argent massif, un service en cristal complet ou une théière marocaine ancienne peuvent valoir bien plus que leur poids de métal. Encore faut-il identifier l\'orfèvre et le titre de l\'argent.',
     recherche: [
       'Argenterie massive : ménagères, plats, services à thé et à café (Puiforcat, Odiot, Boin-Taburet)',
@@ -93,7 +93,7 @@ export const OBJETS = [
     h1: 'Estimation de sculptures et de bronzes d\'art',
     title: 'Estimation de bronzes et sculptures au Maroc | Florian Messeau',
     description: 'Bronzes animaliers, bronzes de Vienne, sculptures en marbre ou en terre cuite signées : faites estimer gratuitement vos sculptures au Maroc par Florian Messeau.',
-    img: { key: 'sculptures-bronzes', alt: 'Sculpture en bronze patiné sur socle en marbre', fallback: 'bronze d\'art', note: 'Sculpture en bronze, eclairage lateral' },
+    img: { key: 'sculptures-bronzes', alt: 'Sculpture en bronze patiné sur socle en marbre', fallback: 'bronze d\'art', note: 'Bronze patiné sur socle ancien, éclairage latéral' },
     intro: 'Deux bronzes identiques en apparence peuvent valoir de cent à mille selon la fonte, la patine et le fondeur. L\'expertise d\'une sculpture commence toujours par le dessous du socle.',
     recherche: [
       'Bronzes animaliers du XIX<sup>e</sup> siècle : Barye, Mène, Bonheur, Fratin',
@@ -121,7 +121,7 @@ export const OBJETS = [
     h1: 'Rachat de pendules, cartels et horloges anciennes',
     title: 'Rachat de pendules et horloges anciennes | Florian Messeau',
     description: 'Pendules en bronze doré, cartels, régulateurs, horloges de parquet : estimation gratuite et rachat de pendules anciennes partout au Maroc, même à l\'arrêt.',
-    img: { key: 'pendules-horloges', alt: 'Pendule ancienne en bronze doré au cadran émaillé', fallback: 'pendule ancienne', note: 'Pendule ou horloge ancienne, cadran visible' },
+    img: { key: 'pendules-horloges', alt: 'Pendule ancienne en bronze doré au cadran émaillé', fallback: 'pendule ancienne', note: 'Pendule en bronze doré ou horloge de parquet ancienne, cadran visible' },
     intro: 'Une pendule arrêtée n\'a rien perdu de sa valeur : le boîtier, le mouvement et la signature de l\'horloger comptent bien plus que son fonctionnement du jour.',
     recherche: [
       'Pendules en bronze doré Louis XV, Louis XVI, Empire et Restauration',
@@ -149,7 +149,7 @@ export const OBJETS = [
     h1: 'Rachat de montres de luxe et de bijoux anciens',
     title: 'Rachat de montres et bijoux anciens au Maroc | Florian Messeau',
     description: 'Montres Rolex, Omega, Cartier, Patek Philippe, bijoux en or et bijoux berbères en argent : estimation gratuite et rachat discret partout au Maroc.',
-    img: { key: 'montres-bijoux', alt: 'Bijoux berbères anciens en argent, ambre et corail', fallback: 'montres et bijoux', note: 'Bijoux ou montre sur fond sombre' },
+    img: { key: 'montres-bijoux', alt: 'Montre de gousset ancienne et fibules berbères en argent', fallback: 'montres et bijoux', note: 'Montre de gousset ancienne ou fibules berbères en argent, sur bois ou tissu ancien (pas de vitrine de bijouterie)' },
     intro: 'Une montre de collection ou un bijou signé s\'estime à la référence près. Florian Messeau vous donne une estimation argumentée, loin du simple prix de l\'or au gramme.',
     recherche: [
       'Montres mécaniques de prestige : Rolex, Patek Philippe, Audemars Piguet, Omega, Jaeger-LeCoultre, Cartier',
@@ -177,7 +177,7 @@ export const OBJETS = [
     h1: 'Estimation de tableaux orientalistes, de peinture marocaine et de tapisseries',
     title: 'Estimation de tableaux orientalistes au Maroc | Florian Messeau',
     description: 'Peinture orientaliste, maîtres de la peinture marocaine, gravures, tapisseries d\'Aubusson : estimation gratuite de vos tableaux au Maroc.',
-    img: { key: 'tableaux-tapisseries', alt: 'Tableau orientaliste ancien dans un cadre doré à la feuille', fallback: 'tableau', note: 'Tableau encadre, photographie de face sans reflet' },
+    img: { key: 'tableaux-tapisseries', alt: 'Tableau orientaliste ancien dans un cadre doré à la feuille', fallback: 'tableau', note: 'Tableau ancien dans son cadre doré, photographié de face sans reflet' },
     intro: 'Le Maroc a inspiré des générations de peintres, et la peinture marocaine moderne est aujourd\'hui très recherchée. Identifier l\'artiste, l\'époque et l\'état d\'un tableau demande un examen attentif, recto et verso.',
     recherche: [
       'Peinture orientaliste : scènes de genre, paysages, portraits (Majorelle, Pontoy, Edy-Legrand, Bouchaud)',
@@ -205,7 +205,7 @@ export const OBJETS = [
     h1: 'Rachat de tapis berbères, marocains et d\'Orient anciens',
     title: 'Rachat de tapis berbères anciens au Maroc | Florian Messeau',
     description: 'Tapis berbères du Haut Atlas, Beni Ouarain, Zemmour, tapis de Rabat, tapis persans et caucasiens : estimation gratuite et rachat de tapis anciens au Maroc.',
-    img: { key: 'tapis', alt: 'Détail d\'un tapis berbère ancien aux motifs géométriques rouges et safran', fallback: 'tapis ancien', note: 'Tapis a plat, vue d\'ensemble puis detail' },
+    img: { key: 'tapis', alt: 'Détail d\'un tapis berbère ancien aux motifs géométriques rouges et safran', fallback: 'tapis ancien', note: 'Tapis berbère ancien, vue d\'ensemble puis détail des motifs' },
     intro: 'Au Maroc, le tapis est un patrimoine vivant. Un tapis tribal ancien, tissé pour l\'usage familial avec des teintures naturelles, n\'a rien à voir avec une production commerciale récente, et son prix non plus.',
     recherche: [
       'Tapis berbères anciens : Haut Atlas, Moyen Atlas, Zemmour, Zaïane, Beni Ouarain, Beni Mguild',
@@ -232,7 +232,7 @@ export const OBJETS = [
     h1: 'Rachat de robes de soirée, haute couture et vêtements de marque',
     title: 'Rachat de vêtements de marque et haute couture | Florian Messeau',
     description: 'Robes de soirée, haute couture, prêt-à-porter de créateur, caftans anciens : estimation gratuite et rachat de vêtements de marque au Maroc.',
-    img: { key: 'robes-vetements-de-marque', alt: 'Robe de soirée brodée présentée sur un mannequin de couture', fallback: 'vêtement de marque', note: 'Robe ou vetement sur cintre ou mannequin, etiquette visible' },
+    img: { key: 'robes-vetements-de-marque', alt: 'Robe de soirée brodée présentée sur un mannequin de couture', fallback: 'vêtement de marque', note: 'Caftan ancien brodé ou robe de couture vintage sur mannequin ancien' },
     intro: 'La mode vintage est devenue un marché de collection. Une robe de haute couture, un tailleur de créateur ou un caftan ancien brodé peuvent avoir une valeur importante, à condition d\'être bien identifiés.',
     recherche: [
       'Haute couture et prêt-à-porter de créateur : Chanel, Dior, Yves Saint Laurent, Balenciaga, Givenchy, Hermès',
@@ -258,7 +258,7 @@ export const OBJETS = [
     h1: 'Rachat de briquets et stylos de collection',
     title: 'Rachat de briquets Dupont et stylos Montblanc | Florian Messeau',
     description: 'Briquets S.T. Dupont, Cartier, Dunhill, stylos Montblanc, Waterman, Parker anciens : estimation gratuite et rachat de briquets et stylos de collection au Maroc.',
-    img: { key: 'briquets-stylos', alt: 'Stylo plume ancien et briquet laqué posés sur un sous-main en cuir', fallback: 'briquet ou stylo', note: 'Briquet ou stylo en gros plan, fond sombre' },
+    img: { key: 'briquets-stylos', alt: 'Stylo plume ancien et briquet de collection sur un bureau ancien', fallback: 'briquet ou stylo', note: 'Stylo plume ancien et briquet de collection sur un bureau ancien' },
     intro: 'Briquets et stylos de luxe sont des objets de collection à part entière. Les éditions limitées, les laques et les métaux précieux font l\'objet d\'une cote précise.',
     recherche: [
       'Briquets S.T. Dupont (laque de Chine, éditions limitées), Cartier, Dunhill (Rollagas, Unique)',
@@ -284,7 +284,7 @@ export const OBJETS = [
     h1: 'Rachat de lustres en cristal, luminaires et miroirs anciens',
     title: 'Rachat de lustres et miroirs anciens au Maroc | Florian Messeau',
     description: 'Lustres Baccarat, Murano, luminaires design, miroirs dorés anciens : estimation gratuite et rachat de lustres, appliques et miroirs anciens partout au Maroc.',
-    img: { key: 'lustres-miroirs', alt: 'Lustre ancien en cristal à pampilles', fallback: 'lustre ancien', note: 'Lustre allume ou miroir dore, photo de face' },
+    img: { key: 'lustres-miroirs', alt: 'Lustre ancien en cristal à pampilles', fallback: 'lustre ancien', note: 'Lustre ancien à pampilles ou miroir doré à la feuille' },
     intro: 'Un lustre en cristal d\'une grande manufacture ou un miroir doré à la feuille d\'époque peuvent être des pièces maîtresses. Leur démontage et leur transport demandent aussi un savoir-faire.',
     recherche: [
       'Lustres en cristal : Baccarat, Saint-Louis, cristal de Bohême',
@@ -311,7 +311,7 @@ export const OBJETS = [
     h1: 'Estimation d\'arts asiatiques et d\'arts africains',
     title: 'Estimation d\'arts asiatiques et africains | Florian Messeau',
     description: 'Porcelaines et bronzes chinois, jades, laques du Japon, masques et statuettes africains : estimation gratuite de vos objets d\'art au Maroc.',
-    img: { key: 'arts-asiatiques-africains', alt: 'Vase en porcelaine chinoise ancienne à décor bleu et blanc', fallback: 'art asiatique', note: 'Objet d\'art asiatique ou africain, fond neutre' },
+    img: { key: 'arts-asiatiques-africains', alt: 'Vase en porcelaine chinoise ancienne à décor bleu et blanc', fallback: 'art asiatique', note: 'Porcelaine chinoise ancienne ou masque africain ancien, fond neutre' },
     intro: 'Les arts asiatiques connaissent des records en ventes publiques, et les arts africains anciens sont très recherchés. Ce sont aussi des domaines où l\'expertise est indispensable, tant les reproductions sont nombreuses.',
     recherche: [
       'Porcelaines chinoises : bleu et blanc, famille rose, céladons, marques de règne',
@@ -338,7 +338,7 @@ export const OBJETS = [
     h1: 'Estimation de caves, de vins et de spiritueux de collection',
     title: 'Estimation de vins et spiritueux de collection | Florian Messeau',
     description: 'Grands crus de Bordeaux et de Bourgogne, champagnes, cognacs et whiskies anciens : estimation gratuite de vins et spiritueux de collection au Maroc.',
-    img: { key: 'vins-spiritueux', alt: 'Bouteilles de vin anciennes couchées dans une cave voûtée', fallback: 'vins et spiritueux', note: 'Bouteilles en cave, etiquettes lisibles' },
+    img: { key: 'vins-spiritueux', alt: 'Bouteilles de vin anciennes couchées dans une cave voûtée', fallback: 'vins et spiritueux', note: 'Bouteilles anciennes couchées dans une cave voûtée' },
     // Page d'appel : centree sur l'estimation et le conseil (pas d'engagement de rachat), pour capter la recherche
     // sans presumer de la licence de vente d'alcool.
     intro: 'Une cave de collection s\'estime bouteille par bouteille : millésime, niveau, étiquette et conditions de conservation. Florian Messeau vous aide à connaître la valeur d\'une cave ou de quelques bouteilles d\'exception, et vous oriente vers la meilleure façon de les valoriser.',
@@ -367,7 +367,7 @@ export const OBJETS = [
     h1: 'Estimation et rachat d\'instruments de musique anciens',
     title: 'Rachat d\'instruments de musique anciens | Florian Messeau',
     description: 'Violons, violoncelles, pianos, guitares, instruments à vent et traditionnels marocains : estimation gratuite d\'instruments anciens au Maroc.',
-    img: { key: 'instruments-de-musique', alt: 'Violon ancien posé sur une partition', fallback: 'instrument de musique', note: 'Instrument entier puis etiquette interieure' },
+    img: { key: 'instruments-de-musique', alt: 'Violon ancien posé sur une partition', fallback: 'instrument de musique', note: 'Violon ancien et son archet, ou oud ancien marqueté' },
     intro: 'Un violon oublié dans un grenier peut être l\'œuvre d\'un luthier réputé. Les instruments anciens demandent un examen précis de la lutherie, des étiquettes et des restaurations.',
     recherche: [
       'Violons, altos, violoncelles et archets anciens (lutherie française, italienne, allemande)',
@@ -394,7 +394,7 @@ export const OBJETS = [
     h1: 'Rachat de sacs de luxe, malles et bagagerie de marque',
     title: 'Rachat de sacs Hermès, Chanel, malles Vuitton | Florian Messeau',
     description: 'Sacs Hermès, Chanel, Louis Vuitton, Dior, malles et valises anciennes : estimation gratuite et rachat de sacs à main et bagagerie de luxe au Maroc.',
-    img: { key: 'sacs-bagagerie', alt: 'Sac à main de luxe en cuir et malle de voyage ancienne', fallback: 'sac de luxe', note: 'Sac ou malle de face, puis detail des marquages' },
+    img: { key: 'sacs-bagagerie', alt: 'Malle de voyage ancienne en toile et cuir', fallback: 'sac de luxe', note: 'Malle de voyage ancienne en toile et cuir' },
     intro: 'Les sacs de luxe et la bagagerie de voyage ancienne sont des valeurs sûres du marché de seconde main. L\'authentification repose sur des détails précis : coutures, marquages, numéros et matières.',
     recherche: [
       'Sacs Hermès (Kelly, Birkin, Constance), Chanel (Timeless, 2.55), Dior, Louis Vuitton, Goyard',
