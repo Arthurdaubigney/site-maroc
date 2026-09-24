@@ -1,5 +1,5 @@
 // Gabarit commun a toutes les pages : <head> SEO, header, fil d'Ariane, pied de page, composants.
-import { SITE, IMAGES, whatsappLink } from './config.mjs';
+import { SITE, IMAGES } from './config.mjs';
 
 export const esc = (s) => String(s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -54,6 +54,13 @@ export const icon = (name, cls = 'size-5') => `<svg class="${cls}" aria-hidden="
 // Photo a dimensions exactes, avec commentaire de remplacement et repli "Photo a venir".
 export function photo({ key, src, w, h, alt, note, fallback, ratio, priority = false, sizes = '(min-width: 1024px) 50vw, 92vw', frameClass = '' }) {
   const base = src ?? IMAGES[key];
+  if (!base) {
+    return `<!-- PHOTO A FOURNIR : ${note} (format ${w} x ${h} px). Deposer le fichier dans public/images/ puis renseigner IMAGES['${key}'] dans src/site/config.mjs. -->
+<figure class="photo-frame is-missing aspect-[${ratio}] ${frameClass}">
+  <div class="h-full w-full" aria-hidden="true"></div>
+  <figcaption class="photo-fallback">Photo à venir : ${esc(fallback)}</figcaption>
+</figure>`;
+  }
   const q = (ww, hh) => `${base}?auto=format&amp;fit=crop&amp;w=${ww}&amp;h=${hh}&amp;q=80`;
   const srcset = base.startsWith('http') ? ` srcset="${q(Math.round(w / 2), Math.round(h / 2))} ${Math.round(w / 2)}w, ${q(w, h)} ${w}w" sizes="${sizes}"` : '';
   const url = base.startsWith('http') ? q(w, h) : base;
@@ -89,15 +96,15 @@ export const faq = (items, { title = 'Questions fréquentes', id = 'faq' } = {})
   </div>
 </section>`;
 
-export const ctaBand = ({ title = 'Un objet à faire estimer ?', text = 'Envoyez quelques photos à Florian Messeau : premier avis gratuit, sans engagement et en toute discrétion.' } = {}) => `<section aria-labelledby="cta-titre" class="on-deep bg-deep text-on-deep">
+export const ctaBand = ({ title = 'Un objet à faire estimer ?', text = 'Décrivez votre objet à Florian Messeau : premier avis gratuit, sans engagement et en toute discrétion.' } = {}) => `<section aria-labelledby="cta-titre" class="on-deep bg-deep text-on-deep">
   <div class="mx-auto grid max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-12 lg:items-center lg:px-8 lg:py-20">
     <div class="lg:col-span-7">
       <h2 id="cta-titre" class="text-4xl leading-[1.1] sm:text-5xl">${title}</h2>
       <p class="mt-4 max-w-[56ch] text-on-deep-muted">${text}</p>
     </div>
-    <div class="flex flex-col gap-3 sm:flex-row lg:col-span-5 lg:justify-end">
-      <a href="/contact" class="btn btn-primary min-h-12 px-6">Demander une estimation ${icon('arrow-right')}</a>
-      <a href="${whatsappLink()}" class="btn btn-secondary min-h-12 px-6" rel="noopener" target="_blank">${icon('message')} WhatsApp<span class="sr-only"> (nouvel onglet)</span></a>
+    <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:col-span-5 lg:justify-end">
+      <a href="/contact" class="btn btn-primary min-h-12 px-6 sm:whitespace-nowrap">Demander une estimation ${icon('arrow-right')}</a>
+      <a href="tel:${SITE.phone.e164}" class="btn btn-secondary min-h-12 whitespace-nowrap px-6">${icon('phone')} ${SITE.phone.display}</a>
     </div>
   </div>
 </section>`;
@@ -145,9 +152,6 @@ function header(current) {
         </ul>
       </nav>
       <div class="flex flex-none items-center gap-2">
-        <a href="${whatsappLink()}" class="btn btn-secondary px-3 xl:hidden 2xl:inline-flex 2xl:px-4" rel="noopener" target="_blank">
-          ${icon('message')}<span class="sr-only 2xl:not-sr-only">WhatsApp</span><span class="sr-only"> (ouvre WhatsApp dans un nouvel onglet)</span>
-        </a>
         <a href="/contact" class="btn btn-primary hidden whitespace-nowrap md:inline-flex">Faire estimer</a>
         <button type="button" class="btn btn-secondary px-3 xl:hidden" aria-expanded="false" aria-controls="menu-mobile" data-menu-toggle>
           <svg class="size-5" aria-hidden="true" data-menu-icon="open"><use href="#i-menu"/></svg>
@@ -184,20 +188,17 @@ function footer({ objets, villes, services }) {
           ${icon('logo', 'size-9 text-ornament')}
           <span class="font-display text-2xl font-semibold">Florian Messeau</span>
         </a>
-        <p class="mt-4 max-w-[34ch] text-sm text-on-deep-muted">${SITE.tagline}. Achat, vente, estimation et expertise d'antiquités, partout au Maroc.</p>
+        <p class="mt-4 max-w-[34ch] text-sm text-on-deep-muted">${SITE.tagline}. Estimation, expertise et rachat d'antiquités, depuis Marrakech et partout au Maroc.</p>
         <!-- A REMPLACER : NAP reel (voir src/site/config.mjs) -->
         <address class="mt-6 space-y-3 text-sm not-italic text-on-deep-muted">
-          <p class="flex items-start gap-3">${icon('map-pin', 'mt-0.5 size-5 flex-none text-ornament')}<span>Florian Messeau<br>${SITE.address.street}<br>${SITE.address.postalCode} ${SITE.address.city}, ${SITE.address.countryName}</span></p>
+          <p class="flex items-start gap-3">${icon('map-pin', 'mt-0.5 size-5 flex-none text-ornament')}<span>Florian Messeau<br>${SITE.address.street ? `${SITE.address.street}<br>${SITE.address.postalCode} ` : ''}${SITE.address.city}, ${SITE.address.countryName}<br>Déplacements dans tout le Maroc</span></p>
           <p class="flex items-center gap-3">${icon('phone', 'size-5 flex-none text-ornament')}<a href="tel:${SITE.phone.e164}" class="tabular-nums text-on-deep underline underline-offset-4 hover:decoration-2">${SITE.phone.display}</a></p>
-          <p class="flex items-center gap-3">${icon('message', 'size-5 flex-none text-ornament')}<a href="${whatsappLink()}" class="tabular-nums text-on-deep underline underline-offset-4 hover:decoration-2" rel="noopener" target="_blank">${SITE.whatsapp.display} (WhatsApp)<span class="sr-only">, nouvel onglet</span></a></p>
-          <p class="flex items-center gap-3">${icon('mail', 'size-5 flex-none text-ornament')}<a href="mailto:${SITE.email}" class="text-on-deep underline underline-offset-4 [overflow-wrap:anywhere] hover:decoration-2">${SITE.email}</a></p>
-          <p class="flex items-start gap-3">${icon('clock', 'mt-0.5 size-5 flex-none text-ornament')}<span>${SITE.hours.label}</span></p>
         </address>
       </div>
       ${col('Expertise & achat', [a('/expertise-achat', 'Tous nos services'), ...services.map((s) => a(`/expertise-achat/${s.slug}`, s.nav))], 'lg:col-span-2')}
       ${col('Objets recherchés', objets.map((o) => a(`/objets-recherches/${o.slug}`, o.nav)), 'lg:col-span-3 lg:columns-1')}
       ${col('Antiquaire au Maroc', villes.map((v) => a(`/zones-intervention/${v.slug}`, `Antiquaire à ${v.ville}`)), 'lg:col-span-2')}
-      ${col('Informations', [a('/presentation', 'Présentation'), a('/contact', 'Contact'), a('/mentions-legales', 'Mentions légales'), a('/confidentialite', 'Confidentialité'), a('/sitemap.xml', 'Plan du site')], 'lg:col-span-2')}
+      ${col('Informations', [a('/presentation', 'Présentation'), a('/contact', 'Contact et estimation'), a('/mentions-legales', 'Mentions légales'), a('/confidentialite', 'Confidentialité'), a('/sitemap.xml', 'Plan du site')], 'lg:col-span-2')}
     </div>
     <div class="border-t border-on-deep-muted/20">
       <div class="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-6 text-sm text-on-deep-muted sm:px-6 md:flex-row md:justify-between lg:px-8">
@@ -213,7 +214,7 @@ function footer({ objets, villes, services }) {
 export function renderPage(page, ctx) {
   const { path, title, description, body, jsonld = [], trail, noindex = false, ogImage } = page;
   const canonical = abs(path);
-  const img = ogImage ?? `${IMAGES.og}?auto=format&fit=crop&w=1200&h=630&q=80`;
+  const img = ogImage ?? (IMAGES.og ? abs(IMAGES.og) : null);
   const graph = [...jsonld];
   if (trail) {
     graph.push({
@@ -244,16 +245,15 @@ export function renderPage(page, ctx) {
   <meta property="og:title" content="${esc(title)}">
   <meta property="og:description" content="${esc(description)}">
   <meta property="og:url" content="${canonical}">
-  <!-- PHOTO COMMERCIAL : image de partage 1200 x 630 px, a deposer dans public/images/og-image.jpg puis a referencer dans src/site/config.mjs -->
-  <meta property="og:image" content="${esc(img)}">
+  ${img ? `<meta property="og:image" content="${esc(img)}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:card" content="summary_large_image">` : `<!-- PHOTO A FOURNIR : image de partage 1200 x 630 px (IMAGES.og dans src/site/config.mjs) -->
+  <meta name="twitter:card" content="summary">`}
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&amp;family=Work+Sans:wght@400;500;600&amp;display=swap">
   <link rel="stylesheet" href="/assets/styles.css">
   <script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })}</script>

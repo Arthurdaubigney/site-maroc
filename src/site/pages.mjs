@@ -1,5 +1,5 @@
 // Definition de toutes les pages du site. Chaque entree : path, title, description, trail, body, jsonld.
-import { SITE, IMAGES, whatsappLink } from './config.mjs';
+import { SITE, IMAGES } from './config.mjs';
 import { OBJETS, bySlug } from './content/objets.mjs';
 import { SERVICES } from './content/services.mjs';
 import { VILLES } from './content/villes.mjs';
@@ -15,15 +15,13 @@ const businessNode = () => ({
   '@type': 'AntiqueStore',
   '@id': businessId,
   name: SITE.name,
-  description: `${SITE.tagline}. Achat, vente, estimation et expertise d'antiquités et d'objets d'art dans tout le Maroc.`,
+  description: `${SITE.tagline}. Estimation, expertise et rachat d'antiquités et d'objets d'art auprès des particuliers, depuis Marrakech et dans tout le Maroc.`,
   url: `${SITE.url}/`,
   logo: `${SITE.url}/favicon.svg`,
-  image: `${IMAGES.og}?auto=format&fit=crop&w=1200&h=630&q=80`,
+  ...(IMAGES.og ? { image: abs(IMAGES.og) } : {}),
   telephone: SITE.phone.e164,
-  email: SITE.email,
-  address: { '@type': 'PostalAddress', streetAddress: SITE.address.street, addressLocality: SITE.address.city, postalCode: SITE.address.postalCode, addressCountry: SITE.address.country },
+  address: { '@type': 'PostalAddress', ...(SITE.address.street ? { streetAddress: SITE.address.street, postalCode: SITE.address.postalCode } : {}), addressLocality: SITE.address.city, addressCountry: SITE.address.country },
   ...(SITE.geo ? { geo: { '@type': 'GeoCoordinates', latitude: SITE.geo.lat, longitude: SITE.geo.lng } } : {}),
-  openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: SITE.hours.days, opens: SITE.hours.opens, closes: SITE.hours.closes }],
   areaServed: [areaServed, ...VILLES.map((v) => ({ '@type': 'City', name: v.ville }))],
   founder: { '@id': expertId },
   knowsAbout: OBJETS.map((o) => o.nav),
@@ -32,7 +30,6 @@ const businessNode = () => ({
     name: 'Services de Florian Messeau, antiquaire',
     itemListElement: SERVICES.map((s) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s.nav, url: abs(`/expertise-achat/${s.slug}`) } })),
   },
-  contactPoint: { '@type': 'ContactPoint', telephone: `+${SITE.whatsapp.digits}`, contactType: 'customer service', availableLanguage: ['French', 'Arabic', 'English'], areaServed: 'MA' },
   ...(SITE.sameAs.length ? { sameAs: SITE.sameAs } : {}),
 });
 const personNode = () => ({
@@ -48,9 +45,9 @@ const serviceNode = (name, path, description, area = areaServed) => ({
 /* ---------- Blocs partages ---------- */
 const steps = () => `<ol class="grid gap-x-10 gap-y-10 sm:grid-cols-2">
   ${[
-    ['Envoyez quelques photos', 'Vue d\'ensemble, signature, poinçons, dessous et défauts éventuels.'],
+    ['Décrivez votre objet', 'Via le formulaire, photos à l\'appui : vue d\'ensemble, signature, poinçons, défauts.'],
     ['Recevez un premier avis', 'Rapidement, par retour : intérêt de l\'objet et fourchette de valeur.'],
-    ['Examen de l\'objet', 'Chez vous ou à la galerie, partout au Maroc, sur rendez-vous.'],
+    ['Examen de l\'objet', 'Chez vous, partout au Maroc, au moment qui vous convient.'],
     ['Offre ou rapport écrit', 'Proposition de rachat ou rapport d\'expertise. Vous restez libre de refuser.'],
   ].map(([t, d], i) => `<li class="border-t border-control pt-6">
     <span class="font-display text-5xl font-semibold text-link" aria-hidden="true">${i + 1}</span>
@@ -61,8 +58,8 @@ const steps = () => `<ol class="grid gap-x-10 gap-y-10 sm:grid-cols-2">
 
 const guarantees = () => `<ul class="grid gap-x-10 gap-y-8 sm:grid-cols-2">
   ${[
-    ['shield-check', 'Authenticité garantie', 'Chaque pièce vendue est accompagnée d\'un certificat : époque, matériaux, provenance connue, restaurations.'],
-    ['lock', 'Discrétion absolue', 'Rendez-vous privés, aucune publicité sur vos biens ni sur votre identité, données jamais transmises.'],
+    ['file-text', 'Vos documents comptent', 'Factures, certificats, photos de famille, étiquettes : tout ce que vous savez de l\'histoire d\'un objet aide à établir son authenticité et sa valeur.'],
+    ['lock', 'Discrétion absolue', 'Échanges privés, aucune publicité sur vos biens ni sur votre identité, données jamais transmises.'],
     ['scale', 'Prix argumenté', 'Chaque estimation s\'appuie sur des ventes comparables récentes, que Florian Messeau vous présente.'],
     ['truck', 'Partout au Maroc', 'Déplacement à domicile, enlèvement, emballage et transport pris en charge.'],
   ].map(([ic, t, d]) => `<li>
@@ -72,14 +69,12 @@ const guarantees = () => `<ul class="grid gap-x-10 gap-y-8 sm:grid-cols-2">
   </li>`).join('\n  ')}
 </ul>`;
 
-const portraitPlaceholder = (cls = 'aspect-[4/5]') => `<!-- PHOTO COMMERCIAL : Portrait de Florian Messeau dans sa galerie, format portrait 4:5, 800 x 1000 px.
-     Remplacer le <div role="img"> par :
-     <img src="/images/florian-messeau.jpg" width="800" height="1000" loading="lazy" decoding="async" alt="Florian Messeau, antiquaire et expert en objets d'art, dans sa galerie au Maroc">
-     puis retirer la classe is-missing. Jamais de photo de banque d'images ici. -->
-<figure class="photo-frame is-missing ${cls}">
-  <div class="h-full w-full" role="img" aria-label="Portrait de Florian Messeau, photo à venir"></div>
-  <figcaption class="photo-fallback">Portrait de Florian Messeau à venir</figcaption>
-</figure>`;
+const florianPhoto = (key = 'florian-portrait') => photo({
+  key, w: 800, h: 1000, ratio: '4/5', sizes: '(min-width: 1024px) 38vw, 92vw',
+  alt: key === 'florian-hero' ? 'Florian Messeau, antiquaire, examinant un objet ancien' : 'Florian Messeau, antiquaire et expert en objets d\'art',
+  note: key === 'florian-hero' ? 'Florian Messeau examinant un objet ancien, plan poitrine, lumiere naturelle (vraie photo, jamais de banque d\'images)' : 'Portrait de Florian Messeau dans un interieur ancien (vraie photo, jamais de banque d\'images)',
+  fallback: 'Florian Messeau',
+});
 
 const objetCard = (o, big = false) => `<article class="group relative flex flex-col overflow-hidden rounded-card border border-hairline bg-card ${big ? 'md:col-span-2 lg:col-span-6 lg:row-span-2' : 'lg:col-span-3'}">
   ${photo({ key: o.img.key, w: big ? 900 : 600, h: big ? 900 : 450, ratio: big ? '1/1' : '4/3', alt: o.img.alt, note: o.img.note, fallback: o.img.fallback, sizes: big ? '(min-width: 1024px) 45vw, 92vw' : '(min-width: 1024px) 22vw, 92vw', frameClass: `rounded-none ${big ? 'lg:aspect-auto lg:flex-1' : ''}` })}
@@ -89,11 +84,19 @@ const objetCard = (o, big = false) => `<article class="group relative flex flex-
   </div>
 </article>`;
 
+const villeCard = (v, big = false) => `<article class="group relative flex flex-col overflow-hidden rounded-card border border-hairline bg-card">
+  ${photo({ key: v.photo.key, w: 800, h: 600, ratio: '4/3', alt: v.photo.alt, note: v.photo.note, fallback: v.ville, sizes: '(min-width: 1024px) 25vw, (min-width: 640px) 45vw, 92vw', frameClass: 'rounded-none' })}
+  <div class="p-5">
+    <h3 class="${big ? 'text-3xl' : 'text-2xl'} leading-tight"><a href="/zones-intervention/${v.slug}" class="text-ink no-underline after:absolute after:inset-0 group-hover:text-link">Antiquaire à ${v.ville}</a></h3>
+    ${big ? `<p class="mt-2 text-sm text-muted">${v.quartiers.slice(0, 4).join(', ')} et environs</p>` : ''}
+  </div>
+</article>`;
+
 const generalFaq = [
   ['L\'estimation est-elle payante ?', 'Non. Le premier avis sur photos et l\'examen en vue d\'un achat sont gratuits et sans engagement. Seul le rapport d\'expertise écrit fait l\'objet d\'un devis préalable.'],
   // Pas de liens dans les reponses repliees : le maillage vers ces pages passe par les sections Objets et Zones.
   ['Quels objets achetez-vous ?', 'Mobilier, tableaux, tapis, argenterie, bijoux et montres, bronzes, verrerie d\'art, luminaires, arts asiatiques et africains, vêtements et sacs de marque, instruments de musique, et bien d\'autres objets de collection.'],
-  ['Vous déplacez-vous à domicile ?', `Oui, partout au Maroc, sur rendez-vous : ${VILLES.map((v) => v.ville).join(', ')} et ailleurs.`],
+  ['Vous déplacez-vous à domicile ?', `Oui, depuis Marrakech et partout au Maroc : ${VILLES.filter((v) => v.ville !== 'Marrakech').map((v) => v.ville).join(', ')} et ailleurs.`],
   ['Combien de temps faut-il pour avoir un avis ?', 'Peu de temps : Florian Messeau répond rapidement, dès réception de photos exploitables.'],
   ['Mes informations restent-elles confidentielles ?', 'Oui. Vos photos et coordonnées servent uniquement à répondre à votre demande et ne sont jamais publiées ni transmises.'],
 ];
@@ -119,7 +122,7 @@ function home() {
       </ul>
     </div>
     <div class="relative lg:col-span-5">
-      ${photo({ key: 'vitrine', w: 960, h: 1200, ratio: '4/5', priority: true, sizes: '(min-width: 1024px) 40vw, 92vw', alt: 'Commode ancienne, miroir doré et céramiques présentés dans une galerie d\'antiquités', note: 'Vitrine ou galerie de Florian Messeau, format portrait 4:5', fallback: 'la galerie', frameClass: 'shadow-raised' })}
+      ${photo({ key: 'florian-hero', w: 960, h: 1200, ratio: '4/5', priority: true, sizes: '(min-width: 1024px) 40vw, 92vw', alt: 'Florian Messeau, antiquaire, examinant un objet ancien', note: 'Florian Messeau examinant un objet ancien, plan poitrine, lumiere naturelle (vraie photo)', fallback: 'Florian Messeau', frameClass: 'shadow-raised' })}
       <div class="relative -mt-10 ms-6 max-w-72 rounded-card border border-hairline bg-card p-5 shadow-overlay sm:ms-auto sm:me-6 lg:-ms-10 lg:me-0">
         <p class="font-display text-xl font-semibold leading-snug">Une expertise argumentée, jamais une estimation à la volée.</p>
         <p class="mt-2 text-sm text-muted">Florian Messeau vous explique comment il arrive au prix.</p>
@@ -182,7 +185,13 @@ function home() {
 
 <section aria-labelledby="florian-titre" class="on-deep bg-deep py-20 text-on-deep lg:py-28">
   <div class="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
-    <div class="lg:col-span-5">${portraitPlaceholder()}</div>
+    <div class="lg:col-span-5">
+      ${florianPhoto()}
+      <div class="mt-4 grid grid-cols-2 gap-4">
+        ${photo({ key: 'florian-loupe', w: 600, h: 600, ratio: '1/1', sizes: '(min-width: 1024px) 18vw, 45vw', alt: 'Florian Messeau lisant un poinçon à la loupe', note: 'Florian Messeau lisant un poincon ou une signature a la loupe (vraie photo)', fallback: 'Florian à la loupe' })}
+        ${photo({ key: 'florian-visite', w: 600, h: 600, ratio: '1/1', sizes: '(min-width: 1024px) 18vw, 45vw', alt: 'Florian Messeau examinant un meuble ancien chez un client', note: 'Florian Messeau chez un client, face a un meuble ancien (vraie photo, client non identifiable)', fallback: 'Florian chez un client' })}
+      </div>
+    </div>
     <div class="lg:col-span-7 lg:pt-6">
       ${eyebrow('Présentation')}
       <h2 id="florian-titre" class="mt-4 max-w-[20ch] text-4xl leading-[1.1] sm:text-5xl">Florian Messeau, un métier de regard et de discrétion</h2>
@@ -201,9 +210,9 @@ function home() {
     <div class="lg:col-span-4">
       ${eyebrow('Zones d\'intervention')}
       <h2 id="zones-titre" class="mt-4 text-4xl leading-[1.1] sm:text-5xl">Antiquaire dans tout le Maroc</h2>
-      <p class="mt-5 max-w-[45ch] text-muted">Florian Messeau se déplace à domicile dans tout le royaume pour examiner vos objets.</p>
+      <p class="mt-5 max-w-[45ch] text-muted">Basé à Marrakech, Florian Messeau se déplace à domicile dans tout le royaume pour examiner vos objets.</p>
     </div>
-    <div class="lg:col-span-8">${linkList(VILLES.map((v) => ({ href: `/zones-intervention/${v.slug}`, label: `Antiquaire à ${v.ville}` })), 'sm:grid-cols-2')}</div>
+    <div class="grid gap-5 sm:grid-cols-2 lg:col-span-8 lg:grid-cols-3">${VILLES.map((v) => villeCard(v)).join('\n      ')}</div>
   </div>
 </section>
 
@@ -226,7 +235,7 @@ ${pageHero({
     kicker: 'Présentation',
     h1: 'Florian Messeau, antiquaire et expert en objets d\'art',
     lead: 'Estimer juste, expliquer chaque décision, traiter chaque objet avec soin : voici la manière dont Florian Messeau exerce le métier d\'antiquaire, depuis Marrakech et partout au Maroc.',
-    aside: portraitPlaceholder(),
+    aside: florianPhoto(),
   })}
 <section aria-labelledby="parcours-titre" class="bg-band py-16 lg:py-24">
   <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
@@ -248,7 +257,7 @@ ${pageHero({
       <dl class="grid gap-8 sm:grid-cols-2">
         ${[
     ['Regarder avant de chiffrer', 'Chaque objet est examiné : matériaux, techniques, marques, usure. Le prix vient après, jamais avant.'],
-    ['Comparer au marché réel', 'Les estimations s\'appuient sur des ventes comparables récentes, en galerie et en ventes publiques.'],
+    ['Comparer au marché réel', 'Les estimations s\'appuient sur des ventes comparables récentes, chez les marchands et en ventes publiques.'],
     ['Expliquer', 'Vous savez pourquoi un objet vaut ce prix, et pourquoi un autre ne vaut pas ce que l\'on croyait.'],
     ['Laisser le choix', 'Estimer n\'oblige jamais à vendre. Vous décidez, à chaque étape.'],
   ].map(([t, d]) => `<div class="border-t border-control pt-5"><dt class="font-display text-2xl font-semibold">${t}</dt><dd class="mt-2 text-muted">${d}</dd></div>`).join('\n        ')}
@@ -298,7 +307,7 @@ ${ctaBand()}`;
   return {
     path: '/expertise-achat', trail,
     title: 'Expertise et achat d\'antiquités au Maroc | Florian Messeau',
-    description: 'Estimation gratuite, rapport d\'expertise écrit, achat d\'antiquités, successions et débarras : les services de Florian Messeau au Maroc.',
+    description: 'Estimation gratuite, rapport d\'expertise écrit, rachat d\'antiquités, successions et inventaires : les services de Florian Messeau au Maroc.',
     body,
     jsonld: [{ '@type': 'ItemList', name: 'Services', itemListElement: SERVICES.map((s, i) => ({ '@type': 'ListItem', position: i + 1, url: abs(`/expertise-achat/${s.slug}`), name: s.nav })) }],
   };
@@ -309,7 +318,7 @@ function servicePage(s) {
   const trail = [HOME, { name: 'Expertise & achat', href: '/expertise-achat' }, { name: s.nav, href: path }];
   const others = SERVICES.filter((x) => x !== s);
   const body = `
-${pageHero({ kicker: 'Expertise & achat', h1: s.h1, lead: s.lead, aside: photo({ key: s.slug === 'succession-debarras' ? 'succession' : 'loupe', w: 800, h: 1000, ratio: '4/5', alt: s.slug === 'succession-debarras' ? 'Salon ancien meublé d\'antiquités avant un inventaire de succession' : 'Loupe d\'expert posée sur un objet d\'art ancien, près d\'une signature', note: s.slug === 'succession-debarras' ? 'Interieur de maison ou objets en cours d\'inventaire, sans personne identifiable' : 'Objet examine a la loupe, sans personne identifiable', fallback: s.nav.toLowerCase(), sizes: '(min-width: 1024px) 38vw, 92vw' }) })}
+${pageHero({ kicker: 'Expertise & achat', h1: s.h1, lead: s.lead, aside: photo({ key: s.slug === 'successions-inventaires' ? 'succession' : 'loupe', w: 800, h: 1000, ratio: '4/5', alt: s.slug === 'successions-inventaires' ? 'Salon ancien meublé d\'antiquités avant un inventaire de succession' : 'Loupe d\'expert posée sur un objet d\'art ancien, près d\'une signature', note: s.slug === 'successions-inventaires' ? 'Interieur de maison ou objets en cours d\'inventaire, sans personne identifiable' : 'Objet examine a la loupe, sans personne identifiable', fallback: s.nav.toLowerCase(), sizes: '(min-width: 1024px) 38vw, 92vw' }) })}
 <section class="bg-band py-16 lg:py-24">
   <div class="mx-auto max-w-7xl space-y-16 px-4 sm:px-6 lg:px-8">
     ${s.sections.map(([h, p, list], i) => `<div class="grid gap-6 lg:grid-cols-12">
@@ -387,11 +396,11 @@ ${pageHero({ kicker: 'Objets recherchés', h1: o.h1, lead: o.intro, aside: photo
     </div>
     <div class="grid gap-6 lg:grid-cols-12">
       <h2 class="text-3xl leading-tight sm:text-4xl lg:col-span-4">Faire estimer votre objet</h2>
-      <div class="rounded-card border border-hairline bg-card p-6 sm:p-8 lg:col-span-8">
+      <div class="rounded-card border border-hairline bg-card p-5 sm:p-8 lg:col-span-8">
         <p class="flex items-start gap-3">${icon('camera', 'mt-0.5 size-5 flex-none text-link')}<span>${o.photos}</span></p>
         <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-          <a href="${whatsappLink(`Bonjour Florian, je souhaite faire estimer : ${o.nav.toLowerCase()}.`)}" class="btn btn-primary min-h-12 px-6" rel="noopener" target="_blank">${icon('message')} Envoyer mes photos sur WhatsApp<span class="sr-only"> (nouvel onglet)</span></a>
-          <a href="/contact" class="btn btn-secondary min-h-12 px-6">Autres moyens de contact</a>
+          <a href="/contact" class="btn btn-primary min-h-12 px-4 sm:px-6">Demander une estimation ${icon('arrow-right')}</a>
+          <a href="tel:${SITE.phone.e164}" class="btn btn-secondary min-h-12 px-4 sm:px-6">${icon('phone')} ${SITE.phone.display}</a>
         </div>
       </div>
     </div>
@@ -415,11 +424,7 @@ function zonesHub() {
 ${pageHero({ kicker: 'Zones d\'intervention', h1: 'Antiquaire à domicile dans tout le Maroc', lead: `Basé à ${SITE.address.city}, Florian Messeau se déplace chez vous pour examiner vos objets, où que vous soyez au Maroc. Voici les villes où il intervient le plus souvent.` })}
 <section aria-label="Villes" class="bg-band py-16 lg:py-24">
   <div class="mx-auto grid max-w-7xl gap-5 px-4 sm:px-6 md:grid-cols-2 lg:grid-cols-3 lg:px-8">
-    ${VILLES.map((v) => `<article class="relative flex flex-col rounded-card border border-hairline bg-card p-6">
-      ${icon('map-pin', 'size-6 text-link')}
-      <h2 class="mt-4 text-3xl"><a href="/zones-intervention/${v.slug}" class="text-ink no-underline after:absolute after:inset-0 hover:text-link">Antiquaire à ${v.ville}</a></h2>
-      <p class="mt-2 text-sm text-muted">${v.quartiers.slice(0, 4).join(', ')}...</p>
-    </article>`).join('\n    ')}
+    ${VILLES.map((v) => villeCard(v, true)).join('\n    ')}
   </div>
 </section>
 <section class="py-16">
@@ -442,7 +447,7 @@ function villePage(v) {
   const path = `/zones-intervention/${v.slug}`;
   const trail = [HOME, { name: 'Zones d\'intervention', href: '/zones-intervention' }, { name: v.ville, href: path }];
   const body = `
-${pageHero({ kicker: `Antiquaire à ${v.ville}`, h1: `Antiquaire et expert en objets d'art à ${v.ville}`, lead: v.lead })}
+${pageHero({ kicker: `Antiquaire à ${v.ville}`, h1: `Antiquaire et expert en objets d'art à ${v.ville}`, lead: v.lead, aside: photo({ key: v.photo.key, w: 1000, h: 750, ratio: '4/3', priority: true, alt: v.photo.alt, note: v.photo.note, fallback: v.ville, sizes: '(min-width: 1024px) 38vw, 92vw' }) })}
 <section class="bg-band py-16 lg:py-24">
   <div class="mx-auto max-w-7xl space-y-16 px-4 sm:px-6 lg:px-8">
     <div class="grid gap-6 lg:grid-cols-12">
@@ -455,7 +460,7 @@ ${pageHero({ kicker: `Antiquaire à ${v.ville}`, h1: `Antiquaire et expert en ob
         <ul class="flex flex-wrap gap-2" aria-label="Quartiers desservis à ${v.ville}">
           ${v.quartiers.map((q) => `<li class="rounded-pill border border-control px-4 py-1.5 text-sm">${q}</li>`).join('\n          ')}
         </ul>
-        <p class="mt-5 text-muted">Examen à domicile sur rendez-vous, enlèvement et transport pris en charge.</p>
+        <p class="mt-5 text-muted">Examen à domicile, enlèvement et transport pris en charge.</p>
       </div>
     </div>
     <div class="grid gap-6 lg:grid-cols-12">
@@ -480,30 +485,26 @@ ${ctaBand({ title: `Un objet à faire estimer à ${v.ville} ?` })}`;
 /* ---------- Contact (Tally) ---------- */
 function contact() {
   const trail = [HOME, { name: 'Contact', href: '/contact' }];
+  // Tout contact passe par le formulaire Tally ; le telephone reste en secours.
   const tally = SITE.tallyFormId
     ? `<iframe data-tally-src="https://tally.so/embed/${SITE.tallyFormId}?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1" loading="lazy" width="100%" height="700" title="Formulaire de demande d'estimation" class="w-full"></iframe>`
-    : `<!-- FORMULAIRE TALLY (A REMPLACER une fois la charte validee) : renseigner tallyFormId dans src/site/config.mjs.
+    : `<!-- FORMULAIRE TALLY (A REMPLACER) : renseigner tallyFormId dans src/site/config.mjs.
      L'iframe et le script Tally sont alors generes automatiquement a la place de ce bloc. -->
       <div>
-        <h2 class="font-sans text-lg font-semibold">Le formulaire en ligne arrive bientôt</h2>
-        <p class="mt-3 max-w-[56ch] text-muted">En attendant, contactez directement Florian Messeau. Décrivez votre objet et joignez quelques photos : vue d'ensemble, signature, poinçons, dessous et défauts éventuels.</p>
-        <div class="mt-8 grid gap-3 sm:grid-cols-2">
-          <a href="${whatsappLink()}" class="btn btn-primary min-h-12" rel="noopener" target="_blank">${icon('message')} Photos sur WhatsApp<span class="sr-only"> (nouvel onglet)</span></a>
-          <a href="mailto:${SITE.email}?subject=${encodeURIComponent('Demande d\'estimation')}" class="btn btn-secondary min-h-12">${icon('mail')} Écrire un e-mail</a>
-        </div>
+        <h2 class="font-sans text-lg font-semibold">Le formulaire de demande arrive très bientôt</h2>
+        <p class="mt-3 max-w-[56ch] text-muted">Vous pourrez y décrire votre objet et joindre vos photos : vue d'ensemble, signature, poinçons, dessous et défauts éventuels. En attendant, Florian Messeau reste joignable par téléphone.</p>
+        <a href="tel:${SITE.phone.e164}" class="btn btn-primary mt-8 min-h-12 px-6">${icon('phone')} Appeler le ${SITE.phone.display}</a>
       </div>`;
   const body = `
 <section class="mx-auto grid max-w-7xl gap-12 px-4 pb-20 pt-8 sm:px-6 lg:grid-cols-12 lg:px-8 lg:pb-28 lg:pt-10">
   <div class="lg:col-span-5">
     ${eyebrow('Contact')}
     <h1 class="mt-5 text-[2.5rem] leading-[1.05] tracking-tight sm:text-6xl">Faire estimer un objet</h1>
-    <p class="mt-6 max-w-[48ch] text-lg text-muted">Florian Messeau vous répond personnellement avec un premier avis, gratuit et sans engagement.</p>
+    <p class="mt-6 max-w-[48ch] text-lg text-muted">Décrivez votre objet dans le formulaire : Florian Messeau vous répond personnellement et rapidement, avec un premier avis gratuit et sans engagement.</p>
     <ul class="mt-10 space-y-5">
-      <li class="flex items-start gap-3">${icon('phone', 'mt-0.5 size-5 flex-none text-link')}<div><p class="font-semibold">Téléphone</p><a href="tel:${SITE.phone.e164}" class="link tabular-nums">${SITE.phone.display}</a></div></li>
-      <li class="flex items-start gap-3">${icon('message', 'mt-0.5 size-5 flex-none text-link')}<div><p class="font-semibold">WhatsApp</p><a href="${whatsappLink()}" class="link tabular-nums" rel="noopener" target="_blank">${SITE.whatsapp.display}<span class="sr-only"> (nouvel onglet)</span></a></div></li>
-      <li class="flex items-start gap-3">${icon('mail', 'mt-0.5 size-5 flex-none text-link')}<div><p class="font-semibold">E-mail</p><a href="mailto:${SITE.email}" class="link [overflow-wrap:anywhere]">${SITE.email}</a></div></li>
-      <li class="flex items-start gap-3">${icon('map-pin', 'mt-0.5 size-5 flex-none text-link')}<div><p class="font-semibold">Galerie, sur rendez-vous</p><p class="text-muted">${SITE.address.street}<br>${SITE.address.postalCode} ${SITE.address.city}, ${SITE.address.countryName}</p></div></li>
-      <li class="flex items-start gap-3">${icon('clock', 'mt-0.5 size-5 flex-none text-link')}<div><p class="font-semibold">Horaires</p><p class="text-muted">${SITE.hours.label}</p></div></li>
+      <li class="flex items-start gap-3">${icon('camera', 'mt-0.5 size-5 flex-none text-link')}<div><p class="font-semibold">Joignez des photos</p><p class="text-muted">Vue d'ensemble, puis les détails : signature, poinçons, dessous, défauts.</p></div></li>
+      <li class="flex items-start gap-3">${icon('map-pin', 'mt-0.5 size-5 flex-none text-link')}<div><p class="font-semibold">Basé à ${SITE.address.city}</p><p class="text-muted">Déplacement à domicile dans tout le Maroc.</p></div></li>
+      <li class="flex items-start gap-3">${icon('phone', 'mt-0.5 size-5 flex-none text-link')}<div><p class="font-semibold">Par téléphone</p><a href="tel:${SITE.phone.e164}" class="link tabular-nums">${SITE.phone.display}</a></div></li>
     </ul>
   </div>
   <div class="lg:col-span-7">
@@ -517,7 +518,7 @@ ${faq(generalFaq)}`;
   return {
     path: '/contact', trail,
     title: 'Contact et estimation gratuite | Florian Messeau, antiquaire',
-    description: 'Contactez Florian Messeau, antiquaire au Maroc : estimation gratuite par téléphone, WhatsApp ou e-mail. Envoyez vos photos, réponse rapide et personnalisée.',
+    description: 'Contactez Florian Messeau, antiquaire à Marrakech : décrivez votre objet dans le formulaire pour une estimation gratuite, rapide et sans engagement.',
     body,
     jsonld: [businessNode()],
     scripts: SITE.tallyFormId ? '  <script src="https://tally.so/widgets/embed.js" async></script>' : '',
@@ -535,7 +536,7 @@ const legal = (path, name, description, sections) => ({
 });
 
 const mentions = () => legal('/mentions-legales', 'Mentions légales', 'Mentions légales du site de Florian Messeau, antiquaire et expert en objets d\'art au Maroc.', [
-  ['Éditeur du site', 'Florian Messeau, [raison sociale], [forme juridique] au capital de [montant] MAD.', `Siège : ${SITE.address.street}, ${SITE.address.postalCode} ${SITE.address.city}, ${SITE.address.countryName}.`, 'RC : [numéro] · ICE : [numéro] · IF : [numéro] · Patente : [numéro].', `Téléphone : ${SITE.phone.display} · E-mail : ${SITE.email}.`, 'Directeur de la publication : Florian Messeau.'],
+  ['Éditeur du site', 'Florian Messeau, [raison sociale], [forme juridique] au capital de [montant] MAD.', 'Siège : [adresse du siège].', 'RC : [numéro] · ICE : [numéro] · IF : [numéro] · Patente : [numéro].', `Téléphone : ${SITE.phone.display} · Contact : via le <a href="/contact" class="link">formulaire de contact</a>.`, 'Directeur de la publication : Florian Messeau.'],
   ['Conception et réalisation', ...(() => {
     const r = SITE.realisation;
     return [
@@ -550,11 +551,11 @@ const mentions = () => legal('/mentions-legales', 'Mentions légales', 'Mentions
 ]);
 
 const confidentialite = () => legal('/confidentialite', 'Politique de confidentialité', 'Politique de confidentialité et protection des données personnelles (loi 09-08) du site de Florian Messeau, antiquaire.', [
-  ['Données collectées', 'Le formulaire de contact (service Tally) et les échanges par téléphone, WhatsApp ou e-mail recueillent votre nom, vos coordonnées, la description et les photos de votre objet.'],
+  ['Données collectées', 'Le formulaire de contact (service Tally) et les échanges téléphoniques recueillent votre nom, vos coordonnées, la description et les photos de votre objet.'],
   ['Finalité', 'Ces données servent uniquement à répondre à votre demande d\'estimation ou de contact. Elles ne sont ni vendues, ni publiées, ni transmises à des tiers à des fins commerciales.'],
   ['Sous-traitants', 'Formulaire : Tally (Tally BV, Belgique). Hébergement du site : Vercel Inc. (États-Unis).'],
   ['Durée de conservation', 'Vos données sont conservées [durée] après notre dernier échange, puis supprimées.'],
-  ['Vos droits (loi 09-08)', `Vous disposez d\'un droit d\'accès, de rectification et d\'opposition. Écrivez à ${SITE.email}.`, 'Traitement déclaré auprès de la CNDP sous le numéro [numéro].'],
+  ['Vos droits (loi 09-08)', 'Vous disposez d\'un droit d\'accès, de rectification et d\'opposition. Exercez-le via le <a href="/contact" class="link">formulaire de contact</a>.', 'Traitement déclaré auprès de la CNDP sous le numéro [numéro].'],
   ['Cookies', 'Ce site n\'utilise pas de cookie de mesure d\'audience ni de publicité.'],
 ]);
 

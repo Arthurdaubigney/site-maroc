@@ -44,11 +44,11 @@ const section = (title, prefix) => indexable.filter((p) => p.path.startsWith(pre
   .map((p) => `- [${p.title.split(' | ')[0]}](${abs(p.path)}): ${p.description}`).join('\n');
 writeFileSync(resolve(dist, 'llms.txt'), `# ${SITE.name}, antiquaire au Maroc
 
-> ${SITE.tagline}. Estimation gratuite, expertise, achat d'antiquités et d'objets d'art, successions et débarras, avec déplacement à domicile dans tout le Maroc.
+> ${SITE.tagline}. Estimation gratuite, expertise, achat d'antiquités et d'objets d'art, successions et inventaires, avec déplacement à domicile dans tout le Maroc.
 
 - [Accueil](${abs('/')})
 - [Présentation de Florian Messeau](${abs('/presentation')})
-- [Contact et estimation](${abs('/contact')}) : téléphone ${SITE.phone.display}, WhatsApp ${SITE.whatsapp.display}, ${SITE.email}
+- [Contact et estimation](${abs('/contact')}) : formulaire de demande d'estimation (téléphone ${SITE.phone.display})
 
 ## Services
 ${section('Services', '/expertise-achat')}

@@ -4,6 +4,7 @@
 export const VILLES = [
   {
     slug: 'antiquaire-marrakech',
+    photo: { key: 'ville-marrakech', note: "Patio de riad ancien ou ruelle de la Médina de Marrakech, lumière chaude", alt: "Patio d'un riad ancien de la Médina de Marrakech" },
     ville: 'Marrakech',
     title: 'Antiquaire à Marrakech : estimation et rachat | Florian Messeau',
     description: 'Antiquaire et expert à Marrakech : estimation gratuite et rachat d\'antiquités, de tapis anciens, de mobilier et d\'objets d\'art, de la Médina à la Palmeraie.',
@@ -17,6 +18,7 @@ export const VILLES = [
   },
   {
     slug: 'antiquaire-casablanca',
+    photo: { key: 'ville-casablanca', note: "Façade Art déco du centre-ville de Casablanca", alt: "Façade Art déco du centre-ville de Casablanca" },
     ville: 'Casablanca',
     title: 'Antiquaire à Casablanca : estimation et rachat | Florian Messeau',
     description: 'Antiquaire et expert à Casablanca : estimation gratuite et rachat de mobilier Art déco, tableaux, argenterie et objets d\'art, d\'Anfa au centre-ville.',
@@ -30,6 +32,7 @@ export const VILLES = [
   },
   {
     slug: 'antiquaire-rabat',
+    photo: { key: 'ville-rabat', note: "Kasbah des Oudayas ou ruelle bleue et blanche de Rabat", alt: "Ruelle de la Kasbah des Oudayas à Rabat" },
     ville: 'Rabat',
     title: 'Antiquaire à Rabat : estimation et rachat | Florian Messeau',
     description: 'Antiquaire et expert à Rabat : estimation gratuite et rachat de tapis de Rabat, broderies, mobilier, tableaux et objets d\'art, du Souissi aux Oudayas.',
@@ -43,6 +46,7 @@ export const VILLES = [
   },
   {
     slug: 'antiquaire-tanger',
+    photo: { key: 'ville-tanger', note: "Vue de la Kasbah ou de la Médina de Tanger sur le détroit", alt: "La Kasbah de Tanger dominant le détroit" },
     ville: 'Tanger',
     title: 'Antiquaire à Tanger : estimation et rachat | Florian Messeau',
     description: 'Antiquaire et expert à Tanger : estimation gratuite et rachat de mobilier, tableaux et collections européennes, de la Kasbah à la Vieille Montagne.',
@@ -56,6 +60,7 @@ export const VILLES = [
   },
   {
     slug: 'antiquaire-fes',
+    photo: { key: 'ville-fes', note: "Médina de Fès el-Bali ou atelier de dinandier ancien", alt: "Toits de la Médina de Fès el-Bali" },
     ville: 'Fès',
     title: 'Antiquaire à Fès : estimation et rachat | Florian Messeau',
     description: 'Antiquaire et expert à Fès : estimation gratuite et rachat de céramiques, dinanderie, bijoux anciens et broderies, de la Médina à la Ville nouvelle.',
@@ -69,6 +74,7 @@ export const VILLES = [
   },
   {
     slug: 'antiquaire-agadir',
+    photo: { key: 'ville-agadir', note: "Kasbah d'Agadir Oufella ou paysage du Souss", alt: "Vue depuis la kasbah d'Agadir Oufella" },
     ville: 'Agadir',
     title: 'Antiquaire à Agadir : estimation et rachat | Florian Messeau',
     description: 'Antiquaire et expert à Agadir et dans le Souss : estimation gratuite et rachat de bijoux berbères, tapis, mobilier et objets d\'art des résidents et des villas.',
