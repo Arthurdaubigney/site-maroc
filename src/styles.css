@@ -144,10 +144,6 @@
     border-color: var(--color-surface-page);
   }
 
-  /* Chargement : le bouton garde sa pleine intensite, seul le libelle change */
-  .btn[aria-busy="true"] { cursor: progress; }
-  .btn[aria-busy="true"] .btn-spinner { display: inline-block; }
-  .btn-spinner { display: none; animation: spin var(--ds-duration-spin) linear infinite; }
 
   .link {
     color: var(--color-text-link);
@@ -198,58 +194,6 @@
   .photo-frame.is-missing img { visibility: hidden; }
   .photo-frame.is-missing figcaption.photo-fallback { display: block; }
 
-  /* Champs de formulaire */
-  .field-control {
-    display: block;
-    inline-size: 100%;
-    min-inline-size: 0;
-    min-block-size: 3rem;
-    padding: 0.75rem 0.875rem;
-    border: 1px solid var(--color-border-strong);
-    border-radius: var(--ds-radius-control);
-    background-color: var(--color-surface-card);
-    color: var(--color-text-primary);
-    font: inherit;
-    transition: border-color var(--ds-duration-fast) var(--ds-ease-out);
-  }
-  .field-control:hover { border-color: var(--color-text-secondary); }
-  .field-control:focus-visible { border-color: var(--color-text-link); }
-  .field-control[aria-invalid="true"] { border-color: var(--color-feedback-error-text); }
-  .field-control::placeholder { color: var(--color-text-tertiary); }
-  textarea.field-control { min-block-size: 9rem; resize: vertical; }
-  select.field-control { appearance: none; padding-inline-end: 2.5rem; }
-
-  .field-error { color: var(--color-feedback-error-text); font-size: 0.875rem; }
-  .field-error:empty { display: none; }
-
-  .choice {
-    display: flex;
-    align-items: center;
-    gap: 0.625rem;
-    min-block-size: 2.75rem;
-    padding-inline: 0.875rem;
-    border: 1px solid var(--color-border-strong);
-    border-radius: var(--ds-radius-control);
-    cursor: pointer;
-    transition: border-color var(--ds-duration-fast) var(--ds-ease-out), background-color var(--ds-duration-fast) var(--ds-ease-out);
-  }
-  .choice:hover { border-color: var(--color-text-secondary); }
-  .choice:has(input:checked) {
-    border-color: var(--color-text-link);
-    background-color: var(--color-surface-band);
-  }
-  .choice:has(input:focus-visible) {
-    outline: var(--ds-size-focus-ring) solid var(--color-text-link);
-    outline-offset: 0.125rem;
-  }
-  .choice input:focus-visible { outline: none; }
-  .choice input, .consent input {
-    inline-size: 1.25rem;
-    block-size: 1.25rem;
-    accent-color: var(--color-action-primary);
-    flex: none;
-  }
-
   /* FAQ : details/summary natifs, clavier gratuit */
   .faq-item summary {
     display: flex;
@@ -267,4 +211,3 @@
   .faq-item[open] .faq-icon { transform: rotate(180deg); }
 }
 
-@keyframes spin { to { transform: rotate(360deg); } }

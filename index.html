@@ -6,15 +6,14 @@
 
   <!--
     A REMPLACER AVANT MISE EN LIGNE (recherchez "A REMPLACER" dans ce fichier) :
-    - Nom provisoire de la maison : "Dar Al Qadim"
     - Domaine : https://site-maroc.vercel.app (canonical, OpenGraph, JSON-LD, sitemap.xml, robots.txt)
     - Telephone : +212 5 22 00 00 00 / WhatsApp : +212 6 00 00 00 00 (liens tel:, wa.me et JSON-LD)
     - E-mail : contact@site-maroc.ma
     - Adresse, horaires et coordonnees GPS de la galerie
-    - Endpoint du formulaire (attribut data-endpoint du formulaire #form-estimation)
+    - Formulaire Tally : identifiant a renseigner dans la section #estimation (TALLY_FORM_ID)
   -->
 
-  <title>Antiquaire au Maroc : achat, vente et expertise | Dar Al Qadim</title>
+  <title>Florian Messeau, antiquaire au Maroc : achat, vente, expertise</title>
   <meta name="description" content="Antiquaire et expert en objets d'art au Maroc. Achat, vente et estimation gratuite de meubles anciens, tapis berbères, tableaux, bijoux et bronzes.">
   <link rel="canonical" href="https://site-maroc.vercel.app/">
   <meta name="robots" content="index, follow, max-image-preview:large">
@@ -25,17 +24,17 @@
   <!-- OpenGraph / reseaux sociaux -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_MA">
-  <meta property="og:site_name" content="Dar Al Qadim">
-  <meta property="og:title" content="Antiquaire et expert en objets d'art au Maroc | Dar Al Qadim">
+  <meta property="og:site_name" content="Florian Messeau">
+  <meta property="og:title" content="Antiquaire et expert en objets d'art au Maroc | Florian Messeau">
   <meta property="og:description" content="Achat, vente et estimation gratuite d'antiquités et d'objets d'art au Maroc. Meubles anciens, tapis berbères, tableaux, bijoux, bronzes.">
   <meta property="og:url" content="https://site-maroc.vercel.app/">
   <!-- PHOTO COMMERCIAL : Remplacer par une image 1200 x 630 (vitrine ou piece phare), deposee dans /public/og-image.jpg -->
   <meta property="og:image" content="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=80">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Intérieur de la galerie Dar Al Qadim, antiquaire au Maroc">
+  <meta property="og:image:alt" content="Pièces anciennes présentées par Florian Messeau, antiquaire au Maroc">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Antiquaire et expert en objets d'art au Maroc | Dar Al Qadim">
+  <meta name="twitter:title" content="Antiquaire et expert en objets d'art au Maroc | Florian Messeau">
   <meta name="twitter:description" content="Achat, vente et estimation gratuite d'antiquités au Maroc. Discrétion garantie.">
   <meta name="twitter:image" content="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=80">
 
@@ -66,7 +65,7 @@
       {
         "@type": "AntiqueStore",
         "@id": "https://site-maroc.vercel.app/#business",
-        "name": "Dar Al Qadim",
+        "name": "Florian Messeau",
         "description": "Antiquaire et expert en objets d'art au Maroc : achat, vente et estimation d'antiquités, de meubles anciens, de tapis berbères, de tableaux, de bijoux anciens et de bronzes.",
         "url": "https://site-maroc.vercel.app/",
         "logo": "https://site-maroc.vercel.app/favicon.svg",
@@ -99,6 +98,7 @@
             { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Vente d'antiquités", "description": "Pièces sélectionnées et documentées, présentées en galerie sur rendez-vous." } }
           ]
         },
+        "founder": { "@id": "https://site-maroc.vercel.app/#florian-messeau" },
         "contactPoint": {
           "@type": "ContactPoint",
           "telephone": "+212600000000",
@@ -108,10 +108,18 @@
         }
       },
       {
+        "@type": "Person",
+        "@id": "https://site-maroc.vercel.app/#florian-messeau",
+        "name": "Florian Messeau",
+        "jobTitle": "Antiquaire et expert en objets d'art",
+        "worksFor": { "@id": "https://site-maroc.vercel.app/#business" },
+        "knowsAbout": ["Antiquités", "Expertise d'objets d'art", "Art marocain ancien", "Mobilier ancien"]
+      },
+      {
         "@type": "WebSite",
         "@id": "https://site-maroc.vercel.app/#website",
         "url": "https://site-maroc.vercel.app/",
-        "name": "Dar Al Qadim",
+        "name": "Florian Messeau",
         "inLanguage": "fr-MA",
         "publisher": { "@id": "https://site-maroc.vercel.app/#business" }
       },
@@ -119,7 +127,7 @@
         "@type": "WebPage",
         "@id": "https://site-maroc.vercel.app/#webpage",
         "url": "https://site-maroc.vercel.app/",
-        "name": "Antiquaire au Maroc : achat, vente et expertise | Dar Al Qadim",
+        "name": "Florian Messeau, antiquaire au Maroc : achat, vente, expertise",
         "isPartOf": { "@id": "https://site-maroc.vercel.app/#website" },
         "about": { "@id": "https://site-maroc.vercel.app/#business" },
         "inLanguage": "fr-MA"
@@ -165,10 +173,10 @@
   <header class="sticky top-0 z-40 border-b border-hairline bg-page">
     <div class="mx-auto flex h-header max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
       <!-- A REMPLACER : logo definitif (SVG de preference) -->
-      <a href="#" class="flex min-w-0 items-center gap-3 rounded-control text-ink no-underline lg:flex-none" aria-label="Dar Al Qadim, retour à l'accueil">
+      <a href="#" class="flex min-w-0 items-center gap-3 rounded-control text-ink no-underline lg:flex-none" aria-label="Florian Messeau, antiquaire, retour à l'accueil">
         <svg class="size-9 flex-none text-link" aria-hidden="true"><use href="#i-logo"/></svg>
         <span class="flex min-w-0 flex-col leading-tight">
-          <span class="truncate font-display text-2xl font-semibold">Dar Al Qadim</span>
+          <span class="truncate font-display text-2xl font-semibold">Florian Messeau</span>
           <span class="hidden truncate text-xs tracking-wide text-muted sm:block lg:hidden xl:block">Antiquaire et expert en objets d'art</span>
         </span>
       </a>
@@ -178,7 +186,7 @@
           <li><a href="#services" class="whitespace-nowrap rounded-control px-2 py-2 text-muted no-underline transition-colors hover:text-ink xl:px-3">Prestations</a></li>
           <li><a href="#objets" class="whitespace-nowrap rounded-control px-2 py-2 text-muted no-underline transition-colors hover:text-ink xl:px-3">Objets</a></li>
           <li><a href="#deroulement" class="whitespace-nowrap rounded-control px-2 py-2 text-muted no-underline transition-colors hover:text-ink xl:px-3">Estimation</a></li>
-          <li><a href="#maison" class="whitespace-nowrap rounded-control px-2 py-2 text-muted no-underline transition-colors hover:text-ink xl:px-3">La maison</a></li>
+          <li><a href="#maison" class="whitespace-nowrap rounded-control px-2 py-2 text-muted no-underline transition-colors hover:text-ink xl:px-3">L'antiquaire</a></li>
           <li><a href="#faq" class="whitespace-nowrap rounded-control px-2 py-2 text-muted no-underline transition-colors hover:text-ink xl:px-3">Questions</a></li>
         </ul>
       </nav>
@@ -211,7 +219,7 @@
           <li><a href="#services" class="flex min-h-12 items-center border-b border-hairline font-display text-2xl text-ink no-underline">Prestations</a></li>
           <li><a href="#objets" class="flex min-h-12 items-center border-b border-hairline font-display text-2xl text-ink no-underline">Objets</a></li>
           <li><a href="#deroulement" class="flex min-h-12 items-center border-b border-hairline font-display text-2xl text-ink no-underline">Estimation</a></li>
-          <li><a href="#maison" class="flex min-h-12 items-center border-b border-hairline font-display text-2xl text-ink no-underline">La maison</a></li>
+          <li><a href="#maison" class="flex min-h-12 items-center border-b border-hairline font-display text-2xl text-ink no-underline">L'antiquaire</a></li>
           <li><a href="#faq" class="flex min-h-12 items-center border-b border-hairline font-display text-2xl text-ink no-underline">Questions</a></li>
         </ul>
         <div class="mt-5 flex flex-col gap-3">
@@ -271,7 +279,7 @@
                  srcset="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&amp;fit=crop&amp;w=480&amp;h=600&amp;q=80 480w, https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&amp;fit=crop&amp;w=960&amp;h=1200&amp;q=80 960w"
                  sizes="(min-width: 1024px) 40vw, 92vw"
                  width="960" height="1200" fetchpriority="high" decoding="async"
-                 alt="Vitrine de la galerie Dar Al Qadim : commode ancienne, miroir doré et céramiques présentés sous un éclairage chaud">
+                 alt="Vitrine de la galerie de Florian Messeau : commode ancienne, miroir doré et céramiques présentés sous un éclairage chaud">
             <figcaption class="photo-fallback">Photo à venir : la vitrine</figcaption>
           </figure>
           <div class="relative -mt-10 ms-6 max-w-72 rounded-card border border-hairline bg-card p-5 shadow-overlay sm:ms-auto sm:me-6 lg:-ms-10 lg:me-0">
@@ -301,14 +309,14 @@
         <div class="mt-14 grid gap-5 lg:grid-cols-12">
           <!-- Estimation : la prestation qui mene tout le reste, donc la plus grande -->
           <article class="grid overflow-hidden rounded-card border border-hairline bg-card lg:col-span-7 lg:row-span-2 lg:grid-rows-[auto_1fr]">
-            <!-- PHOTO COMMERCIAL : Remplacer par une photo de l'expert examinant une piece (loupe, poincon, signature), format 3:2, 1200 x 800 px. Mettre a jour le alt. -->
+            <!-- PHOTO COMMERCIAL : Remplacer par une photo de Florian Messeau examinant une piece (loupe, poincon, signature), format 3:2, 1200 x 800 px. Mettre a jour le alt. En attendant : photo d'objet sans personne. -->
             <figure class="photo-frame aspect-[3/2] rounded-none">
               <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&amp;fit=crop&amp;w=1200&amp;h=800&amp;q=80"
                    srcset="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&amp;fit=crop&amp;w=600&amp;h=400&amp;q=80 600w, https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&amp;fit=crop&amp;w=1200&amp;h=800&amp;q=80 1200w"
                    sizes="(min-width: 1024px) 55vw, 92vw"
                    width="1200" height="800" loading="lazy" decoding="async"
-                   alt="L'expert examine à la loupe la signature d'un objet d'art posé sur un tapis de travail">
-              <figcaption class="photo-fallback">Photo à venir : l'expert au travail</figcaption>
+                   alt="Loupe d'expert posée sur un objet d'art ancien, près d'une signature">
+              <figcaption class="photo-fallback">Photo à venir : l'expertise</figcaption>
             </figure>
             <div class="flex flex-col p-6 sm:p-8 lg:p-10">
               <div class="flex items-center gap-3 text-link">
@@ -487,21 +495,21 @@
     <section id="maison" aria-labelledby="maison-titre" class="on-deep bg-deep py-20 text-on-deep lg:py-28">
       <div class="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
         <div class="lg:col-span-5">
-          <!-- PHOTO COMMERCIAL : Remplacer par un portrait de l'antiquaire dans la galerie ou l'atelier, format portrait 4:5, 800 x 1000 px. Mettre a jour le alt avec son nom. -->
-          <figure class="photo-frame aspect-[4/5]">
-            <img src="https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&amp;fit=crop&amp;w=800&amp;h=1000&amp;q=80"
-                 srcset="https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&amp;fit=crop&amp;w=400&amp;h=500&amp;q=80 400w, https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&amp;fit=crop&amp;w=800&amp;h=1000&amp;q=80 800w"
-                 sizes="(min-width: 1024px) 38vw, 92vw"
-                 width="800" height="1000" loading="lazy" decoding="async"
-                 alt="L'antiquaire de Dar Al Qadim dans la galerie, entouré de mobilier ancien et d'objets d'art">
-            <figcaption class="photo-fallback">Photo à venir : portrait de l'antiquaire</figcaption>
+          <!-- PHOTO COMMERCIAL : Portrait de Florian Messeau dans la galerie ou l'atelier, format portrait 4:5, 800 x 1000 px.
+               Remplacer le <div> ci-dessous par :
+               <img src="/images/florian-messeau.jpg" width="800" height="1000" loading="lazy" decoding="async"
+                    alt="Florian Messeau, antiquaire et expert en objets d'art, dans sa galerie au Maroc">
+               Aucune photo de banque d'images ici : ce portrait doit etre le vrai Florian Messeau. -->
+          <figure class="photo-frame is-missing aspect-[4/5]">
+            <div class="h-full w-full" role="img" aria-label="Portrait de Florian Messeau, photo à venir"></div>
+            <figcaption class="photo-fallback">Portrait de Florian Messeau à venir</figcaption>
           </figure>
         </div>
 
         <div class="lg:col-span-7 lg:pt-6">
-          <p class="eyebrow">La maison</p>
+          <p class="eyebrow">Florian Messeau, antiquaire et expert</p>
           <h2 id="maison-titre" class="mt-4 max-w-[20ch] text-4xl leading-[1.1] sm:text-5xl">Un métier de regard, de patience et de discrétion</h2>
-          <!-- A REMPLACER : histoire reelle de la maison (annee de creation, parcours, formations, affiliations) -->
+          <!-- A REMPLACER : parcours reel de Florian Messeau (formation, annees d'experience, specialites, reprise de l'activite, affiliations) -->
           <div class="mt-6 max-w-[62ch] space-y-4 text-on-deep-muted">
             <p>
               Être antiquaire, c'est d'abord savoir regarder : reconnaître un bois, une patine, un geste d'artisan,
@@ -606,8 +614,8 @@
           <p class="eyebrow">Demande d'estimation</p>
           <h2 id="estimation-titre" class="mt-4 max-w-[16ch] text-4xl leading-[1.1] sm:text-5xl">Faites estimer votre objet</h2>
           <p class="mt-5 max-w-[48ch] text-muted">
-            Décrivez l'objet en quelques lignes. Nous vous recontactons pour recevoir vos photos
-            et vous donner un premier avis, gratuitement.
+            Décrivez l'objet et joignez quelques photos. Florian Messeau vous répond personnellement
+            avec un premier avis, gratuit et sans engagement.
           </p>
 
           <div class="mt-10 rounded-card border border-hairline bg-card p-6">
@@ -642,104 +650,42 @@
 
         <div class="lg:col-span-7">
           <!--
-            ENVOI DU FORMULAIRE (A REMPLACER) :
-            Renseignez data-endpoint avec l'URL d'un service de formulaire (par exemple Formspree :
-            https://formspree.io/f/VOTRE_ID, ou une fonction Vercel /api/estimation).
-            Tant que data-endpoint est vide, le site ouvre la messagerie du visiteur avec la demande
-            pre-remplie vers contact@site-maroc.ma, et le lui dit clairement : rien n'est perdu.
+            FORMULAIRE TALLY (A REMPLACER une fois la charte graphique validee) :
+            1. Dans Tally : Share > Embed > Standard, options "Align left", "Hide title",
+               "Transparent background" et "Dynamic height".
+            2. Remplacer TALLY_FORM_ID ci-dessous par l'identifiant du formulaire (ex. : wA1bCd).
+            3. Renommer l'attribut data-tally-pending en data-tally-src (tant qu'il s'appelle
+               data-tally-pending, aucun formulaire vide n'est charge).
+            4. Supprimer la classe "hidden" de l'iframe et le bloc #tally-attente.
+            Le script https://tally.so/widgets/embed.js est deja charge en bas de page.
           -->
-          <form id="form-estimation" class="rounded-card border border-hairline bg-card p-6 shadow-raised sm:p-8 lg:p-10"
-                action="mailto:contact@site-maroc.ma" method="post" enctype="text/plain" novalidate
-                data-endpoint="" data-fallback-email="contact@site-maroc.ma" aria-describedby="form-intro">
-            <p id="form-intro" class="text-sm text-muted">Les champs marqués <span aria-hidden="true">*</span><span class="sr-only">d'un astérisque</span> sont obligatoires.</p>
+          <div class="rounded-card border border-hairline bg-card p-6 shadow-raised sm:p-8 lg:p-10">
+            <iframe class="hidden w-full" data-tally-pending="https://tally.so/embed/TALLY_FORM_ID?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1"
+                    loading="lazy" width="100%" height="700" title="Formulaire de demande d'estimation"></iframe>
 
-            <div id="form-erreurs" class="mt-6 hidden rounded-control border border-error p-4" role="alert" tabindex="-1">
-              <p class="flex items-center gap-2 font-semibold text-error">
-                <svg class="size-5 flex-none" aria-hidden="true"><use href="#i-alert"/></svg>
-                <span data-error-count></span>
+            <div id="tally-attente">
+              <h3 class="font-sans text-lg font-semibold">Le formulaire en ligne arrive bientôt</h3>
+              <p class="mt-3 max-w-[56ch] text-muted">
+                En attendant, contactez directement Florian Messeau. Décrivez votre objet et joignez
+                quelques photos : vue d'ensemble, signature, poinçons, dessous et défauts éventuels.
               </p>
-              <ul class="mt-2 list-disc space-y-1 ps-6 text-sm" data-error-list></ul>
+              <div class="mt-8 grid gap-3 sm:grid-cols-2">
+                <a href="https://wa.me/212600000000?text=Bonjour%20Florian%2C%20je%20souhaite%20faire%20estimer%20un%20objet." class="btn btn-primary min-h-12" rel="noopener" target="_blank">
+                  <svg class="size-5" aria-hidden="true"><use href="#i-message"/></svg>
+                  Envoyer des photos sur WhatsApp
+                  <span class="sr-only">(ouvre WhatsApp dans un nouvel onglet)</span>
+                </a>
+                <a href="mailto:contact@site-maroc.ma?subject=Demande%20d%27estimation" class="btn btn-secondary min-h-12">
+                  <svg class="size-5" aria-hidden="true"><use href="#i-mail"/></svg>
+                  Écrire un e-mail
+                </a>
+              </div>
+              <p class="mt-6 text-sm text-subtle">
+                Vos informations servent uniquement à répondre à votre demande
+                (<a href="confidentialite.html" class="link">politique de confidentialité</a>, loi 09-08).
+              </p>
             </div>
-
-            <div class="mt-6 grid items-start gap-5 sm:grid-cols-2">
-              <div>
-                <label for="nom" class="block font-medium">Nom et prénom <span aria-hidden="true" class="text-error">*</span></label>
-                <input id="nom" name="nom" type="text" autocomplete="name" required class="field-control mt-2" aria-describedby="nom-erreur">
-                <p id="nom-erreur" class="field-error mt-2" data-error-for="nom"></p>
-              </div>
-              <div>
-                <label for="telephone" class="block font-medium">Téléphone <span aria-hidden="true" class="text-error">*</span></label>
-                <input id="telephone" name="telephone" type="tel" autocomplete="tel" inputmode="tel" required class="field-control mt-2" aria-describedby="telephone-aide telephone-erreur">
-                <p id="telephone-aide" class="mt-2 text-sm text-subtle">Mobile de préférence, pour WhatsApp.</p>
-                <p id="telephone-erreur" class="field-error mt-2" data-error-for="telephone"></p>
-              </div>
-              <div>
-                <label for="email" class="block font-medium">E-mail</label>
-                <input id="email" name="email" type="email" autocomplete="email" class="field-control mt-2" aria-describedby="email-erreur">
-                <p id="email-erreur" class="field-error mt-2" data-error-for="email"></p>
-              </div>
-              <div>
-                <label for="ville" class="block font-medium">Ville</label>
-                <input id="ville" name="ville" type="text" autocomplete="address-level2" class="field-control mt-2">
-              </div>
-              <div class="sm:col-span-2">
-                <label for="categorie" class="block font-medium">Type d'objet <span aria-hidden="true" class="text-error">*</span></label>
-                <div class="relative mt-2">
-                  <select id="categorie" name="categorie" required class="field-control" aria-describedby="categorie-erreur">
-                    <option value="">Choisissez une catégorie</option>
-                    <option>Meuble ancien</option>
-                    <option>Tapis berbère ou tissage</option>
-                    <option>Tableau, gravure ou dessin</option>
-                    <option>Bijou ancien</option>
-                    <option>Bronze, dinanderie ou sculpture</option>
-                    <option>Céramique ou verrerie</option>
-                    <option>Luminaire</option>
-                    <option>Succession ou collection complète</option>
-                    <option>Autre objet d'art</option>
-                  </select>
-                  <svg class="pointer-events-none absolute end-3 top-1/2 size-5 -translate-y-1/2 text-muted" aria-hidden="true"><use href="#i-chevron-down"/></svg>
-                </div>
-                <p id="categorie-erreur" class="field-error mt-2" data-error-for="categorie"></p>
-              </div>
-              <div class="sm:col-span-2">
-                <label for="description" class="block font-medium">Description de l'objet <span aria-hidden="true" class="text-error">*</span></label>
-                <textarea id="description" name="description" required rows="5" class="field-control mt-2" aria-describedby="description-aide description-erreur"></textarea>
-                <p id="description-aide" class="mt-2 text-sm text-subtle">Dimensions, matériaux, signature ou poinçon, histoire connue de l'objet.</p>
-                <p id="description-erreur" class="field-error mt-2" data-error-for="description"></p>
-              </div>
-
-              <fieldset class="sm:col-span-2">
-                <legend class="font-medium">Comment préférez-vous être recontacté ?</legend>
-                <div class="mt-3 grid gap-3 sm:grid-cols-3">
-                  <label class="choice"><input type="radio" name="contact" value="Téléphone" checked> Téléphone</label>
-                  <label class="choice"><input type="radio" name="contact" value="WhatsApp"> WhatsApp</label>
-                  <label class="choice"><input type="radio" name="contact" value="E-mail"> E-mail</label>
-                </div>
-              </fieldset>
-
-              <div class="sm:col-span-2">
-                <label class="consent flex items-start gap-3">
-                  <input id="consentement" name="consentement" type="checkbox" required class="mt-0.5" aria-describedby="consentement-erreur">
-                  <span class="text-sm text-muted">J'accepte que mes informations soient utilisées uniquement pour traiter ma demande, conformément à la <a href="confidentialite.html" class="link">politique de confidentialité</a> (loi 09-08). <span aria-hidden="true" class="text-error">*</span></span>
-                </label>
-                <p id="consentement-erreur" class="field-error mt-2" data-error-for="consentement"></p>
-              </div>
-            </div>
-
-            <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-              <button type="submit" class="btn btn-primary min-h-12 px-6 text-base">
-                <svg class="btn-spinner size-5" aria-hidden="true"><use href="#i-loader"/></svg>
-                <span data-submit-label>Envoyer ma demande</span>
-              </button>
-              <p class="text-sm text-subtle">Réponse personnalisée, sans engagement.</p>
-            </div>
-
-            <div id="form-statut" class="mt-6 hidden rounded-control border p-4" role="status" tabindex="-1"></div>
-
-            <noscript>
-              <p class="mt-6 text-sm text-muted">JavaScript est désactivé : pour une réponse rapide, appelez le <a href="tel:+212522000000" class="link">05 22 00 00 00</a> ou écrivez à <a href="mailto:contact@site-maroc.ma" class="link">contact@site-maroc.ma</a>.</p>
-            </noscript>
-          </form>
+          </div>
         </div>
       </div>
     </section>
@@ -754,14 +700,14 @@
       <div class="lg:col-span-4">
         <a href="#" class="inline-flex items-center gap-3 rounded-control text-on-deep no-underline">
           <svg class="size-9 text-ornament" aria-hidden="true"><use href="#i-logo"/></svg>
-          <span class="font-display text-2xl font-semibold">Dar Al Qadim</span>
+          <span class="font-display text-2xl font-semibold">Florian Messeau</span>
         </a>
         <p class="mt-4 max-w-[36ch] text-sm text-on-deep-muted">Antiquaire et expert en objets d'art. Achat, vente et estimation d'antiquités au Maroc.</p>
         <!-- A REMPLACER : NAP reel, identique au JSON-LD et a la fiche Google Business Profile -->
         <address class="mt-6 space-y-3 text-sm not-italic text-on-deep-muted">
           <p class="flex items-start gap-3">
             <svg class="mt-0.5 size-5 flex-none text-ornament" aria-hidden="true"><use href="#i-map-pin"/></svg>
-            <span>Dar Al Qadim<br>Adresse de la galerie<br>20000 Casablanca, Maroc</span>
+            <span>Florian Messeau<br>Adresse de la galerie<br>20000 Casablanca, Maroc</span>
           </p>
           <p class="flex items-center gap-3">
             <svg class="size-5 flex-none text-ornament" aria-hidden="true"><use href="#i-phone"/></svg>
@@ -808,7 +754,7 @@
       <nav aria-label="Informations" class="lg:col-span-3">
         <h3 class="font-sans text-sm font-semibold uppercase tracking-[0.14em] text-ornament">Informations</h3>
         <ul class="mt-4 space-y-1 text-sm">
-          <li><a href="#maison" class="inline-flex min-h-10 items-center text-on-deep-muted no-underline hover:text-on-deep hover:underline">La maison</a></li>
+          <li><a href="#maison" class="inline-flex min-h-10 items-center text-on-deep-muted no-underline hover:text-on-deep hover:underline">L'antiquaire</a></li>
           <li><a href="#faq" class="inline-flex min-h-10 items-center text-on-deep-muted no-underline hover:text-on-deep hover:underline">Questions fréquentes</a></li>
           <li><a href="mentions-legales.html" class="inline-flex min-h-10 items-center text-on-deep-muted no-underline hover:text-on-deep hover:underline">Mentions légales</a></li>
           <li><a href="confidentialite.html" class="inline-flex min-h-10 items-center text-on-deep-muted no-underline hover:text-on-deep hover:underline">Politique de confidentialité</a></li>
@@ -819,12 +765,14 @@
 
     <div class="border-t border-on-deep-muted/20">
       <div class="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-6 text-sm text-on-deep-muted sm:px-6 md:flex-row md:justify-between lg:px-8">
-        <p>&copy; <span data-year>2026</span> Dar Al Qadim. Tous droits réservés.</p>
+        <p>&copy; <span data-year>2026</span> Florian Messeau. Tous droits réservés.</p>
         <p>Antiquaire à Casablanca, Rabat, Marrakech, Fès, Tanger et partout au Maroc.</p>
       </div>
     </div>
   </footer>
 
   <script src="assets/js/main.js" defer></script>
+  <!-- Tally : charge les formulaires marques data-tally-src -->
+  <script src="https://tally.so/widgets/embed.js" async></script>
 </body>
 </html>
