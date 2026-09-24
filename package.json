@@ -1,0 +1,20 @@
+{
+  "name": "site-maroc",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site vitrine antiquaire et expert en objets d'art au Maroc (HTML5 + Tailwind CSS, deploiement Vercel).",
+  "type": "module",
+  "scripts": {
+    "tokens": "node scripts/build-tokens.mjs",
+    "css": "tailwindcss -i src/styles.css -o dist/assets/styles.css --minify",
+    "build": "npm run tokens && node scripts/build.mjs",
+    "dev": "npm run build && npx --yes serve dist"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

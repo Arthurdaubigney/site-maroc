@@ -1,0 +1,79 @@
+/* Fichier genere par scripts/build-tokens.mjs depuis design-tokens.json. Ne pas editer. */
+:root {
+  color-scheme: light dark;
+  --color-surface-page: #FBF8F3;
+  --color-surface-card: #FFFDF9;
+  --color-surface-band: #F3ECE1;
+  --color-surface-deep: #241D18;
+  --color-text-primary: #1F1A16;
+  --color-text-secondary: #554A40;
+  --color-text-tertiary: #7A6D61;
+  --color-text-link: #8F3A22;
+  --color-text-on-action: #FFFBF5;
+  --color-text-on-deep: #F3ECE1;
+  --color-text-on-deep-muted: #CDBFAE;
+  --color-text-ornament: #A9864F;
+  --color-action-primary: #9A3F25;
+  --color-action-primary-hover: #7F321C;
+  --color-border-default: #E3D9CB;
+  --color-border-strong: #8A7C6F;
+  --color-feedback-error-text: #A12622;
+  --color-feedback-success-text: #2F6246;
+  --ds-radius-frame: 2px;
+  --ds-radius-control: 6px;
+  --ds-radius-card: 14px;
+  --ds-radius-pill: 999px;
+  --ds-shadow-raised: 0 2px 16px rgb(31 26 22 / 0.08);
+  --ds-shadow-overlay: 0 12px 40px rgb(31 26 22 / 0.18);
+  --ds-duration-fast: 150ms;
+  --ds-duration-base: 220ms;
+  --ds-duration-spin: 800ms;
+  --ds-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ds-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ds-size-header: 4.5rem;
+  --ds-size-focus-ring: 3px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-surface-page: #15110E;
+    --color-surface-card: #1F1914;
+    --color-surface-band: #1B1612;
+    --color-surface-deep: #0F0C0A;
+    --color-text-primary: #F3ECE1;
+    --color-text-secondary: #C9BCAC;
+    --color-text-tertiary: #9C8F81;
+    --color-text-link: #EEA285;
+    --color-text-on-action: #1F1A16;
+    --color-text-on-deep: #F3ECE1;
+    --color-text-on-deep-muted: #C9BCAC;
+    --color-text-ornament: #C9A66B;
+    --color-action-primary: #E39070;
+    --color-action-primary-hover: #EDA88D;
+    --color-border-default: #3A3029;
+    --color-border-strong: #8A7C6F;
+    --color-feedback-error-text: #F2A39B;
+    --color-feedback-success-text: #9ED0B2;
+  }
+}
+
+:root[data-theme="dark"] {
+  --color-surface-page: #15110E;
+  --color-surface-card: #1F1914;
+  --color-surface-band: #1B1612;
+  --color-surface-deep: #0F0C0A;
+  --color-text-primary: #F3ECE1;
+  --color-text-secondary: #C9BCAC;
+  --color-text-tertiary: #9C8F81;
+  --color-text-link: #EEA285;
+  --color-text-on-action: #1F1A16;
+  --color-text-on-deep: #F3ECE1;
+  --color-text-on-deep-muted: #C9BCAC;
+  --color-text-ornament: #C9A66B;
+  --color-action-primary: #E39070;
+  --color-action-primary-hover: #EDA88D;
+  --color-border-default: #3A3029;
+  --color-border-strong: #8A7C6F;
+  --color-feedback-error-text: #F2A39B;
+  --color-feedback-success-text: #9ED0B2;
+}
