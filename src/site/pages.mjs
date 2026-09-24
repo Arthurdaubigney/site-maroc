@@ -536,6 +536,14 @@ const legal = (path, name, description, sections) => ({
 
 const mentions = () => legal('/mentions-legales', 'Mentions légales', 'Mentions légales du site de Florian Messeau, antiquaire et expert en objets d\'art au Maroc.', [
   ['Éditeur du site', 'Florian Messeau, [raison sociale], [forme juridique] au capital de [montant] MAD.', `Siège : ${SITE.address.street}, ${SITE.address.postalCode} ${SITE.address.city}, ${SITE.address.countryName}.`, 'RC : [numéro] · ICE : [numéro] · IF : [numéro] · Patente : [numéro].', `Téléphone : ${SITE.phone.display} · E-mail : ${SITE.email}.`, 'Directeur de la publication : Florian Messeau.'],
+  ['Conception et réalisation', ...(() => {
+    const r = SITE.realisation;
+    return [
+      `Site conçu et réalisé par ${r.name}${r.legalForm ? `, ${r.legalForm}` : ''}.`,
+      [`SIREN : ${r.siren}`, r.rcs && `RCS : ${r.rcs}`].filter(Boolean).join(' · ') + '.',
+      ...(r.address ? [`Siège : ${r.address}.`] : []),
+    ];
+  })()],
   ['Hébergement', 'Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis.'],
   ['Propriété intellectuelle', 'Les textes, photographies et éléments graphiques de ce site sont la propriété de Florian Messeau ou de leurs auteurs. Toute reproduction sans autorisation écrite est interdite.'],
   ['Estimations', 'Les avis de valeur donnés à distance sont indicatifs. Seul l\'examen physique de l\'objet permet une estimation ou une offre ferme.'],

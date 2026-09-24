@@ -29,6 +29,15 @@ export const SITE = {
   // A REMPLACER : identifiant du formulaire Tally (Share > Embed). null = formulaire pas encore en ligne.
   tallyFormId: null,
   lastmod: '2026-09-24',
+  // Conception et realisation du site (mentions legales). Aucune personne physique n'est citee :
+  // seule la societe apparait. A COMPLETER : forme juridique, siege, RCS (null = ligne non affichee).
+  realisation: {
+    name: 'PSA',
+    siren: '909 703 324',
+    legalForm: null,
+    address: null,
+    rcs: null,
+  },
 };
 
 export const whatsappLink = (text = 'Bonjour Florian, je souhaite faire estimer un objet.') =>
