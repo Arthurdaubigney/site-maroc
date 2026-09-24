@@ -1,0 +1,10 @@
+{
+  "name": "Florian Messeau, antiquaire au Maroc",
+  "short_name": "Florian Messeau",
+  "lang": "fr-MA",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#FBF8F3",
+  "theme_color": "#FBF8F3",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

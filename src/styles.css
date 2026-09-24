@@ -1,0 +1,230 @@
+/* Point d'entree Tailwind v4. Le theme vient de tokens.css (genere) :
+   aucune couleur, duree ou rayon brut ici, uniquement des references. */
+@import "tailwindcss" source(none);
+@import "./tokens.css";
+
+@source "./site";
+@source "../assets/js";
+@source inline("aspect-[4/5] aspect-[4/3] aspect-[1/1] aspect-[3/2]");
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme inline {
+  --color-page: var(--color-surface-page);
+  --color-card: var(--color-surface-card);
+  --color-band: var(--color-surface-band);
+  --color-deep: var(--color-surface-deep);
+
+  --color-ink: var(--color-text-primary);
+  --color-muted: var(--color-text-secondary);
+  --color-subtle: var(--color-text-tertiary);
+  --color-link: var(--color-text-link);
+  --color-on-action: var(--color-text-on-action);
+  --color-on-deep: var(--color-text-on-deep);
+  --color-on-deep-muted: var(--color-text-on-deep-muted);
+  --color-ornament: var(--color-text-ornament);
+
+  --color-action: var(--color-action-primary);
+  --color-action-hover: var(--color-action-primary-hover);
+
+  --color-hairline: var(--color-border-default);
+  --color-control: var(--color-border-strong);
+
+  --color-error: var(--color-feedback-error-text);
+  --color-success: var(--color-feedback-success-text);
+
+  --radius-frame: var(--ds-radius-frame);
+  --radius-control: var(--ds-radius-control);
+  --radius-card: var(--ds-radius-card);
+  --radius-pill: var(--ds-radius-pill);
+
+  --shadow-raised: var(--ds-shadow-raised);
+  --shadow-overlay: var(--ds-shadow-overlay);
+
+  --ease-out: var(--ds-ease-out);
+  --ease-in-out: var(--ds-ease-in-out);
+
+  --font-display: "Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;
+  --font-sans: "Work Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --spacing-header: var(--ds-size-header);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* WCAG 2.4.11 : une ancre ou un element focalise ne passe jamais sous le header collant */
+    scroll-padding-top: calc(var(--ds-size-header) + 1rem);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-surface-page);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-wrap: balance;
+    /* Mots longs ("confidentialite", "instruments") : coupure plutot que debordement a 280px, meme en texte agrandi */
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+
+  p { text-wrap: pretty; }
+
+  :focus-visible {
+    outline: var(--ds-size-focus-ring) solid var(--color-text-link);
+    outline-offset: 0.1875rem;
+    border-radius: var(--ds-radius-control);
+  }
+
+  /* Sur le bandeau fonce, l'anneau passe sur la couleur de texte claire (>= 3:1) */
+  .on-deep :focus-visible { outline-color: var(--color-text-on-deep); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important; /* ds-allow-hardcode : reset reduced-motion standard */
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important; /* ds-allow-hardcode : reset reduced-motion standard */
+    }
+  }
+}
+
+@layer components {
+  /* Boutons : trois roles, jamais plus. Primaire = une action principale par zone. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-block-size: 2.75rem;
+    padding-inline: 1.25rem;
+    border: 1px solid transparent;
+    border-radius: var(--ds-radius-control);
+    font-weight: 500;
+    line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color var(--ds-duration-fast) var(--ds-ease-out),
+                color var(--ds-duration-fast) var(--ds-ease-out),
+                border-color var(--ds-duration-fast) var(--ds-ease-out),
+                transform var(--ds-duration-fast) var(--ds-ease-out);
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn[disabled], .btn[aria-disabled="true"] { opacity: 0.5; pointer-events: none; }
+
+  .btn-primary {
+    background-color: var(--color-action-primary);
+    color: var(--color-text-on-action);
+  }
+  .btn-primary:hover { background-color: var(--color-action-primary-hover); }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--color-text-primary);
+    border-color: var(--color-border-strong);
+  }
+  .btn-secondary:hover {
+    background-color: var(--color-surface-band);
+    border-color: var(--color-text-primary);
+  }
+
+  .on-deep .btn-secondary {
+    color: var(--color-text-on-deep);
+    border-color: var(--color-text-on-deep-muted);
+  }
+  .on-deep .btn-secondary:hover {
+    background-color: var(--color-surface-page);
+    color: var(--color-text-primary);
+    border-color: var(--color-surface-page);
+  }
+
+
+  .link {
+    color: var(--color-text-link);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    transition: text-decoration-thickness var(--ds-duration-fast) var(--ds-ease-out);
+  }
+  .link:hover { text-decoration-thickness: 0.125rem; }
+
+  .eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-link);
+  }
+  .on-deep .eyebrow { color: var(--color-text-ornament); }
+
+  /* Cadre photo : garde les dimensions exactes et un rendu soigne tant que
+     la photo definitive n'est pas livree (ou si l'image distante echoue). */
+  .photo-frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--ds-radius-frame);
+    background-color: var(--color-surface-band);
+    background-image:
+      linear-gradient(45deg, transparent 48%, var(--color-border-default) 49%, var(--color-border-default) 51%, transparent 52%),
+      linear-gradient(-45deg, transparent 48%, var(--color-border-default) 49%, var(--color-border-default) 51%, transparent 52%);
+    background-size: 2.5rem 2.5rem;
+  }
+  .photo-frame img {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+  .photo-frame figcaption.photo-fallback {
+    position: absolute;
+    inset: auto 0.75rem 0.75rem auto;
+    display: none;
+    padding: 0.25rem 0.625rem;
+    border-radius: var(--ds-radius-pill);
+    background-color: var(--color-surface-card);
+    color: var(--color-text-secondary);
+    font-size: 0.8125rem;
+  }
+  .photo-frame.is-missing img { visibility: hidden; }
+  .photo-frame.is-missing figcaption.photo-fallback { display: block; }
+
+  /* Contenu redactionnel des pages interieures */
+  .prose-site { color: var(--color-text-secondary); max-inline-size: 68ch; }
+  .prose-site > * + * { margin-block-start: 1rem; }
+  .prose-site h2 {
+    margin-block-start: 2.5rem;
+    color: var(--color-text-primary);
+    font-size: 1.875rem;
+    line-height: 1.2;
+  }
+  .prose-site strong { color: var(--color-text-primary); font-weight: 600; }
+  .prose-site ul, .prose-site ol { display: grid; gap: 0.625rem; padding-inline-start: 1.25rem; }
+  .prose-site ul { list-style: disc; }
+  .prose-site ol { list-style: decimal; }
+  .prose-site li::marker { color: var(--color-text-link); }
+
+  /* FAQ : details/summary natifs, clavier gratuit */
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-block-size: 3.5rem;
+    padding-block: 1rem;
+    cursor: pointer;
+    list-style: none;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary:hover .faq-q { color: var(--color-text-link); }
+  .faq-item .faq-icon { transition: transform var(--ds-duration-base) var(--ds-ease-out); }
+  .faq-item[open] .faq-icon { transform: rotate(180deg); }
+}
+
