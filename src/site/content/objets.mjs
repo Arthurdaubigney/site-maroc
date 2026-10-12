@@ -1,4 +1,4 @@
-// Les 19 categories d'objets recherches. Une page par categorie : /objets-recherches/<slug>.
+// Les 20 categories d'objets recherches. Une page par categorie : /objets-recherches/<slug>.
 // Contenu unique par page (pas de gabarit repete) : c'est ce qui la rend indexable.
 // img = photo des cartes (carre) ; hero = photo d'en-tete de la page si elle differe (portrait 4:5).
 
@@ -266,6 +266,38 @@ export const OBJETS = [
       ['Quel est le prix d\'une pièce de 20 francs or ?', 'Le prix d\'une pièce de 20 francs or suit d\'abord le cours de l\'or ; certains millésimes rares valent davantage. François Secula assure le rachat de napoléons en or à Casablanca, Marrakech et partout au Maroc.'],
     ],
     related: ['bijoux-berberes', 'montres-bijoux', 'vaisselle-verre-argenterie'],
+  },
+  {
+    slug: 'livres-anciens',
+    nav: 'Livres anciens',
+    h1: 'Rachat de livres anciens, manuscrits et bibliothèques au Maroc',
+    title: 'Rachat de livres anciens au Maroc | François Secula',
+    description: 'Livres anciens, éditions originales, manuscrits, reliures, cartes et photographies anciennes du Maroc : estimation gratuite et rachat de livres et de bibliothèques au Maroc.',
+    img: { key: 'livres-anciens', alt: 'Livre d\'heures enluminé ancien ouvert', fallback: 'livre ancien', note: 'Livre ancien relié ouvert, reliure et page de titre visibles' },
+    hero: 'florian-livre',
+    intro: 'Un livre ancien ne vaut pas que par son âge : l\'édition, la reliure, l\'état et la provenance font toute la différence. François Secula examine les livres isolés comme les bibliothèques entières, des ouvrages européens aux manuscrits et imprimés du Maroc.',
+    recherche: [
+      'Livres anciens des XVI<sup>e</sup> au XIX<sup>e</sup> siècle, ouvrages illustrés et livres d\'heures',
+      'Éditions originales et livres dédicacés d\'auteurs du XIX<sup>e</sup> et du XX<sup>e</sup> siècle',
+      'Manuscrits arabes et marocains, corans anciens enluminés, documents et actes anciens',
+      'Livres sur le Maroc et l\'Orient : récits de voyage, ouvrages du protectorat, livres d\'art',
+      'Reliures en cuir, reliures signées et reliures marocaines anciennes',
+      'Cartes géographiques, gravures, photographies et cartes postales anciennes du Maroc',
+      'Bibliothèques complètes et fonds d\'ouvrages lors d\'une succession',
+    ],
+    valeur: [
+      ['L\'édition', 'Une édition originale ou un premier tirage vaut souvent bien plus qu\'une réédition, même ancienne. La page de titre et l\'achevé d\'imprimer le disent.'],
+      ['La reliure et l\'état', 'Une reliure d\'époque en bon état, des pages complètes et sans rousseurs importantes valorisent nettement un livre.'],
+      ['La provenance et les envois', 'Un ex-libris, une dédicace de l\'auteur ou une provenance prestigieuse peuvent multiplier l\'intérêt d\'un ouvrage.'],
+      ['La rareté du sujet', 'Les ouvrages anciens sur le Maroc, les récits de voyage et les livres illustrés sont particulièrement recherchés.'],
+    ],
+    photos: 'Photographiez le dos et les plats de la reliure, la page de titre, l\'achevé d\'imprimer, les illustrations et tout ex-libris ou dédicace. Pour une bibliothèque, une vue d\'ensemble des rayonnages suffit pour un premier avis.',
+    faq: [
+      ['Comment savoir si un livre ancien a de la valeur ?', 'L\'âge ne suffit pas : l\'édition, la reliure, l\'état et le sujet comptent davantage. Envoyez des photos de la page de titre et de la reliure pour un avis gratuit.'],
+      ['Achetez-vous une bibliothèque entière ?', 'Oui. François Secula se déplace pour examiner une bibliothèque complète, notamment lors d\'une succession, et repère les ouvrages de valeur.'],
+      ['Faut-il nettoyer ou restaurer un livre avant l\'estimation ?', 'Non. Ne touchez ni à la reliure ni aux pages : une restauration maladroite fait baisser la valeur.'],
+    ],
+    related: ['tableaux-tapisseries', 'mobilier-ancien-contemporain', 'pieces-de-monnaie'],
   },
   {
     slug: 'tableaux-tapisseries',

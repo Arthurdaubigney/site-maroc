@@ -95,7 +95,7 @@ const generalFaq = [
   ['L\'estimation est-elle payante ?', 'Non. Le premier avis sur photos et l\'examen en vue d\'un achat sont gratuits et sans engagement.'],
   ['Le déplacement est-il payant ?', 'Non. François Secula se déplace gratuitement à votre domicile, partout au Maroc.'],
   // Pas de liens dans les reponses repliees : le maillage vers ces pages passe par les sections Objets et Zones.
-  ['Quels objets achetez-vous ?', 'Bijoux berbères, tableaux orientalistes, argenterie, meubles anciens, pièces de monnaie, vases et verres en cristal, tapis, montres et bijoux, bronzes, manteaux de fourrure, sacs de marque, et bien d\'autres objets de collection.'],
+  ['Quels objets achetez-vous ?', 'Bijoux berbères, tableaux orientalistes, argenterie, meubles anciens, pièces de monnaie, vases et verres en cristal, livres anciens, tapis, montres et bijoux, bronzes, manteaux de fourrure, sacs de marque, et bien d\'autres objets de collection.'],
   ['Vous déplacez-vous à domicile ?', `Oui, gratuitement, depuis Marrakech et partout au Maroc : ${VILLES.filter((v) => v.ville !== 'Marrakech').map((v) => v.ville).join(', ')} et ailleurs.`],
   ['Combien de temps faut-il pour avoir un avis ?', 'Peu de temps : l\'expertise est rapide. François Secula répond dès réception de photos exploitables.'],
   ['Mes informations restent-elles confidentielles ?', 'Oui. Vos photos et coordonnées servent uniquement à répondre à votre demande et ne sont jamais publiées ni transmises.'],
@@ -326,7 +326,7 @@ ${ctaBand()}`;
 function objetsHub() {
   const trail = [HOME, { name: 'Objets recherchés', href: '/objets-recherches' }];
   const body = `
-${pageHero({ kicker: 'Objets recherchés', h1: 'Les objets que François Secula recherche et achète', lead: 'Dix-neuf familles d\'objets, des bijoux berbères aux tableaux orientalistes. Pour chacune, découvrez ce qui est recherché, ce qui fait la valeur, et comment photographier votre objet pour un premier avis gratuit.' })}
+${pageHero({ kicker: 'Objets recherchés', h1: 'Les objets que François Secula recherche et achète', lead: 'Vingt familles d\'objets, des bijoux berbères aux livres anciens. Pour chacune, découvrez ce qui est recherché, ce qui fait la valeur, et comment photographier votre objet pour un premier avis gratuit.' })}
 <section aria-label="Catégories d'objets" class="py-16 lg:py-24">
   <div class="mx-auto grid max-w-7xl grid-cols-2 gap-x-4 gap-y-10 px-4 sm:gap-x-6 sm:px-6 lg:grid-cols-3 lg:px-8">
     ${OBJETS.map((o) => objetTile(o, { level: 'h2' })).join('\n    ')}
@@ -485,7 +485,7 @@ ${faq(generalFaq)}`;
 /* ---------- Pages legales et 404 ---------- */
 // Pages legales. Un paragraphe qui commence par "<" (liste, etc.) est insere tel quel.
 // Aucune information inventee : les numeros non communiques (RC, ICE, IF, CNDP) ne sont pas affiches.
-const LEGAL_MAJ = '2 octobre 2026';
+const LEGAL_MAJ = '9 octobre 2026';
 const legal = (path, name, description, sections) => ({
   path, trail: [HOME, { name, href: path }], noindex: true, title: `${name} | François Secula`, description,
   body: `<section class="mx-auto max-w-3xl px-4 pb-20 pt-8 sm:px-6">
@@ -500,9 +500,9 @@ const lienContact = '<a href="/contact" class="link">formulaire de contact</a>';
 const lienConfidentialite = '<a href="/confidentialite" class="link">politique de confidentialité</a>';
 
 const mentions = () => legal('/mentions-legales', 'Mentions légales', 'Mentions légales du site de François Secula, antiquaire et expert en objets d\'art au Maroc : éditeur, hébergement, propriété intellectuelle et droit applicable.', [
-  ['Éditeur du site', `Le site ${SITE.url.replace('https://', '')} est édité par François Secula, antiquaire et expert en objets d'art.`,
-    `<ul><li>Bureaux : ${adresse}</li><li>Téléphone : <a href="tel:${SITE.phone.e164}" class="link">${SITE.phone.display}</a></li><li>Contact écrit : via le ${lienContact}</li></ul>`],
-  ['Directeur de la publication', 'François Secula.'],
+  ['Éditeur du site', `Le site ${SITE.url.replace('https://', '')} est édité par ${SITE.editeur.name}, ${SITE.editeur.legalForm.toLowerCase()}.`,
+    `<ul><li>Siège : ${SITE.editeur.address}</li><li>SIREN : ${SITE.editeur.siren} · SIRET : ${SITE.editeur.siret}</li><li>Immatriculation : ${SITE.editeur.registre}</li><li>TVA intracommunautaire : ${SITE.editeur.tva}</li><li>Bureaux au Maroc : ${adresse}</li><li>Téléphone : <a href="tel:${SITE.phone.e164}" class="link">${SITE.phone.display}</a></li><li>Contact écrit : via le ${lienContact}</li></ul>`],
+  ['Directeur de la publication', `${SITE.editeur.name}.`],
   ['Activité', 'Estimation, expertise et rachat d\'antiquités et d\'objets d\'art auprès des particuliers, à Marrakech et partout au Maroc. Aucun objet n\'est vendu au public par l\'intermédiaire de ce site.'],
   ['Conception et réalisation', ...(() => {
     const r = SITE.realisation;
@@ -522,7 +522,7 @@ const mentions = () => legal('/mentions-legales', 'Mentions légales', 'Mentions
 ]);
 
 const confidentialite = () => legal('/confidentialite', 'Politique de confidentialité', 'Politique de confidentialité et protection des données personnelles (loi 09-08) du site de François Secula, antiquaire : données collectées, finalités, destinataires, durée et vos droits.', [
-  ['Responsable du traitement', `François Secula, ${adresse}. Contact : via le ${lienContact} ou au <a href="tel:${SITE.phone.e164}" class="link">${SITE.phone.display}</a>.`],
+  ['Responsable du traitement', `${SITE.editeur.name}, ${SITE.editeur.legalForm.toLowerCase()} (SIREN ${SITE.editeur.siren}), ${SITE.editeur.address} ; bureaux au Maroc : ${adresse}. Contact : via le ${lienContact} ou au <a href="tel:${SITE.phone.e164}" class="link">${SITE.phone.display}</a>.`],
   ['Données collectées', 'Lorsque vous remplissez le formulaire de contact ou que vous nous appelez, nous recueillons :',
     '<ul><li>vos nom et prénom ;</li><li>vos coordonnées : adresse e-mail, téléphone, code postal ;</li><li>la description et les photos de votre objet.</li></ul>',
     'Aucune autre donnée n\'est demandée. Ne transmettez pas d\'informations sensibles (pièces d\'identité, coordonnées bancaires) par le formulaire.'],
