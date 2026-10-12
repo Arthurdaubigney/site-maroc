@@ -108,7 +108,7 @@ const LIBRES = {
   // Flickr / Wikimedia Commons (CC BY 2.0 et CC BY-SA 2.0) : credits nominatifs dans les mentions legales
   sacLV: { ...libre('objet-sac-louis-vuitton-alma', 'Sac Louis Vuitton Alma en toile Damier : sacs de luxe estimés et rachetés par François Secula au Maroc', '18% 50%'), widths: [600, 1024] },
   sacHermes: libre('objet-sac-hermes-birkin', 'Sac Hermès Birkin en autruche et carré de soie Hermès : sacs de luxe estimés et rachetés au Maroc', '47% 55%'),
-  livreHeures: libre('objet-livre-heures-enlumine', 'Livre d\'heures enluminé ouvert, vers 1500 : livres anciens et manuscrits estimés et rachetés au Maroc'),
+  reliure: libre('objet-reliure-orientale-ancienne', 'Reliure orientale ancienne en cuir doré à médaillon : livres anciens et manuscrits estimés et rachetés au Maroc'),
   // WordPress Photo Directory (CC0)
   the: libre('objet-service-the-argent-maroc', 'Théières marocaines en métal argenté ciselé sur plateaux, verres à thé : argenterie estimée et rachetée au Maroc', '55% 55%'),
   medersa: { ...libre('maroc-medersa-ben-youssef', 'Cour de la médersa Ben Youssef à Marrakech vue à travers un arc en stuc ciselé, bassin et zellige', '50% 50%'), widths: [449, 900] },
@@ -160,7 +160,7 @@ export const IMAGES = {
   // Vignettes 4:3 : recadrage serre sur les montres (la photo entiere reste sur la page categorie)
   'montres-bijoux': { ...PHOTOS.montres, tile: { src: '/images/antiquaire-maroc-montres-detail.webp', small: '/images/antiquaire-maroc-montres-detail-600.webp', widths: [600, 1000], position: '50% 50%', alt: 'Montres de collection dans leur coffret en cuir, présentées par Florian, expert de l\'équipe, lors d\'une estimation à Marrakech' } },
   'tableaux-tapisseries': LIBRES.oasis,
-  'livres-anciens': LIBRES.livreHeures,
+  'livres-anciens': LIBRES.reliure,
   'florian-tableau': PHOTOS.tableau,
   tapis: LIBRES.tapis,
   'robes-vetements-de-marque': LIBRES.robe,

@@ -273,7 +273,7 @@ export const OBJETS = [
     h1: 'Rachat de livres anciens, manuscrits et bibliothèques au Maroc',
     title: 'Rachat de livres anciens au Maroc | François Secula',
     description: 'Livres anciens, éditions originales, manuscrits, reliures, cartes et photographies anciennes du Maroc : estimation gratuite et rachat de livres et de bibliothèques au Maroc.',
-    img: { key: 'livres-anciens', alt: 'Livre d\'heures enluminé ancien ouvert', fallback: 'livre ancien', note: 'Livre ancien relié ouvert, reliure et page de titre visibles' },
+    img: { key: 'livres-anciens', alt: 'Reliure orientale ancienne en cuir doré', fallback: 'livre ancien', note: 'Livre ancien relié ouvert, reliure et page de titre visibles' },
     hero: 'florian-livre',
     intro: 'Un livre ancien ne vaut pas que par son âge : l\'édition, la reliure, l\'état et la provenance font toute la différence. François Secula examine les livres isolés comme les bibliothèques entières, des ouvrages européens aux manuscrits et imprimés du Maroc.',
     recherche: [
