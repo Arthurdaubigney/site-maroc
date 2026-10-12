@@ -16,7 +16,7 @@ npm run dev     # build + serveur local sur dist/
 | Fichier | Rôle |
 |---|---|
 | `src/site/config.mjs` | **Toutes les informations à remplacer** : domaine, coordonnées, horaires, formulaire Tally, photos |
-| `src/site/content/objets.mjs` | Les 19 catégories d'objets recherchés (une page chacune) |
+| `src/site/content/objets.mjs` | Les 20 catégories d'objets recherchés (une page chacune) |
 | `src/site/content/services.mjs` | Les 4 services (estimation, expertise, achat, successions) |
 | `src/site/content/villes.mjs` | Les 6 pages ville (Marrakech, Casablanca, Rabat, Tanger, Fès, Agadir) |
 | `src/site/pages.mjs` | Accueil, présentation, pages hub, contact, pages légales, 404 |
@@ -30,7 +30,7 @@ Plan du site généré :
 /                                   Accueil
 /presentation                       François Secula
 /expertise-achat                    + 4 services
-/objets-recherches                  + 19 catégories
+/objets-recherches                  + 20 catégories
 /zones-intervention                 + 6 villes
 /contact                            Formulaire Tally (a brancher)
 /mentions-legales, /confidentialite, /404

@@ -95,7 +95,7 @@ const generalFaq = [
   ['L\'estimation est-elle payante ?', 'Non. Le premier avis sur photos et l\'examen en vue d\'un achat sont gratuits et sans engagement.'],
   ['Le déplacement est-il payant ?', 'Non. François Secula se déplace gratuitement à votre domicile, partout au Maroc.'],
   // Pas de liens dans les reponses repliees : le maillage vers ces pages passe par les sections Objets et Zones.
-  ['Quels objets achetez-vous ?', 'Bijoux berbères, tableaux orientalistes, argenterie, meubles anciens, pièces de monnaie, vases et verres en cristal, tapis, montres et bijoux, bronzes, manteaux de fourrure, sacs de marque, et bien d\'autres objets de collection.'],
+  ['Quels objets achetez-vous ?', 'Bijoux berbères, tableaux orientalistes, argenterie, meubles anciens, pièces de monnaie, vases et verres en cristal, livres anciens, tapis, montres et bijoux, bronzes, manteaux de fourrure, sacs de marque, et bien d\'autres objets de collection.'],
   ['Vous déplacez-vous à domicile ?', `Oui, gratuitement, depuis Marrakech et partout au Maroc : ${VILLES.filter((v) => v.ville !== 'Marrakech').map((v) => v.ville).join(', ')} et ailleurs.`],
   ['Combien de temps faut-il pour avoir un avis ?', 'Peu de temps : l\'expertise est rapide. François Secula répond dès réception de photos exploitables.'],
   ['Mes informations restent-elles confidentielles ?', 'Oui. Vos photos et coordonnées servent uniquement à répondre à votre demande et ne sont jamais publiées ni transmises.'],
@@ -326,7 +326,7 @@ ${ctaBand()}`;
 function objetsHub() {
   const trail = [HOME, { name: 'Objets recherchés', href: '/objets-recherches' }];
   const body = `
-${pageHero({ kicker: 'Objets recherchés', h1: 'Les objets que François Secula recherche et achète', lead: 'Dix-neuf familles d\'objets, des bijoux berbères aux tableaux orientalistes. Pour chacune, découvrez ce qui est recherché, ce qui fait la valeur, et comment photographier votre objet pour un premier avis gratuit.' })}
+${pageHero({ kicker: 'Objets recherchés', h1: 'Les objets que François Secula recherche et achète', lead: 'Vingt familles d\'objets, des bijoux berbères aux livres anciens. Pour chacune, découvrez ce qui est recherché, ce qui fait la valeur, et comment photographier votre objet pour un premier avis gratuit.' })}
 <section aria-label="Catégories d'objets" class="py-16 lg:py-24">
   <div class="mx-auto grid max-w-7xl grid-cols-2 gap-x-4 gap-y-10 px-4 sm:gap-x-6 sm:px-6 lg:grid-cols-3 lg:px-8">
     ${OBJETS.map((o) => objetTile(o, { level: 'h2' })).join('\n    ')}
