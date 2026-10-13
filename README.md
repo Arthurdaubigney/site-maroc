@@ -48,7 +48,7 @@ URL propres (`/objets-recherches/tapis`). Seul `dist/` est servi.
 
 Tout se règle dans `src/site/config.mjs`, sauf mention contraire :
 
-1. **Domaine** (`url`), `geo`, `sameAs`. Téléphone (06 58 59 66 73) et bureaux (42 Q.I Sidi Ghanem 158, 40000 Marrakech) renseignés. Pas de WhatsApp, d'e-mail ni d'horaires : le contact principal passe par le formulaire Tally.
+1. **Domaine** (`url`), `geo`, `sameAs`. Téléphone (06 58 59 66 73) et bureaux (42 Q.I Sidi Ghanem 158, 40000 Marrakech) renseignés. Pas de WhatsApp ni d'horaires ; l'e-mail (`SITE.editeur.email`) n'apparaît que dans les mentions légales et la politique de confidentialité : le contact principal passe par le formulaire Tally.
 2. **Formulaire Tally** : renseigner `tallyFormId`. L'iframe et le script Tally sont alors générés sur `/contact`.
 3. **Photos** (`IMAGES`) : les 6 photos de Florian sont en place (`public/images/`, WebP 896 px + variante 448 px,
    image de partage `antiquaire-maroc-og.jpg`). Les autres catégories, la page Successions, Marrakech et Casablanca

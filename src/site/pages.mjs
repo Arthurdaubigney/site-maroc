@@ -485,7 +485,7 @@ ${faq(generalFaq)}`;
 /* ---------- Pages legales et 404 ---------- */
 // Pages legales. Un paragraphe qui commence par "<" (liste, etc.) est insere tel quel.
 // Aucune information inventee : les numeros non communiques (RC, ICE, IF, CNDP) ne sont pas affiches.
-const LEGAL_MAJ = '9 octobre 2026';
+const LEGAL_MAJ = '13 octobre 2026';
 const legal = (path, name, description, sections) => ({
   path, trail: [HOME, { name, href: path }], noindex: true, title: `${name} | François Secula`, description,
   body: `<section class="mx-auto max-w-3xl px-4 pb-20 pt-8 sm:px-6">
@@ -501,7 +501,7 @@ const lienConfidentialite = '<a href="/confidentialite" class="link">politique d
 
 const mentions = () => legal('/mentions-legales', 'Mentions légales', 'Mentions légales du site de François Secula, antiquaire et expert en objets d\'art au Maroc : éditeur, hébergement, propriété intellectuelle et droit applicable.', [
   ['Éditeur du site', `Le site ${SITE.url.replace('https://', '')} est édité par ${SITE.editeur.name}, ${SITE.editeur.legalForm.toLowerCase()}.`,
-    `<ul><li>Siège : ${SITE.editeur.address}</li><li>SIREN : ${SITE.editeur.siren} · SIRET : ${SITE.editeur.siret}</li><li>Immatriculation : ${SITE.editeur.registre}</li><li>TVA intracommunautaire : ${SITE.editeur.tva}</li><li>Bureaux au Maroc : ${adresse}</li><li>Téléphone : <a href="tel:${SITE.phone.e164}" class="link">${SITE.phone.display}</a></li><li>Contact écrit : via le ${lienContact}</li></ul>`],
+    `<ul><li>Siège : ${SITE.editeur.address}</li><li>SIREN : ${SITE.editeur.siren} · SIRET : ${SITE.editeur.siret}</li><li>Immatriculation : ${SITE.editeur.registre}</li><li>TVA intracommunautaire : ${SITE.editeur.tva}</li><li>Bureaux au Maroc : ${adresse}</li><li>Téléphone : <a href="tel:${SITE.phone.e164}" class="link">${SITE.phone.display}</a></li><li>E-mail : <a href="mailto:${SITE.editeur.email}" class="link [overflow-wrap:anywhere]">${SITE.editeur.email}</a></li><li>Contact écrit : via le ${lienContact}</li></ul>`],
   ['Directeur de la publication', `${SITE.editeur.name}.`],
   ['Activité', 'Estimation, expertise et rachat d\'antiquités et d\'objets d\'art auprès des particuliers, à Marrakech et partout au Maroc. Aucun objet n\'est vendu au public par l\'intermédiaire de ce site.'],
   ['Conception et réalisation', ...(() => {
@@ -522,7 +522,7 @@ const mentions = () => legal('/mentions-legales', 'Mentions légales', 'Mentions
 ]);
 
 const confidentialite = () => legal('/confidentialite', 'Politique de confidentialité', 'Politique de confidentialité et protection des données personnelles (loi 09-08) du site de François Secula, antiquaire : données collectées, finalités, destinataires, durée et vos droits.', [
-  ['Responsable du traitement', `${SITE.editeur.name}, ${SITE.editeur.legalForm.toLowerCase()} (SIREN ${SITE.editeur.siren}), ${SITE.editeur.address} ; bureaux au Maroc : ${adresse}. Contact : via le ${lienContact} ou au <a href="tel:${SITE.phone.e164}" class="link">${SITE.phone.display}</a>.`],
+  ['Responsable du traitement', `${SITE.editeur.name}, ${SITE.editeur.legalForm.toLowerCase()} (SIREN ${SITE.editeur.siren}), ${SITE.editeur.address} ; bureaux au Maroc : ${adresse}. Contact : via le ${lienContact}, au <a href="tel:${SITE.phone.e164}" class="link">${SITE.phone.display}</a> ou par e-mail à <a href="mailto:${SITE.editeur.email}" class="link [overflow-wrap:anywhere]">${SITE.editeur.email}</a>.`],
   ['Données collectées', 'Lorsque vous remplissez le formulaire de contact ou que vous nous appelez, nous recueillons :',
     '<ul><li>vos nom et prénom ;</li><li>vos coordonnées : adresse e-mail, téléphone, code postal ;</li><li>la description et les photos de votre objet.</li></ul>',
     'Aucune autre donnée n\'est demandée. Ne transmettez pas d\'informations sensibles (pièces d\'identité, coordonnées bancaires) par le formulaire.'],
