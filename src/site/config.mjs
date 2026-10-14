@@ -42,6 +42,8 @@ export const SITE = {
     tva: 'FR51529601486',
     registre: 'Registre national des entreprises (RNE), depuis le 20 janvier 2011',
     address: '21 rue du Docteur Tassin, 21200 Beaune, France',
+    // E-mail affiche UNIQUEMENT dans les mentions legales et la confidentialite (contact principal : formulaire Tally)
+    email: 'francoisseculapub@gmail.com',
   },
   // Conception et realisation du site (mentions legales). Aucune personne physique n'est citee :
   // seule la societe apparait (ni dirigeant, ni nom commercial).
