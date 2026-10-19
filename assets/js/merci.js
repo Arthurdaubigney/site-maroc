@@ -28,13 +28,15 @@
   try { cfg = JSON.parse(document.getElementById('merci-config').textContent); } catch (e) { /* pas de config */ }
   if (!cfg.adsId || !cfg.conversionLabel) return;
 
-  window.gtag = function () { window.dataLayer.push(arguments); };
-  window.gtag('js', new Date());
-  window.gtag('config', cfg.adsId);
+  // La balise globale (chargee dans le <head> de chaque page) definit deja gtag ; sinon on la charge ici.
+  if (typeof window.gtag !== 'function') {
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', cfg.adsId);
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(cfg.adsId);
+    document.head.appendChild(s);
+  }
   window.gtag('event', 'conversion', { send_to: cfg.adsId + '/' + cfg.conversionLabel });
-
-  var s = document.createElement('script');
-  s.async = true;
-  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(cfg.adsId);
-  document.head.appendChild(s);
 })();

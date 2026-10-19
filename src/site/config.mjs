@@ -27,9 +27,9 @@ export const SITE = {
   sameAs: [],
   // A REMPLACER : identifiant du formulaire Tally (Share > Embed). null = formulaire pas encore en ligne.
   tallyFormId: 'aQVbv9',
-  // A COMPLETER : conversion Google Ads, declenchee uniquement sur /merci apres un envoi reel du formulaire.
-  // id = 'AW-XXXXXXXXX', conversionLabel = libelle de l'action de conversion. null = aucune balise chargee.
-  googleAds: { id: null, conversionLabel: null },
+  // Google Ads : la balise globale (id) est chargee sur toutes les pages. La conversion (conversionLabel,
+  // libelle de l'action) n'est declenchee que sur /merci apres un envoi reel du formulaire. null = pas de conversion.
+  googleAds: { id: 'AW-18503417665', conversionLabel: null },
   lastmod: '2026-10-19',
   // Editeur du site (mentions legales) : entreprise individuelle active (attestation RNE du 09/10/2026).
   // Ne pas publier la date de naissance ni les prenoms secondaires : non requis.

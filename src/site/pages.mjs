@@ -485,7 +485,7 @@ ${faq(generalFaq)}`;
 /* ---------- Pages legales et 404 ---------- */
 // Pages legales. Un paragraphe qui commence par "<" (liste, etc.) est insere tel quel.
 // Aucune information inventee : les numeros non communiques (RC, ICE, IF, CNDP) ne sont pas affiches.
-const LEGAL_MAJ = '13 octobre 2026';
+const LEGAL_MAJ = '19 octobre 2026';
 const legal = (path, name, description, sections) => ({
   path, trail: [HOME, { name, href: path }], noindex: true, title: `${name} | François Secula`, description,
   body: `<section class="mx-auto max-w-3xl px-4 pb-20 pt-8 sm:px-6">
@@ -536,7 +536,7 @@ const confidentialite = () => legal('/confidentialite', 'Politique de confidenti
   ['Vos droits', `Conformément à la loi n° 09-08, vous disposez d'un droit d'accès, de rectification et d'opposition, pour des motifs légitimes, au traitement de vos données. Pour l'exercer, écrivez-nous via le ${lienContact} en précisant votre demande.`,
     'Vous pouvez également adresser une réclamation à la Commission nationale de contrôle de la protection des données à caractère personnel (CNDP, www.cndp.ma).'],
   ['Cookies', SITE.googleAds.id
-    ? 'Ce site n\'utilise pas de cookie de mesure d\'audience. Après l\'envoi du formulaire uniquement, la page de confirmation charge la balise de conversion Google Ads (Google Ireland Ltd), qui peut déposer un cookie servant à mesurer l\'efficacité de nos annonces. Le formulaire intégré Tally peut utiliser des traceurs techniques nécessaires à son fonctionnement.'
+    ? 'Ce site intègre sur toutes ses pages la balise Google Ads (Google Ireland Ltd), qui peut déposer des cookies servant à mesurer l\'efficacité de nos annonces publicitaires et à en améliorer la diffusion. Vous pouvez les refuser ou les supprimer à tout moment dans les réglages de votre navigateur, et gérer la personnalisation des annonces sur adssettings.google.com. Le formulaire intégré Tally peut utiliser des traceurs techniques nécessaires à son fonctionnement.'
     : 'Ce site n\'utilise pas de cookie de mesure d\'audience ni de publicité. Le formulaire intégré Tally peut utiliser des traceurs techniques nécessaires à son fonctionnement.'],
   ['Modifications', 'Cette politique peut être mise à jour ; la date de dernière mise à jour figure en haut de cette page.'],
 ]);
