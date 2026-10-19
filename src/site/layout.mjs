@@ -286,7 +286,16 @@ export function renderPage(page, ctx) {
   return `<!doctype html>
 <html lang="fr-MA">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8">${SITE.googleAds.id ? `
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=${SITE.googleAds.id}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '${SITE.googleAds.id}');
+  </script>` : ''}
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(description)}">
