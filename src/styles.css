@@ -201,8 +201,8 @@
   .card-photo a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
   .card-photo:hover .card-title { color: var(--color-text-link); }
 
-  /* Cadre photo : garde les dimensions exactes et un rendu soigne tant que
-     la photo definitive n'est pas livree (ou si l'image distante echoue). */
+  /* Cadre photo : garde les dimensions exactes ; si l'image manque ou echoue,
+     le cadre affiche un panneau zellige (aucun libelle visible). */
   .photo-frame {
     position: relative;
     overflow: hidden;
@@ -214,16 +214,6 @@
     inline-size: 100%;
     block-size: 100%;
     object-fit: cover;
-  }
-  .photo-frame figcaption.photo-fallback {
-    position: absolute;
-    inset: auto 0.75rem 0.75rem auto;
-    display: none;
-    padding: 0.25rem 0.625rem;
-    border-radius: var(--ds-radius-pill);
-    background-color: var(--color-surface-card);
-    color: var(--color-text-secondary);
-    font-size: 0.8125rem;
   }
   /* Photo absente (non livree ou en echec) : panneau rouge a motif zellige, sans libelle technique */
   .photo-frame.is-missing { background-color: var(--color-surface-deep); }

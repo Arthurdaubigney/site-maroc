@@ -2,8 +2,8 @@
 // et nulle part ailleurs : les pages, le JSON-LD, le sitemap et llms.txt en derivent.
 
 export const SITE = {
-  // A REMPLACER : domaine definitif (sans slash final)
-  url: 'https://site-maroc.vercel.app',
+  // Domaine definitif (sans slash final). francois-antiquite.ma redirige deja vers www.
+  url: 'https://www.francois-antiquite.ma',
   name: 'François Secula',
   tagline: 'Antiquaire français, expert en objets d\'art au Maroc',
   expert: {
@@ -30,7 +30,7 @@ export const SITE = {
   // A COMPLETER : conversion Google Ads, declenchee uniquement sur /merci apres un envoi reel du formulaire.
   // id = 'AW-XXXXXXXXX', conversionLabel = libelle de l'action de conversion. null = aucune balise chargee.
   googleAds: { id: null, conversionLabel: null },
-  lastmod: '2026-09-24',
+  lastmod: '2026-10-19',
   // Editeur du site (mentions legales) : entreprise individuelle active (attestation RNE du 09/10/2026).
   // Ne pas publier la date de naissance ni les prenoms secondaires : non requis.
   // Ne pas reprendre l'ancienne entreprise SIREN 517 211 017, radiee en 2009.
@@ -58,7 +58,7 @@ export const SITE = {
 };
 
 
-// Photos du site. null = emplacement vide (cadre "Photo a venir"), le site reste propre.
+// Photos du site. null = emplacement vide (panneau zellige), le site reste propre.
 // Une photo = une chaine ('/images/x.webp') ou un objet { src, small, alt, position } :
 //   small    = variante 448 px pour les petits ecrans (srcset)
 //   alt      = description reelle de la photo (prioritaire sur le texte par defaut de l'emplacement).
