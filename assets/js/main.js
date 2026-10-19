@@ -36,7 +36,7 @@
   }
 
   /* ---------- Photos : si une image distante ne charge pas, le cadre garde
-     ses dimensions et affiche "Photo a venir" au lieu d'une icone cassee. ---------- */
+     ses dimensions et affiche le panneau zellige au lieu d'une icone cassee. ---------- */
   document.querySelectorAll('.photo-frame img').forEach(function (img) {
     var markMissing = function () { img.closest('.photo-frame').classList.add('is-missing'); };
     if (img.complete && img.naturalWidth === 0) markMissing();

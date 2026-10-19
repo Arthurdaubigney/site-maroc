@@ -8,6 +8,17 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "site-maroc.vercel.app"
+        }
+      ],
+      "destination": "https://www.francois-antiquite.ma/:path*",
+      "permanent": true
+    },
+    {
       "source": "/expertise-achat/succession-debarras",
       "destination": "/expertise-achat/successions-inventaires",
       "permanent": true

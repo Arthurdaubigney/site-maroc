@@ -56,7 +56,7 @@ export const icon = (name, cls = 'size-5') => `<svg class="${cls}" aria-hidden="
 
 /* ---------- Composants ---------- */
 
-// Photo a dimensions exactes, avec commentaire de remplacement et repli "Photo a venir".
+// Photo a dimensions exactes ; sans fichier, panneau zellige (aucun libelle visible).
 // Une entree IMAGES peut etre une URL, ou un objet { src, small, alt, position } :
 // small = petite variante (srcset), widths = [petite, grande] en px (defaut 448 / 896),
 // alt = description reelle de la photo (prioritaire),
@@ -67,10 +67,9 @@ export function photo({ key, src, w, h, alt, note, fallback, ratio, priority = f
   const base = typeof raw === 'string' ? { src: raw } : raw;
   const entry = variant && base?.[variant] ? { ...base, ...base[variant] } : base;
   if (!entry?.src) {
-    return `<!-- PHOTO A FOURNIR : ${note} (format ${w} x ${h} px). Deposer le fichier dans public/images/ puis renseigner IMAGES['${key}'] dans src/site/config.mjs. -->
+    return `<!-- Emplacement photo : ${note} (format ${w} x ${h} px). Deposer le fichier dans public/images/ puis renseigner IMAGES['${key}'] dans src/site/config.mjs. -->
 <figure class="photo-frame is-missing aspect-[${ratio}] ${frameClass}">
   <div class="h-full w-full" aria-hidden="true"></div>
-  <figcaption class="photo-fallback">Photo à venir : ${esc(fallback)}</figcaption>
 </figure>`;
   }
   const [sw, bw] = entry.widths ?? [448, 896];
@@ -78,7 +77,6 @@ export function photo({ key, src, w, h, alt, note, fallback, ratio, priority = f
   const style = entry.position ? ` style="object-position: ${entry.position}"` : '';
   return `<figure class="photo-frame aspect-[${ratio}] ${frameClass}">
   <img src="${entry.src}"${srcset} width="${w}" height="${h}" ${priority ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"${style} alt="${esc(entry.alt ?? alt)}">
-  <figcaption class="photo-fallback">Photo à venir : ${esc(fallback)}</figcaption>
 </figure>`;
 }
 
@@ -306,7 +304,7 @@ export function renderPage(page, ctx) {
   ${img ? `<meta property="og:image" content="${esc(img)}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">` : `<!-- PHOTO A FOURNIR : image de partage 1200 x 630 px (IMAGES.og dans src/site/config.mjs) -->
+  <meta name="twitter:card" content="summary_large_image">` : `<!-- Image de partage a renseigner : 1200 x 630 px (IMAGES.og dans src/site/config.mjs) -->
   <meta name="twitter:card" content="summary">`}
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="/site.webmanifest">
