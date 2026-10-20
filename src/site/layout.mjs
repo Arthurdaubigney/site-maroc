@@ -187,7 +187,7 @@ function header(current) {
   const mob = NAV.map((n) => `<li><a href="${n.href}" class="flex min-h-14 items-center justify-between border-b border-hairline font-display text-2xl no-underline ${isCurrent(n.href) ? 'text-link' : 'text-ink'}"${isCurrent(n.href) ? ' aria-current="page"' : ''}>${n.label}${icon('arrow-right', 'size-5 text-accent')}</a></li>`).join('\n          ');
   return `<div class="on-deep bg-deeper text-sm text-on-deep-muted">
     <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 sm:px-6 lg:px-8">
-      <p class="hidden items-center gap-2 sm:flex">${icon('map-pin', 'size-4 flex-none text-ornament')}Antiquaire français installé au Maroc · Déplacement gratuit dans tout le royaume</p>
+      <p class="hidden items-center gap-2 sm:flex">${icon('map-pin', 'size-4 flex-none text-ornament')}Antiquaire partout au Maroc · Déplacement gratuit dans tout le royaume</p>
       <p class="flex items-center gap-5"><span class="hidden lg:inline">Expertise rapide, avis gratuit</span><a href="tel:${SITE.phone.e164}" class="inline-flex min-h-6 items-center gap-2 font-semibold text-on-deep no-underline hover:underline">${icon('phone', 'size-4 text-ornament')}${SITE.phone.display}</a></p>
     </div>
   </div>
