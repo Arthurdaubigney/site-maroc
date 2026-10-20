@@ -8,11 +8,11 @@ export const VILLES = [
     ville: 'Marrakech',
     title: 'Antiquaire à Marrakech : estimation et rachat | François Secula',
     description: 'Antiquaire et expert à Marrakech : estimation gratuite et rachat d\'antiquités, de tapis anciens, de mobilier et d\'objets d\'art, de la Médina à la Palmeraie.',
-    lead: 'Installé à Marrakech, François Secula estime et achète les antiquités et objets d\'art des particuliers, des riads et des villas, de la Médina à la Palmeraie.',
+    lead: 'Depuis ses bureaux de Marrakech, François Secula estime et achète les antiquités et objets d\'art des particuliers, des riads et des villas, de la Médina à la Palmeraie.',
     contexte: [
       'Marrakech concentre des collections d\'une grande diversité : objets marocains transmis dans les familles, mais aussi mobilier, tableaux et objets d\'art européens rassemblés par les résidents étrangers installés dans les riads et les villas depuis les années 1960.',
       'Lors d\'une vente de riad ou d\'un départ, le contenu de la maison mérite d\'être examiné avant d\'être dispersé : tapis anciens du Haut Atlas, luminaires en cuivre, portes sculptées et peinture orientaliste s\'y côtoient souvent.',
-      'Antiquaire français à Marrakech, François Secula est une alternative à la brocante de Marrakech pour les objets de qualité : avant de vendre les meubles d\'un riad à Marrakech, faites-les examiner, la valeur des pièces anciennes est souvent sous-estimée.',
+      'Antiquaire à Marrakech, François Secula est une alternative à la brocante de Marrakech pour les objets de qualité : avant de vendre les meubles d\'un riad à Marrakech, faites-les examiner, la valeur des pièces anciennes est souvent sous-estimée.',
     ],
     quartiers: ['Médina', 'Guéliz', 'Hivernage', 'Palmeraie', 'Route de l\'Ourika', 'Amelkis', 'Targa'],
     objets: ['tapis', 'tableaux-tapisseries', 'lustres-miroirs', 'mobilier-ancien-contemporain'],
@@ -27,7 +27,7 @@ export const VILLES = [
     contexte: [
       'Casablanca possède l\'un des plus riches ensembles d\'architecture Art déco au monde, et les appartements du centre-ville ont souvent conservé du mobilier, des luminaires et des objets de la même époque.',
       'Les grandes familles casablancaises ont aussi réuni des collections de peinture marocaine moderne, d\'argenterie et de bijoux. François Secula les examine sur place, avec discrétion.',
-      'Antiquaire français à Casablanca, François Secula intervient d\'Anfa au Maârif. Avant de confier vos objets à une salle des ventes à Casablanca, demandez son avis : vous saurez ce qu\'ils valent et pourrez comparer.',
+      'Antiquaire à Casablanca, François Secula intervient d\'Anfa au Maârif. Avant de confier vos objets à une salle des ventes à Casablanca, demandez son avis : vous saurez ce qu\'ils valent et pourrez comparer.',
     ],
     quartiers: ['Anfa', 'Centre-ville', 'Gauthier', 'Racine', 'Maârif', 'Bourgogne', 'Californie', 'Ain Diab', 'Oasis'],
     objets: ['mobilier-ancien-contemporain', 'tableaux-tapisseries', 'vaisselle-verre-argenterie', 'montres-bijoux'],

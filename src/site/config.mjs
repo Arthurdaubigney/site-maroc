@@ -5,7 +5,7 @@ export const SITE = {
   // Domaine definitif (sans slash final). francois-antiquite.ma redirige deja vers www.
   url: 'https://www.francois-antiquite.ma',
   name: 'François Secula',
-  tagline: 'Antiquaire français, expert en objets d\'art au Maroc',
+  tagline: 'Antiquaire et expert en objets d\'art partout au Maroc',
   expert: {
     name: 'François Secula',
     jobTitle: 'Antiquaire et expert en objets d\'art',

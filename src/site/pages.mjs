@@ -36,7 +36,6 @@ const personNode = () => ({
   '@type': 'Person', '@id': expertId, name: SITE.expert.name, jobTitle: SITE.expert.jobTitle,
   worksFor: { '@id': businessId }, url: abs('/presentation'),
   knowsAbout: ['Antiquités', 'Expertise d\'objets d\'art', 'Art marocain ancien', 'Bijoux berbères', 'Peinture orientaliste', 'Mobilier ancien', 'Tapis berbères'],
-  nationality: { '@type': 'Country', name: 'France' },
   homeLocation: { '@type': 'Place', name: 'Marrakech, Maroc' },
 });
 const websiteNode = () => ({ '@type': 'WebSite', '@id': `${SITE.url}/#website`, url: `${SITE.url}/`, name: SITE.name, inLanguage: 'fr-MA', publisher: { '@id': businessId } });
@@ -91,7 +90,7 @@ const villesGrid = (level = 'h3') => `<div class="grid gap-x-6 gap-y-10 sm:grid-
 </div>`;
 
 const generalFaq = [
-  ['Qui est François Secula ?', 'Un antiquaire français, donc francophone, installé au Maroc. Depuis ses bureaux de Marrakech, cet acheteur d\'antiquités chez les particuliers estime, expertise et rachète objets anciens et objets d\'art dans tout le royaume.'],
+  ['Qui est François Secula ?', 'Un antiquaire et expert en objets d\'art qui intervient partout au Maroc. Depuis ses bureaux de Marrakech, cet acheteur d\'antiquités chez les particuliers estime, expertise et rachète objets anciens et objets d\'art dans tout le royaume.'],
   ['L\'estimation est-elle payante ?', 'Non. Le premier avis sur photos et l\'examen en vue d\'un achat sont gratuits et sans engagement.'],
   ['Le déplacement est-il payant ?', 'Non. François Secula se déplace gratuitement à votre domicile, partout au Maroc.'],
   // Pas de liens dans les reponses repliees : le maillage vers ces pages passe par les sections Objets et Zones.
@@ -109,9 +108,9 @@ function home() {
 <section aria-labelledby="hero-titre" class="on-deep zellige bg-deep text-on-deep">
   <div class="mx-auto grid max-w-7xl items-center gap-14 px-4 py-14 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8 lg:py-20">
     <div class="lg:col-span-7">
-      ${eyebrow('Antiquaire français · Installé au Maroc')}
+      ${eyebrow('Antiquaire · Partout au Maroc')}
       <h1 id="hero-titre" class="mt-6 max-w-[16ch] text-[2.5rem] leading-[1.05] sm:text-6xl xl:text-7xl">Antiquaire et expert en objets d'art partout au Maroc</h1>
-      <p class="mt-7 max-w-[50ch] text-lg text-on-deep-muted sm:text-xl">François Secula, antiquaire français installé au Maroc, se déplace gratuitement chez vous pour estimer et racheter vos antiquités. Expertise rapide, avis gratuit sur photos.</p>
+      <p class="mt-7 max-w-[50ch] text-lg text-on-deep-muted sm:text-xl">François Secula, antiquaire et expert en objets d'art partout au Maroc, se déplace gratuitement chez vous pour estimer et racheter vos antiquités. Expertise rapide, avis gratuit sur photos.</p>
       <div class="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
         <a href="/contact" class="btn btn-primary">Estimation gratuite ${icon('arrow-right', 'size-4')}</a>
         <a href="tel:${SITE.phone.e164}" class="btn btn-secondary">${icon('phone', 'size-4')} ${SITE.phone.display}</a>
@@ -167,10 +166,10 @@ function home() {
       </div>
     </div>
     <div class="lg:col-span-7">
-      ${eyebrow('Un antiquaire français au Maroc')}
-      <h2 id="florian-titre" class="mt-4 max-w-[18ch] text-[2rem] leading-[1.1] sm:text-5xl">L'œil d'un antiquaire français, installé au Maroc</h2>
-      <p class="mt-6 max-w-[56ch] text-lg text-muted">Antiquaire français, François Secula a choisi de s'installer au Maroc, à Marrakech. Il y apporte la rigueur du marché de l'art européen et une vraie connaissance des objets marocains : bijoux berbères, tapis, orfèvrerie, peinture orientaliste.</p>
-      <p class="mt-4 max-w-[56ch] text-lg text-muted">Chaque objet est examiné en personne, et le prix toujours expliqué. Antiquaire francophone au Maroc et acheteur d'antiquités sérieux, il reste votre seul interlocuteur du premier message jusqu'à l'enlèvement.</p>
+      ${eyebrow('Un antiquaire partout au Maroc')}
+      <h2 id="florian-titre" class="mt-4 max-w-[18ch] text-[2rem] leading-[1.1] sm:text-5xl">L'œil d'un antiquaire, partout au Maroc</h2>
+      <p class="mt-6 max-w-[56ch] text-lg text-muted">Depuis ses bureaux de Marrakech, François Secula se déplace dans tout le Maroc. Il allie la rigueur du marché de l'art international et une vraie connaissance des objets marocains : bijoux berbères, tapis, orfèvrerie, peinture orientaliste.</p>
+      <p class="mt-4 max-w-[56ch] text-lg text-muted">Chaque objet est examiné en personne, et le prix toujours expliqué. Acheteur d'antiquités sérieux, il reste votre seul interlocuteur du premier message jusqu'à l'enlèvement.</p>
       <div class="mt-10">${guarantees()}</div>
       <a href="/presentation" class="btn btn-secondary mt-10">Découvrir François Secula ${icon('arrow-right', 'size-4')}</a>
     </div>
@@ -202,8 +201,8 @@ ${faq(generalFaq)}
 ${ctaBand()}`;
   return {
     path: '/',
-    title: 'François Secula, antiquaire français installé au Maroc',
-    description: 'Antiquaire français installé au Maroc : expertise rapide et rachat d\'antiquités, bijoux berbères, tableaux, argenterie. Déplacement gratuit dans tout le Maroc.',
+    title: 'François Secula, antiquaire partout au Maroc',
+    description: 'Antiquaire partout au Maroc : expertise rapide et rachat d\'antiquités, bijoux berbères, tableaux, argenterie. Déplacement gratuit dans tout le Maroc.',
     body,
     jsonld: [businessNode(), personNode(), websiteNode()],
   };
@@ -215,8 +214,8 @@ function presentation() {
   const body = `
 ${pageHero({
     kicker: 'Présentation',
-    h1: 'François Secula, antiquaire français installé au Maroc',
-    lead: 'Estimer juste, expliquer chaque décision, traiter chaque objet avec soin : voici la manière dont François Secula, antiquaire français, exerce son métier au Maroc, de Marrakech à Tanger.',
+    h1: 'François Secula, antiquaire partout au Maroc',
+    lead: 'Estimer juste, expliquer chaque décision, traiter chaque objet avec soin : voici la manière dont François Secula exerce son métier d\'antiquaire partout au Maroc, de Marrakech à Tanger.',
     aside: `<figure>${florianPhoto()}<figcaption class="mt-4 text-sm text-on-deep-muted">Florian, expert de l'équipe</figcaption></figure>`,
   })}
 <section aria-label="François Secula au travail" class="py-16 lg:py-24">
@@ -231,8 +230,8 @@ ${pageHero({
       <!-- Parcours redige sans dates ni references precises : a enrichir si des elements verifiables
            (formation, annee d'installation, affiliations) deviennent disponibles. -->
       <p>Voilà quelques années que François Secula a fait des antiquités son métier : une passion devenue, au fil des maisons visitées et des pièces tenues en main, une véritable expertise.</p>
-      <p>Français, il a choisi de s'installer au Maroc, à Marrakech. Il se déplace gratuitement dans tout le royaume et suit de près le marché, au Maroc comme en France et en Europe, pour que chaque avis de valeur colle aux ventes du moment.</p>
-      <p>Cette double culture est sa force : l'exigence du marché de l'art européen, et l'amour des objets marocains, des bijoux berbères aux tapis anciens en passant par l'orfèvrerie et la peinture orientaliste. Expert en antiquités francophone, il échange aussi simplement avec les familles marocaines qu'avec les Européens installés au Maroc.</p>
+      <p>Depuis ses bureaux de Marrakech, il se déplace gratuitement dans tout le royaume et suit de près le marché, au Maroc comme à l'international, pour que chaque avis de valeur colle aux ventes du moment.</p>
+      <p>Sa force : l'exigence du marché de l'art international et l'amour des objets marocains, des bijoux berbères aux tapis anciens en passant par l'orfèvrerie et la peinture orientaliste. Il échange aussi simplement avec les familles marocaines qu'avec les résidents étrangers du Maroc.</p>
     </div>
   </div>
 </section>
@@ -254,10 +253,10 @@ ${pageHero({
 ${ctaBand()}`;
   return {
     path: '/presentation', trail,
-    title: 'François Secula, antiquaire français au Maroc | Présentation',
-    description: 'Découvrez François Secula, antiquaire français installé au Maroc : sa méthode d\'estimation, son expertise rapide et ses engagements de discrétion.',
+    title: 'François Secula, antiquaire partout au Maroc | Présentation',
+    description: 'Découvrez François Secula, antiquaire et expert en objets d\'art partout au Maroc : sa méthode d\'estimation, son expertise rapide et ses engagements de discrétion.',
     body,
-    jsonld: [{ ...personNode(), description: 'Antiquaire français installé au Maroc, expert en objets d\'art.' }],
+    jsonld: [{ ...personNode(), description: 'Antiquaire et expert en objets d\'art partout au Maroc.' }],
   };
 }
 
@@ -475,7 +474,7 @@ ${faq(generalFaq)}`;
   return {
     path: '/contact', trail,
     title: 'Contact et estimation gratuite | François Secula, antiquaire',
-    description: 'Contactez François Secula, antiquaire français installé au Maroc : décrivez votre objet dans le formulaire pour une estimation gratuite, rapide et sans engagement.',
+    description: 'Contactez François Secula, antiquaire partout au Maroc : décrivez votre objet dans le formulaire pour une estimation gratuite, rapide et sans engagement.',
     body,
     jsonld: [businessNode()],
     scripts: SITE.tallyFormId ? '  <script src="https://tally.so/widgets/embed.js" async></script>' : '',
