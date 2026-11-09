@@ -4,7 +4,7 @@ import { OBJETS, bySlug } from './content/objets.mjs';
 import { SERVICES } from './content/services.mjs';
 import { VILLES } from './content/villes.mjs';
 import {
-  esc, abs, asset, icon, photo, card, sectionHead, eyebrow, faq, ctaBand, linkList, pageHero, businessId, expertId,
+  esc, abs, asset, icon, waAttrs, photo, card, sectionHead, eyebrow, faq, ctaBand, linkList, pageHero, businessId, expertId,
 } from './layout.mjs';
 
 const HOME = { name: 'Accueil', href: '/' };
@@ -114,6 +114,7 @@ function home() {
       <div class="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
         <a href="/contact" class="btn btn-primary">Estimation gratuite ${icon('arrow-right', 'size-4')}</a>
         <a href="tel:${SITE.phone.e164}" class="btn btn-secondary">${icon('phone', 'size-4')} ${SITE.phone.display}</a>
+        <a ${waAttrs} class="btn btn-secondary">${icon('message-circle', 'size-4')} WhatsApp</a>
       </div>
       <div class="mt-10 border-t border-on-deep-muted/20 pt-6">
         <p class="text-xs font-bold uppercase tracking-[0.2em] text-ornament">Présent dans tout le Maroc</p>
@@ -367,6 +368,7 @@ ${pageHero({ kicker: 'Objets recherchés', h1: o.h1, lead: o.intro, aside: photo
         <div class="mt-6 flex flex-col gap-3 sm:flex-row">
           <a href="/contact" class="btn btn-primary min-h-12 px-4 sm:px-6">Demander une estimation ${icon('arrow-right')}</a>
           <a href="tel:${SITE.phone.e164}" class="btn btn-secondary min-h-12 px-4 sm:px-6">${icon('phone')} ${SITE.phone.display}</a>
+          <a ${waAttrs} class="btn btn-secondary min-h-12 px-4 sm:px-6">${icon('message-circle')} WhatsApp</a>
         </div>
       </div>
     </div>
@@ -461,6 +463,7 @@ function contact() {
       <li class="flex items-start gap-3">${icon('camera', 'mt-0.5 size-5 flex-none text-link')}<div><p class="font-semibold">Joignez des photos</p><p class="text-muted">Vue d'ensemble, puis les détails : signature, poinçons, dessous, défauts.</p></div></li>
       <li class="flex items-start gap-3">${icon('map-pin', 'mt-0.5 size-5 flex-none text-link')}<div><p class="font-semibold">Nos bureaux</p><p class="text-muted">${SITE.address.street}<br>${SITE.address.postalCode} ${SITE.address.city}, ${SITE.address.countryName}<br>Déplacement à domicile dans tout le Maroc.</p></div></li>
       <li class="flex items-start gap-3">${icon('phone', 'mt-0.5 size-5 flex-none text-link')}<div><p class="font-semibold">Par téléphone</p><a href="tel:${SITE.phone.e164}" class="link tabular-nums">${SITE.phone.display}</a></div></li>
+      <li class="flex items-start gap-3">${icon('message-circle', 'mt-0.5 size-5 flex-none text-link')}<div><p class="font-semibold">Par WhatsApp</p><p class="text-muted">Envoyez vos photos directement : <a ${waAttrs} class="link">écrire sur WhatsApp</a></p></div></li>
     </ul>
   </div>
   <div class="lg:col-span-7">
@@ -528,7 +531,7 @@ const confidentialite = () => legal('/confidentialite', 'Politique de confidenti
   ['Finalités', '<ul><li>Répondre à votre demande d\'estimation ou de contact ;</li><li>organiser, si vous le souhaitez, l\'examen de l\'objet et le déplacement ;</li><li>assurer le suivi de nos échanges.</li></ul>', 'Vos données ne sont jamais vendues, publiées, ni utilisées pour de la prospection commerciale.'],
   ['Base du traitement', 'Le traitement repose sur votre consentement, exprimé lorsque vous envoyez le formulaire ou nous contactez, conformément à la loi n° 09-08 relative à la protection des personnes physiques à l\'égard du traitement des données à caractère personnel.'],
   ['Destinataires', 'Vos données sont destinées à François Secula, pour traiter votre demande. Deux prestataires techniques interviennent :',
-    '<ul><li>Tally (Tally BV, Belgique) recueille et conserve les réponses au formulaire de contact ;</li><li>Vercel Inc. (États-Unis) héberge les pages du site, sans accès aux réponses du formulaire.</li></ul>'],
+    '<ul><li>Tally (Tally BV, Belgique) recueille et conserve les réponses au formulaire de contact ;</li><li>Vercel Inc. (États-Unis) héberge les pages du site, sans accès aux réponses du formulaire.</li></ul>', 'Si vous choisissez de nous contacter par WhatsApp, vos messages et photos transitent par ce service (WhatsApp Ireland Ltd, groupe Meta), selon ses propres conditions.'],
   ['Transferts hors du Maroc', 'Tally étant établi dans l\'Union européenne, les réponses au formulaire sont conservées hors du Maroc.'],
   ['Durée de conservation', 'Vos données sont conservées le temps nécessaire au traitement de votre demande et au suivi de nos échanges, puis supprimées.'],
   ['Sécurité', 'Le site et le formulaire fonctionnent exclusivement en connexion chiffrée (HTTPS).'],
@@ -567,7 +570,7 @@ const merci = () => {
       <a href="/objets-recherches" class="btn btn-primary min-h-12 px-6">Voir les objets recherchés ${icon('arrow-right', 'size-4')}</a>
       <a href="/" class="btn btn-secondary min-h-12 px-6">Retour à l'accueil</a>
     </div>
-    <p class="mt-8 text-sm text-subtle">Une précision à ajouter ? Appelez le <a href="tel:${SITE.phone.e164}" class="link tabular-nums">${SITE.phone.display}</a>.</p>
+    <p class="mt-8 text-sm text-subtle">Une précision à ajouter ? Appelez le <a href="tel:${SITE.phone.e164}" class="link tabular-nums">${SITE.phone.display}</a> ou écrivez-nous sur <a ${waAttrs} class="link">WhatsApp</a>.</p>
   </div>
   <div class="mx-auto w-full max-w-md lg:col-span-5">${florianPhoto()}</div>
 </section>`,
