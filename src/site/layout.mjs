@@ -40,6 +40,7 @@ const ICONS = {
   truck: '<path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/>',
   mail: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
   'map-pin': '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
+  'message-circle': '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>',
   clock: '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
   camera: '<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>',
   check: '<path d="M20 6 9 17l-5-5"/>',
@@ -51,6 +52,10 @@ ${Object.entries(ICONS).map(([id, body]) => id === 'logo'
     ? `<symbol id="i-logo" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round">${body}</symbol>`
     : `<symbol id="i-${id}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">${body}</symbol>`).join('\n')}
 </defs></svg>`;
+
+// Lien WhatsApp (conversation directe, message prerempli). Ouvre l'application ou WhatsApp Web.
+export const waHref = `https://wa.me/${SITE.whatsapp.number}?text=${encodeURIComponent(SITE.whatsapp.message)}`;
+export const waAttrs = `href="${waHref}" target="_blank" rel="noopener"`;
 
 export const icon = (name, cls = 'size-5') => `<svg class="${cls}" aria-hidden="true"><use href="#i-${name}"/></svg>`;
 
@@ -126,7 +131,7 @@ export const faq = (items, { title = 'Questions fréquentes', id = 'faq' } = {})
     <div class="lg:col-span-4">
       ${eyebrow('Vos questions')}
       <h2 id="${id}-titre" class="mt-4 text-[2rem] leading-[1.1] sm:text-5xl">${title}</h2>
-      <p class="mt-5 text-muted">Une autre question ? <a href="/contact" class="link">Écrivez-nous</a> ou appelez le <a href="tel:${SITE.phone.e164}" class="link whitespace-nowrap">${SITE.phone.display}</a>.</p>
+      <p class="mt-5 text-muted">Une autre question ? <a href="/contact" class="link">Écrivez-nous</a>, appelez le <a href="tel:${SITE.phone.e164}" class="link whitespace-nowrap">${SITE.phone.display}</a> ou contactez-nous sur <a ${waAttrs} class="link">WhatsApp</a>.</p>
     </div>
     <div class="divide-y divide-hairline border-y border-hairline lg:col-span-8">
       ${items.map(([q, a]) => `<details class="faq-item">
@@ -147,6 +152,7 @@ export const ctaBand = ({ title = 'Un objet à faire estimer ?', text = 'Décriv
     <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:col-span-5 lg:justify-end">
       <a href="/contact" class="btn btn-primary px-4 sm:px-6">Estimation gratuite ${icon('arrow-right', 'size-4')}</a>
       <a href="tel:${SITE.phone.e164}" class="btn btn-secondary px-4 sm:px-6">${icon('phone', 'size-4')} ${SITE.phone.display}</a>
+      <a ${waAttrs} class="btn btn-secondary px-4 sm:px-6">${icon('message-circle', 'size-4')} WhatsApp</a>
     </div>
   </div>
 </section>`;
@@ -168,6 +174,7 @@ export const pageHero = ({ kicker, h1, lead, aside = '' }) => `<section class="o
       <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
         <a href="/contact" class="btn btn-primary">Estimation gratuite ${icon('arrow-right', 'size-4')}</a>
         <a href="tel:${SITE.phone.e164}" class="btn btn-secondary">${icon('phone', 'size-4')} ${SITE.phone.display}</a>
+        <a ${waAttrs} class="btn btn-secondary">${icon('message-circle', 'size-4')} WhatsApp</a>
       </div>
     </div>
     ${aside ? `<div class="lg:col-span-5">${aside}</div>` : ''}
@@ -188,7 +195,7 @@ function header(current) {
   return `<div class="on-deep bg-deeper text-sm text-on-deep-muted">
     <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 sm:px-6 lg:px-8">
       <p class="hidden items-center gap-2 sm:flex">${icon('map-pin', 'size-4 flex-none text-ornament')}Antiquaire partout au Maroc · Déplacement gratuit dans tout le royaume</p>
-      <p class="flex items-center gap-5"><span class="hidden lg:inline">Expertise rapide, avis gratuit</span><a href="tel:${SITE.phone.e164}" class="inline-flex min-h-6 items-center gap-2 font-semibold text-on-deep no-underline hover:underline">${icon('phone', 'size-4 text-ornament')}${SITE.phone.display}</a></p>
+      <p class="flex items-center gap-5"><span class="hidden lg:inline">Expertise rapide, avis gratuit</span><a href="tel:${SITE.phone.e164}" class="inline-flex min-h-6 items-center gap-2 font-semibold text-on-deep no-underline hover:underline">${icon('phone', 'size-4 text-ornament')}${SITE.phone.display}</a><a ${waAttrs} class="inline-flex min-h-6 items-center gap-2 font-semibold text-on-deep no-underline hover:underline">${icon('message-circle', 'size-4 text-ornament')}WhatsApp</a></p>
     </div>
   </div>
   <header class="sticky top-0 z-40 border-b border-hairline bg-page">
@@ -220,6 +227,7 @@ function header(current) {
         <div class="mt-6 flex flex-col gap-3">
           <a href="/contact" class="btn btn-primary w-full">Faire estimer un objet</a>
           <a href="tel:${SITE.phone.e164}" class="btn btn-secondary w-full">${icon('phone', 'size-4')} ${SITE.phone.display}</a>
+          <a ${waAttrs} class="btn btn-secondary w-full">${icon('message-circle', 'size-4')} Écrire sur WhatsApp</a>
         </div>
       </nav>
     </div>
@@ -248,6 +256,7 @@ function footer({ objets, villes, services }) {
             <p>François Secula<br>${SITE.address.street ? `${SITE.address.street}<br>${SITE.address.postalCode} ` : ''}${SITE.address.city}, ${SITE.address.countryName}</p>
             <p>Déplacement gratuit dans tout le Maroc</p>
             <p><a href="tel:${SITE.phone.e164}" class="tabular-nums text-on-deep underline underline-offset-4 hover:decoration-2">${SITE.phone.display}</a></p>
+            <p><a ${waAttrs} class="text-on-deep underline underline-offset-4 hover:decoration-2">Écrire sur WhatsApp</a></p>
           </address>
         </div>
         ${col('Expertise & achat', [a('/expertise-achat', 'Tous nos services'), ...services.map((s) => a(`/expertise-achat/${s.slug}`, s.nav))], 'lg:col-span-2')}

@@ -13,6 +13,8 @@ export const SITE = {
   // Coordonnees (NAP) : a garder identiques sur le site, le JSON-LD et la fiche Google Business Profile.
   // Le contact principal passe par le formulaire Tally (page /contact) ; le telephone reste affiche.
   phone: { display: '06 58 59 66 73', e164: '+212658596673' },
+  // WhatsApp sur le meme numero : lien wa.me avec un message prerempli
+  whatsapp: { number: '212658596673', message: 'Bonjour, je souhaite faire estimer un objet.' },
   address: {
     // Bureaux
     street: '42 Q.I Sidi Ghanem 158',
