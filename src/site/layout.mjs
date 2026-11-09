@@ -183,9 +183,10 @@ export const pageHero = ({ kicker, h1, lead, aside = '' }) => `<section class="o
 
 /* ---------- Header / footer ---------- */
 
-const wordmark = (deep = false) => `<span class="flex min-w-0 flex-col leading-none">
-  <span class="truncate font-display text-[1.375rem] font-semibold tracking-tight ${deep ? 'text-on-deep' : 'text-ink'}">François Secula</span>
-  <span class="mt-1.5 truncate text-[0.6875rem] font-bold uppercase tracking-[0.24em] ${deep ? 'text-ornament' : 'text-accent'}">Antiquaire · Maroc</span>
+// Interlignage suffisant : « truncate » masque le debordement, une ligne trop serree rognerait la cedille du « ç ».
+const wordmark = (deep = false) => `<span class="flex min-w-0 flex-col">
+  <span class="truncate font-display text-[1.375rem] font-semibold leading-[1.3] tracking-tight ${deep ? 'text-on-deep' : 'text-ink'}">François Secula</span>
+  <span class="truncate text-[0.6875rem] font-bold uppercase leading-[1.5] tracking-[0.24em] ${deep ? 'text-ornament' : 'text-accent'}">Antiquaire · Maroc</span>
 </span>`;
 
 function header(current) {
