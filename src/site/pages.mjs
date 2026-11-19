@@ -289,7 +289,7 @@ ${pageHero({
     kicker: 'Présentation',
     h1: 'François Secula, antiquaire partout au Maroc',
     lead: 'Estimer juste, expliquer chaque décision, traiter chaque objet avec soin : voici la manière dont François Secula exerce son métier d\'antiquaire partout au Maroc, de Marrakech à Tanger.',
-    aside: `<figure>${florianPhoto()}<figcaption class="mt-4 text-sm text-on-deep-muted">Florian, expert de l'équipe</figcaption></figure>`,
+    aside: florianPhoto('florian-visite'),
   })}
 <section aria-label="François Secula au travail" class="py-16 lg:py-24">
   <div class="mx-auto grid max-w-7xl grid-cols-3 gap-3 px-4 sm:px-6 lg:px-8">

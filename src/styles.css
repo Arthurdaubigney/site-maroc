@@ -87,6 +87,10 @@
     overflow-wrap: anywhere;
     hyphens: auto;
   }
+  /* Au-dela du mobile, la place suffit : pas de mot coupe par un tiret dans les titres ("anti-quaire"). */
+  @media (min-width: 40rem) {
+    h1, h2, h3 { hyphens: manual; }
+  }
   /* Les h3 (cartes, FAQ, etapes) restent en sans-serif pour la lisibilite */
   h3 { font-family: var(--font-sans); font-weight: 700; letter-spacing: 0; }
 
