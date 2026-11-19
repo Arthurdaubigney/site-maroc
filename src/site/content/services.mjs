@@ -21,6 +21,14 @@ export const SERVICES = [
       ['Estimation gratuite d\'antiquités, vraiment', 'Le premier avis et l\'examen en vue d\'un achat ne vous coûtent rien et ne vous engagent à rien. Vous pouvez faire estimer un objet ancien simplement pour connaître sa valeur, sans aucune intention de vendre.', null],
       ['Estimation d\'antiquités en ligne, avant toute visite', 'Faire estimer un objet ancien commence par quelques photos envoyées depuis chez vous. Cette estimation en ligne suffit souvent pour savoir si l\'objet mérite qu\'on se déplace, qu\'il s\'agisse d\'un meuble, d\'un bijou ou d\'un tableau.', null],
       ['Quels objets faire estimer ?', 'Meubles, tableaux, bijoux berbères, argenterie, tapis, montres, pièces de monnaie, livres anciens, bronzes ou cristal : toute estimation d\'antiquités commence de la même façon, par des photos nettes de l\'objet et de ses marques.', null],
+      ['Comment savoir si un objet ancien a de la valeur ?', 'Quelques indices doivent attirer votre attention : une signature, un poinçon, une estampille ou une marque de manufacture ; des matériaux nobles comme l\'argent massif, le bronze, le cristal ou les bois précieux ; une fabrication manuelle visible dans les assemblages ou les décors ; une provenance connue. Aucun de ces indices ne suffit seul, mais leur réunion justifie une estimation.', null],
+      ['Les photos à envoyer pour une estimation à distance', null, [
+        'Une vue d\'ensemble de face, en lumière naturelle, sans flash',
+        'Les marques : signature, poinçons, étiquettes, cachets',
+        'Le dessous, le dos ou l\'intérieur de l\'objet',
+        'Les défauts éventuels : éclats, manques, restaurations',
+        'Les dimensions, notées dans la description',
+      ]],
     ],
     faq: [
       ['Combien de temps faut-il pour obtenir un premier avis ?', 'Peu de temps : François Secula répond rapidement dès réception de photos exploitables.'],
@@ -28,17 +36,19 @@ export const SERVICES = [
       ['Estimez-vous à distance ?', 'Le premier avis se donne sur photos. Une estimation ferme demande toujours de voir l\'objet.'],
       ['Combien vaut mon objet ancien ?', 'Tout dépend de son époque, de son auteur, de son état et de la demande actuelle. Envoyez quelques photos : François Secula vous dit rapidement ce que vaut votre objet ancien et s\'il mérite un examen.'],
       ['Puis-je faire estimer un tableau gratuitement ?', 'Oui. Photographiez le tableau de face, la signature et le dos : l\'avis est gratuit et sans engagement, comme pour tout autre objet.'],
+      ['Une estimation d\'antiquités en ligne est-elle fiable ?', 'Un premier avis sur photos permet de situer l\'objet et de savoir s\'il mérite un examen. Une estimation ferme demande toujours de voir l\'objet, ce que François Secula fait gratuitement chez vous.'],
+      ['Faut-il nettoyer un objet avant de le faire estimer ?', 'Non. Un nettoyage peut abîmer une patine, un vernis ou une dorure et faire baisser la valeur. Laissez l\'objet dans son état.'],
     ],
   },
   {
     slug: 'expertise-objets-art',
     nav: 'Expertise d\'objets d\'art',
     icon: 'shield-check',
-    h1: 'Expertise d\'objets d\'art et d\'antiquités',
-    title: 'Expertise d\'objets d\'art et d\'antiquités au Maroc | François Secula',
-    description: 'Identification, datation et authentification de vos objets d\'art et antiquités au Maroc : François Secula examine vos pièces et vous explique ce qui fait leur valeur.',
+    h1: 'Expert en antiquités et objets d\'art au Maroc',
+    title: 'Expert en antiquités et objets d\'art au Maroc | F. Secula',
+    description: 'Expert en antiquités et objets d\'art au Maroc : identification, datation, authenticité et valeur de vos objets, examinés chez vous. Avis gratuit.',
     summary: 'Identifier, dater et authentifier un objet pour connaître sa vraie valeur.',
-    lead: 'Un objet hérité, une signature incertaine, un doute sur l\'époque ? François Secula examine vos pièces, les identifie et vous explique ce qui fait leur valeur.',
+    lead: 'Un objet hérité, une signature incertaine, un doute sur l\'époque ? Expert en antiquités et objets d\'art au Maroc, François Secula examine vos pièces chez vous, les identifie et vous explique ce qui fait leur valeur.',
     sections: [
       ['Ce que François Secula examine', null, [
         'La nature de l\'objet : matériaux, technique, dimensions',
@@ -48,11 +58,14 @@ export const SERVICES = [
         'La valeur actuelle sur le marché',
       ]],
       ['Pour qui ?', 'Particuliers, familles et collectionneurs, pour un objet unique comme pour le contenu complet d\'une maison. Basé à Marrakech, François Secula est l\'expert en antiquités qui se déplace chez vous, de Marrakech à Tanger.', null],
+      ['Comment se déroule une expertise d\'antiquités ?', 'L\'expertise commence par une observation à l\'œil nu et à la loupe : matériaux, techniques de fabrication, usure, marques. François Secula compare ensuite l\'objet aux pièces de référence et aux ventes récentes pour situer son époque, son origine et sa valeur. Il vous explique chaque étape de vive voix, avec les éléments qui fondent son avis.', null],
+      ['Authentique, d\'époque ou de style ?', 'Un objet « d\'époque » a été fabriqué à la période dont il porte le style ; un objet « de style » en reprend les formes plus tard. Cette distinction, avec celle entre un original et une copie, explique souvent les plus grands écarts de valeur. C\'est le cœur du travail d\'expertise.', null],
     ],
     faq: [
       ['Quelle différence entre estimation et expertise ?', 'L\'estimation donne une valeur. L\'expertise va plus loin : elle identifie l\'objet, son époque, son auteur et son authenticité, qui fondent cette valeur.'],
       ['Faut-il déplacer l\'objet ?', 'Non. François Secula se déplace chez vous, partout au Maroc, pour examiner vos pièces sur place.'],
       ['Délivrez-vous un certificat d\'authenticité pour un objet d\'art ?', 'Non. François Secula vous donne son avis d\'expert de vive voix et vous explique, preuves à l\'appui, ce qui permet de conclure à l\'authenticité de votre objet d\'art.'],
+      ['Comment trouver un expert en antiquités au Maroc ?', 'François Secula intervient partout au Maroc, depuis Marrakech. Envoyez quelques photos via le formulaire de contact : il vous répond rapidement et se déplace gratuitement pour examiner vos objets.'],
     ],
   },
   {
@@ -75,11 +88,13 @@ export const SERVICES = [
         'Enlèvement au moment qui vous convient',
       ]],
       ['Vous quittez le Maroc ?', 'Expatrié sur le départ, vous devez vendre votre mobilier au Maroc avant votre retour ? François Secula rachète vos meubles et objets anciens avant le départ et s\'adapte à votre calendrier de déménagement.', null],
+      ['Vendre à un antiquaire ou aux enchères ?', 'Une vente aux enchères demande de confier l\'objet, d\'attendre une vacation et d\'accepter un résultat incertain, diminué des frais. Vendre à un antiquaire, c\'est obtenir une proposition ferme après examen, sans attente et sans démarche. Les deux voies ont leurs avantages : François Secula vous explique laquelle convient le mieux à votre objet.', null],
     ],
     faq: [
       ['Comment vendre des antiquités au Maroc ?', 'Envoyez des photos via le formulaire de cette page. François Secula vous répond rapidement, puis se déplace gratuitement pour examiner vos antiquités et vous faire une proposition de rachat.'],
       ['Achetez-vous des objets à l\'unité ?', 'Oui, une pièce isolée comme une collection entière.'],
       ['Qui s\'occupe du transport ?', 'François Secula organise l\'enlèvement, l\'emballage et le transport, où que vous soyez au Maroc.'],
+      ['Pourquoi vendre ses antiquités à un antiquaire plutôt que sur internet ?', 'Une annonce en ligne demande de fixer un prix sans connaître la vraie valeur, puis de gérer les acheteurs et les visites. Un antiquaire examine l\'objet, vous explique sa valeur et vous fait une proposition, sans démarche de votre part.'],
     ],
   },
   {
@@ -103,10 +118,18 @@ export const SERVICES = [
       ['Discrétion et respect', 'Se séparer des objets d\'un proche est un moment délicat. Les visites se font en toute discrétion, sans publicité, et chaque objet est traité avec soin.', null],
       ['Pour les héritiers à l\'étranger', 'Si vous vivez hors du Maroc, l\'essentiel peut se faire à distance : visite en votre absence avec une personne de confiance, photos et échanges à distance. C\'est souvent le cas lors d\'une succession d\'expatrié au Maroc, quand les biens mobiliers restent sur place.', null],
       ['Inventaire après décès et notaire', 'Lors d\'un inventaire après décès au Maroc, l\'estimation du mobilier aide les héritiers à se répartir les biens et à échanger avec le notaire chargé de la succession. François Secula vous indique la valeur des objets, pièce par pièce.', null],
+      ['Vider une maison après un décès : par où commencer ?', null, [
+        'Ne jetez rien et ne donnez rien avant l\'examen des objets',
+        'Mettez de côté les documents : factures, certificats, photos anciennes',
+        'Repérez les pièces marquées, signées ou poinçonnées',
+        'Faites estimer l\'ensemble avant le partage entre héritiers',
+        'Organisez ensuite l\'enlèvement de ce qui est vendu',
+      ]],
     ],
     faq: [
       ['Comment estimer les objets anciens d\'une succession ?', 'Envoyez quelques photos des pièces principales via le formulaire de cette page. François Secula vous donne un premier avis, puis se déplace pour l\'inventaire complet, pièce par pièce.'],
       ['Faut-il trier avant votre visite ?', 'Non. Ne jetez rien avant la visite : des objets de valeur se cachent souvent parmi ce qui semble sans intérêt.'],
+      ['Faut-il faire estimer les meubles d\'une succession ?', 'C\'est conseillé : l\'estimation aide les héritiers à se répartir les biens équitablement et évite de céder trop vite des objets de valeur. François Secula estime le mobilier et les objets, pièce par pièce.'],
     ],
   },
 ];

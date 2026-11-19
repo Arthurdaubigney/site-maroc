@@ -53,6 +53,19 @@ const serviceNode = (name, path, description, area = areaServed) => ({
   '@type': 'Service', name, serviceType: name, description, url: abs(path), provider: { '@id': businessId }, areaServed: area,
 });
 
+// Typographie francaise : espace insecable avant « : ; ? ! » dans les titres (la ponctuation ne passe jamais seule a la ligne).
+const nb = (t) => String(t).replace(/ ([:;?!])/g, '&nbsp;$1');
+
+// FAQ en donnees structurees (FAQPage) : memes questions et reponses que le bloc visible, texte brut.
+const plain = (h) => String(h).replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+const faqNode = (items) => ({
+  '@type': 'FAQPage',
+  mainEntity: items.map(([q, a]) => ({ '@type': 'Question', name: plain(q), acceptedAnswer: { '@type': 'Answer', text: plain(a) } })),
+});
+
+// Maillage : villes ou l'objet est estime et rachete a domicile.
+const villesLinks = (label = (v) => `Antiquaire à ${v.ville}`) => linkList(VILLES.map((v) => ({ href: `/zones-intervention/${v.slug}`, label: label(v) })));
+
 /* ---------- Blocs partages ---------- */
 // Deroulement en 3 etapes, sur bandeau rouge : grands chiffres or, une ligne chacun
 const steps = () => `<ol class="grid gap-px overflow-hidden border border-on-deep-muted/20 bg-on-deep-muted/20 md:grid-cols-3">
@@ -108,6 +121,20 @@ const generalFaq = [
   ['Vous déplacez-vous à domicile ?', `Oui, gratuitement, depuis Marrakech et partout au Maroc : ${VILLES.filter((v) => v.ville !== 'Marrakech').map((v) => v.ville).join(', ')} et ailleurs.`],
   ['Combien de temps faut-il pour avoir un avis ?', 'Peu de temps : l\'expertise est rapide. François Secula répond dès réception de photos exploitables.'],
   ['Mes informations restent-elles confidentielles ?', 'Oui. Vos photos et coordonnées servent uniquement à répondre à votre demande et ne sont jamais publiées ni transmises.'],
+];
+
+const homeFaq = [
+  ...generalFaq,
+  ['Comment savoir si un objet ancien a de la valeur ?', 'Une signature, un poinçon, une estampille, des matériaux nobles et une fabrication manuelle sont de bons indices. Le plus simple reste d\'envoyer quelques photos : François Secula vous dit gratuitement si l\'objet mérite une estimation.'],
+  ['Faut-il nettoyer un objet ancien avant de le vendre ?', 'Non. Nettoyer une pièce de monnaie, polir de l\'argenterie ou revernir un meuble peut faire baisser sa valeur. Laissez l\'objet en l\'état jusqu\'à l\'examen.'],
+  ['Vaut-il mieux vendre à un antiquaire ou aux enchères ?', 'Un antiquaire fait une proposition ferme après examen, sans attente ni frais de vente ; une vente aux enchères donne un résultat incertain et différé. François Secula vous explique la voie la plus adaptée à votre objet.'],
+];
+
+const valeurCriteres = [
+  ['L\'authenticité et l\'époque', 'Un objet d\'époque vaut bien plus qu\'une copie ou un objet de style plus tardif.', '/expertise-achat/expertise-objets-art', 'L\'expertise d\'objets d\'art'],
+  ['L\'auteur ou la manufacture', 'Une signature, une estampille ou un poinçon d\'orfèvre identifient l\'auteur et changent l\'estimation.', '/objets-recherches/tableaux-tapisseries', 'La valeur d\'un tableau'],
+  ['La matière et le travail', 'Argent massif, bronze, cristal, laine ancienne : la matière compte, mais le travail compte davantage.', '/objets-recherches/bijoux-berberes', 'La valeur des bijoux berbères'],
+  ['L\'état et la complétude', 'Un service complet, une pièce non restaurée ou une montre avec ses papiers valent davantage.', '/objets-recherches/vaisselle-verre-argenterie', 'La valeur de l\'argenterie'],
 ];
 
 /* ---------- Accueil ---------- */
@@ -189,6 +216,15 @@ ${estimationForm({ text: 'Décrivez votre objet et joignez quelques photos : vot
   </div>
 </section>
 
+<section aria-labelledby="valeur-titre" class="bg-band py-20 lg:py-28">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    ${sectionHead({ kicker: 'Valeur d\'un objet ancien', title: 'Ce qui fait la valeur d\'un objet ancien', id: 'valeur-titre', lead: 'Vous vous demandez combien vaut un objet hérité ou trouvé dans une maison ? Quatre critères expliquent l\'essentiel des écarts de valeur entre deux objets d\'apparence semblable.' })}
+    <dl class="mt-14 grid gap-px border border-hairline bg-hairline sm:grid-cols-2 lg:grid-cols-4">
+      ${valeurCriteres.map(([t, d, href, label]) => `<div class="flex flex-col bg-page p-6 lg:p-8"><dt class="text-xl font-semibold leading-tight">${t}</dt><dd class="mt-3 flex flex-1 flex-col text-muted"><span>${d}</span><a href="${href}" class="link mt-auto pt-5 text-sm font-semibold">${label}</a></dd></div>`).join('\n      ')}
+    </dl>
+  </div>
+</section>
+
 <section aria-labelledby="deroulement-titre" class="on-deep zellige bg-deep py-20 text-on-deep lg:py-28">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     ${sectionHead({ kicker: 'Estimation gratuite', title: 'Comment se déroule une estimation gratuite', id: 'deroulement-titre', link: { href: '/expertise-achat/estimation-gratuite', label: 'Tout sur l\'estimation' }, deep: true })}
@@ -210,7 +246,7 @@ ${estimationForm({ text: 'Décrivez votre objet et joignez quelques photos : vot
   </div>
 </section>
 
-${faq(generalFaq)}
+${faq(homeFaq)}
 ${ctaBand({ form: true })}`;
   return {
     path: '/',
@@ -218,7 +254,7 @@ ${ctaBand({ form: true })}`;
     description: 'Antiquaire au Maroc et expert en antiquités : estimation gratuite sur photos, rachat à domicile, déplacement gratuit. Envoyez vos photos dès maintenant.',
     body,
     scripts: tallyScript,
-    jsonld: [businessNode(), personNode(), websiteNode()],
+    jsonld: [businessNode(), personNode(), websiteNode(), faqNode(homeFaq)],
   };
 }
 
@@ -267,18 +303,25 @@ ${pageHero({
 ${ctaBand()}`;
   return {
     path: '/presentation', trail,
-    title: 'François Secula, antiquaire partout au Maroc | Présentation',
-    description: 'Découvrez François Secula, antiquaire et expert en objets d\'art partout au Maroc : sa méthode d\'estimation, son expertise rapide et ses engagements de discrétion.',
+    title: 'François Secula, antiquaire et expert au Maroc',
+    description: 'François Secula, antiquaire et expert en objets d\'art partout au Maroc : sa méthode d\'estimation, son expertise rapide, sa discrétion. Demandez un avis.',
     body,
     jsonld: [{ ...personNode(), description: 'Antiquaire et expert en objets d\'art partout au Maroc.' }],
   };
 }
 
 /* ---------- Expertise & achat ---------- */
+const expertiseFaq = [
+  ['Par quel service commencer ?', 'Par l\'estimation gratuite : quelques photos suffisent pour un premier avis. Selon l\'objet et vos projets, la suite peut être une expertise, une proposition de rachat ou un inventaire complet.'],
+  ['Qu\'est-ce qui est gratuit ?', 'Le premier avis sur photos, le déplacement partout au Maroc et l\'examen de l\'objet en vue d\'un achat. Vous ne vous engagez à rien.'],
+  ['Puis-je faire expertiser un objet que je ne veux pas vendre ?', 'Oui. Beaucoup de familles veulent simplement connaître la valeur et l\'histoire d\'un objet hérité, sans intention de le vendre.'],
+  ['Intervenez-vous pour une seule pièce ?', 'Oui, pour une pièce isolée de qualité comme pour une collection ou le contenu d\'une maison.'],
+];
+
 function expertiseHub() {
   const trail = [HOME, { name: 'Expertise & achat', href: '/expertise-achat' }];
   const body = `
-${pageHero({ kicker: 'Expertise & achat', h1: 'Expertise, estimation et achat d\'antiquités au Maroc', lead: 'Quatre services, un seul interlocuteur. Que vous souhaitiez connaître la valeur d\'un objet, faire expertiser une pièce, la vendre ou vider une maison, François Secula vous accompagne. Une alternative simple à la vente aux enchères au Maroc : un seul interlocuteur, une proposition claire, un enlèvement organisé.' })}
+${pageHero({ kicker: 'Expertise & achat', h1: 'Expertise, estimation et rachat d\'antiquités au Maroc', lead: 'Estimation, expertise et rachat d\'antiquités au Maroc : quatre services, un seul interlocuteur. Que vous souhaitiez connaître la valeur d\'un objet, faire expertiser une pièce, la vendre ou vider une maison, François Secula vous accompagne. Une alternative simple à la vente aux enchères : une proposition claire, un enlèvement organisé.' })}
 <section aria-label="Nos services" class="bg-band py-16 lg:py-24">
   <div class="mx-auto grid max-w-7xl gap-5 px-4 sm:px-6 md:grid-cols-2 lg:px-8">
     ${SERVICES.map((s) => `<article class="relative flex flex-col rounded-card border border-hairline bg-card p-6 sm:p-8">
@@ -289,20 +332,30 @@ ${pageHero({ kicker: 'Expertise & achat', h1: 'Expertise, estimation et achat d\
     </article>`).join('\n    ')}
   </div>
 </section>
-<section aria-labelledby="deroulement-titre" class="py-16 lg:py-24">
+<section aria-labelledby="choisir-titre" class="py-16 lg:py-24">
+  <div class="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
+    <h2 id="choisir-titre" class="text-4xl leading-[1.1] lg:col-span-4">Estimation, expertise ou rachat : que choisir ?</h2>
+    <div class="prose-site lg:col-span-8">
+      <p>Vous voulez seulement connaître la valeur d'un objet ? <a href="/expertise-achat/estimation-gratuite" class="link">L'estimation gratuite</a> suffit : un premier avis sur photos, puis un examen chez vous si l'objet le mérite.</p>
+      <p>Vous avez un doute sur l'authenticité, l'auteur ou l'époque ? <a href="/expertise-achat/expertise-objets-art" class="link">L'expertise d'objets d'art</a> va plus loin et explique ce qui fonde la valeur.</p>
+      <p>Vous avez décidé de vendre ? <a href="/expertise-achat/achat-antiquites" class="link">Le rachat d'antiquités</a> vous apporte une proposition claire et un enlèvement organisé. Pour le contenu de toute une maison, lors d'un héritage ou d'un départ, voyez <a href="/expertise-achat/successions-inventaires" class="link">les successions et inventaires</a>.</p>
+    </div>
+  </div>
+</section>
+<section aria-labelledby="deroulement-titre" class="border-t border-hairline py-16 lg:py-24">
   <div class="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
     <h2 id="deroulement-titre" class="text-4xl leading-[1.1] lg:col-span-4">Le déroulement, pas à pas</h2>
     <div class="lg:col-span-8">${steps()}</div>
   </div>
 </section>
-${faq(generalFaq)}
+${faq(expertiseFaq)}
 ${ctaBand()}`;
   return {
     path: '/expertise-achat', trail,
-    title: 'Expertise et achat d\'antiquités au Maroc | François Secula',
-    description: 'Estimation gratuite, expertise d\'objets d\'art, rachat d\'antiquités, successions et inventaires : les services de François Secula au Maroc.',
+    title: 'Estimation, expertise et rachat d\'antiquités | F. Secula',
+    description: 'Estimation gratuite, expertise d\'objets d\'art, rachat d\'antiquités, successions : les services de François Secula au Maroc. Demandez un avis gratuit.',
     body,
-    jsonld: [{ '@type': 'ItemList', name: 'Services', itemListElement: SERVICES.map((s, i) => ({ '@type': 'ListItem', position: i + 1, url: abs(`/expertise-achat/${s.slug}`), name: s.nav })) }],
+    jsonld: [faqNode(expertiseFaq), { '@type': 'ItemList', name: 'Services', itemListElement: SERVICES.map((s, i) => ({ '@type': 'ListItem', position: i + 1, url: abs(`/expertise-achat/${s.slug}`), name: s.nav })) }],
   };
 }
 
@@ -317,7 +370,7 @@ ${form ? estimationForm() : ''}
 <section class="${form ? '' : 'bg-band '}py-16 lg:py-24">
   <div class="mx-auto max-w-7xl space-y-16 px-4 sm:px-6 lg:px-8">
     ${s.sections.map(([h, p, list], i) => `<div class="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-12">
-      <h2 class="text-3xl leading-tight sm:text-4xl lg:col-span-4">${h}</h2>
+      <h2 class="text-3xl leading-tight sm:text-4xl lg:col-span-4">${nb(h)}</h2>
       <div class="prose-site lg:col-span-8">
         ${p ? `<p>${p}</p>` : ''}
         ${list ? `<${i === 0 && s.slug === 'estimation-gratuite' ? 'ol' : 'ul'}>${list.map((l) => `<li>${l}</li>`).join('')}</${i === 0 && s.slug === 'estimation-gratuite' ? 'ol' : 'ul'}>` : ''}
@@ -331,13 +384,23 @@ ${faq(s.faq)}
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <h2 id="autres-titre" class="text-3xl">Les autres services</h2>
     <div class="mt-6">${linkList(others.map((o) => ({ href: `/expertise-achat/${o.slug}`, label: o.nav })))}</div>
+    <h2 class="mt-14 text-3xl">Objets souvent confiés</h2>
+    <div class="mt-6">${linkList(['bijoux-berberes', 'tableaux-tapisseries', 'mobilier-ancien-contemporain', 'vaisselle-verre-argenterie', 'tapis', 'montres-bijoux'].map((x) => ({ href: `/objets-recherches/${x}`, label: bySlug[x].nav })))}</div>
+    <h2 class="mt-14 text-3xl">Partout au Maroc</h2>
+    <div class="mt-6">${villesLinks()}</div>
   </div>
 </section>
 ${ctaBand({ form })}`;
-  return { path, trail, title: s.title, description: s.description, body, scripts: form ? tallyScript : '', jsonld: [serviceNode(s.nav, path, s.description)] };
+  return { path, trail, title: s.title, description: s.description, body, scripts: form ? tallyScript : '', jsonld: [serviceNode(s.nav, path, s.description), faqNode(s.faq)] };
 }
 
 /* ---------- Objets recherches ---------- */
+const objetsHubFaq = [
+  ['Quels objets anciens valent de l\'argent ?', 'Les bijoux berbères anciens, la peinture orientaliste et marocaine, l\'argenterie massive, les montres de prestige, les tapis tribaux anciens, la verrerie d\'art signée, les bronzes d\'édition et le mobilier d\'époque comptent parmi les objets les plus recherchés. Mais un objet modeste en apparence peut aussi avoir de la valeur.'],
+  ['Achetez-vous des objets abîmés ?', 'Oui, quand l\'objet est ancien ou signé : un meuble d\'époque abîmé, un tapis usé ou un bijou cassé garde souvent de l\'intérêt. L\'état est pris en compte dans l\'estimation.'],
+  ['Achetez-vous un objet seul ?', 'Oui. Un seul objet de qualité justifie une estimation et un déplacement, comme une collection ou le contenu d\'une maison.'],
+];
+
 function objetsHub() {
   const trail = [HOME, { name: 'Objets recherchés', href: '/objets-recherches' }];
   const body = `
@@ -347,13 +410,30 @@ ${pageHero({ kicker: 'Objets recherchés', h1: 'Les objets que François Secula 
     ${OBJETS.map((o) => objetTile(o, { level: 'h2' })).join('\n    ')}
   </div>
 </section>
+<section aria-labelledby="indices-titre" class="border-t border-hairline bg-band py-16 lg:py-24">
+  <div class="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
+    <h2 id="indices-titre" class="text-4xl leading-[1.1] lg:col-span-4">Comment savoir si un objet ancien a de la valeur ?</h2>
+    <div class="prose-site lg:col-span-8">
+      <p>Avant de vendre ou de jeter un objet ancien, cinq indices permettent de savoir s'il mérite une estimation :</p>
+      <ul>
+        <li><strong>Une marque</strong> : signature sur un tableau, poinçon sur l'argenterie, estampille sur un meuble, cachet sous un cristal ou une porcelaine.</li>
+        <li><strong>Une matière noble</strong> : argent massif, or, bronze, cristal, bois précieux, laine ancienne teinte aux colorants naturels.</li>
+        <li><strong>Une fabrication à la main</strong> : assemblages chevillés, nœuds irréguliers au dos d'un tapis, gravure ou ciselure nette.</li>
+        <li><strong>Une usure cohérente</strong> : une patine douce aux endroits de contact, et non un vieillissement artificiel uniforme.</li>
+        <li><strong>Une provenance</strong> : facture, photo ancienne, histoire familiale, étiquette de galerie ou de collection.</li>
+      </ul>
+      <p>Aucun indice ne suffit seul. Le plus simple est d'envoyer quelques photos : l'avis est gratuit, et François Secula vous dit si l'objet mérite un examen chez vous. Consultez aussi <a href="/expertise-achat/estimation-gratuite" class="link">le déroulement de l'estimation gratuite</a>.</p>
+    </div>
+  </div>
+</section>
+${faq(objetsHubFaq, { id: 'faq-objets' })}
 ${ctaBand({ title: 'Votre objet n\'est pas dans la liste ?', text: 'Vous vous demandez quels objets anciens ont de la valeur ? Les objets anciens qui valent cher ne sont pas toujours ceux qu\'on croit. Envoyez une photo : François Secula vous dit si le vôtre mérite une estimation.' })}`;
   return {
     path: '/objets-recherches', trail,
-    title: 'Objets recherchés : ce que rachète François Secula, antiquaire',
-    description: `Bijoux berbères, tableaux orientalistes, argenterie, meubles, pièces de monnaie, cristal, tapis, fourrures : les ${OBJETS.length} familles d\'objets rachetés au Maroc.`,
+    title: 'Objets anciens rachetés et estimés au Maroc | F. Secula',
+    description: `Bijoux berbères, tableaux, argenterie, meubles, monnaies, tapis : les ${OBJETS.length} familles d\'objets anciens estimés et rachetés au Maroc. Avis gratuit.`,
     body,
-    jsonld: [{ '@type': 'ItemList', name: 'Objets recherchés', itemListElement: OBJETS.map((o, i) => ({ '@type': 'ListItem', position: i + 1, url: abs(`/objets-recherches/${o.slug}`), name: o.nav })) }],
+    jsonld: [faqNode(objetsHubFaq), { '@type': 'ItemList', name: 'Objets recherchés', itemListElement: OBJETS.map((o, i) => ({ '@type': 'ListItem', position: i + 1, url: abs(`/objets-recherches/${o.slug}`), name: o.nav })) }],
   };
 }
 
@@ -368,25 +448,27 @@ ${form ? estimationForm() : ''}
 <section class="${form ? '' : 'bg-band '}py-16 lg:py-24">
   <div class="mx-auto max-w-7xl space-y-16 px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-12">
-      <h2 class="text-3xl leading-tight sm:text-4xl lg:col-span-4">${h2s.recherche}</h2>
+      <h2 class="text-3xl leading-tight sm:text-4xl lg:col-span-4">${nb(h2s.recherche)}</h2>
       <ul class="grid gap-3 lg:col-span-8">
         ${o.recherche.map((r) => `<li class="flex items-start gap-3 text-muted">${icon('check', 'mt-1 size-4 flex-none text-link')}<span>${r}</span></li>`).join('\n        ')}
       </ul>
     </div>
     <div class="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-12">
-      <h2 class="text-3xl leading-tight sm:text-4xl lg:col-span-4">${h2s.valeur}</h2>
+      <h2 class="text-3xl leading-tight sm:text-4xl lg:col-span-4">${nb(h2s.valeur)}</h2>
       <dl class="grid gap-8 sm:grid-cols-2 lg:col-span-8">
         ${o.valeur.map(([t, d]) => `<div class="border-t border-control pt-5"><dt class="font-sans text-lg font-semibold">${t}</dt><dd class="mt-2 text-muted">${d}</dd></div>`).join('\n        ')}
       </dl>
     </div>
     ${(o.sections ?? []).map(([h, p]) => `<div class="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-12">
-      <h2 class="text-3xl leading-tight sm:text-4xl lg:col-span-4">${h}</h2>
+      <h2 class="text-3xl leading-tight sm:text-4xl lg:col-span-4">${nb(h)}</h2>
       <div class="prose-site lg:col-span-8"><p>${p}</p></div>
     </div>`).join('\n    ')}
     <div class="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-12">
-      <h2 class="text-3xl leading-tight sm:text-4xl lg:col-span-4">${h2s.estimer}</h2>
+      <h2 class="text-3xl leading-tight sm:text-4xl lg:col-span-4">${nb(h2s.estimer)}</h2>
       <div class="rounded-card border border-hairline bg-card p-5 sm:p-8 lg:col-span-8">
         <p class="flex items-start gap-3">${icon('camera', 'mt-0.5 size-5 flex-none text-link')}<span>${o.photos}</span></p>
+        ${o.conseils ? `<h3 class="mt-8 font-sans text-lg font-semibold">${nb(o.conseils[0])}</h3>
+        <ul class="mt-4 grid gap-3">${o.conseils[1].map((c) => `<li class="flex items-start gap-3 text-muted">${icon('check', 'mt-1 size-4 flex-none text-link')}<span>${c}</span></li>`).join('')}</ul>` : ''}
         <div class="mt-6 flex flex-col gap-3 sm:flex-row">
           <a href="${form ? FORM_HREF : '/contact'}" class="btn btn-primary min-h-12 px-4 sm:px-6">${form ? 'Remplir le formulaire' : 'Demander une estimation'} ${icon('arrow-right')}</a>
           <a href="tel:${SITE.phone.e164}" class="btn btn-secondary min-h-12 px-4 sm:px-6">${icon('phone')} ${SITE.phone.display}</a>
@@ -404,10 +486,13 @@ ${faq(o.faq)}
       <a href="/objets-recherches" class="link inline-flex items-center gap-2">Tous les objets recherchés ${icon('arrow-right', 'size-4')}</a>
     </div>
     <div class="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 lg:grid-cols-3">${o.related.map((s) => objetTile(bySlug[s])).join('')}</div>
+    <h2 class="mt-16 text-3xl sm:text-4xl">Estimation à domicile partout au Maroc</h2>
+    <p class="mt-4 max-w-[65ch] text-muted">François Secula se déplace gratuitement pour examiner vos objets, de Tanger à Agadir. Découvrez <a href="/expertise-achat/estimation-gratuite" class="link">l'estimation gratuite</a> et <a href="/expertise-achat/achat-antiquites" class="link">le rachat d'antiquités</a>.</p>
+    <div class="mt-6">${villesLinks()}</div>
   </div>
 </section>
 ${ctaBand({ form })}`;
-  return { path, trail, title: o.title, description: o.description, body, scripts: form ? tallyScript : '', jsonld: [serviceNode(`Achat et estimation : ${o.nav}`, path, o.description)] };
+  return { path, trail, title: o.title, description: o.description, body, scripts: form ? tallyScript : '', jsonld: [serviceNode(`Achat et estimation : ${o.nav}`, path, o.description), faqNode(o.faq)] };
 }
 
 /* ---------- Zones d'intervention ---------- */
@@ -418,11 +503,23 @@ ${pageHero({ kicker: 'Zones d\'intervention', h1: 'Antiquaire à domicile dans t
 <section aria-label="Villes" class="py-16 lg:py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">${villesGrid('h2')}</div>
 </section>
+<section aria-labelledby="regions-titre" class="border-t border-hairline bg-band py-16 lg:py-24">
+  <div class="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
+    <h2 id="regions-titre" class="text-4xl leading-[1.1] lg:col-span-4">Un antiquaire à domicile dans chaque région</h2>
+    <div class="prose-site lg:col-span-8">
+      <p><strong>Le Nord</strong> : depuis <a href="/zones-intervention/antiquaire-tanger" class="link">Tanger</a>, François Secula intervient à Tétouan, Asilah, Larache et Chefchaouen, où l'héritage international et andalou a laissé mobilier européen, livres et broderies.</p>
+      <p><strong>L'axe atlantique</strong> : de <a href="/zones-intervention/antiquaire-rabat" class="link">Rabat</a> et Salé à <a href="/zones-intervention/antiquaire-casablanca" class="link">Casablanca</a>, Mohammedia et El Jadida, on rencontre tapis de Rabat, mobilier Art déco et peinture marocaine moderne.</p>
+      <p><strong>Les villes impériales du centre</strong> : <a href="/zones-intervention/antiquaire-fes" class="link">Fès</a>, Meknès et Ifrane conservent céramiques, dinanderie, damasquinerie et bijoux citadins en or.</p>
+      <p><strong>Le Sud</strong> : de <a href="/zones-intervention/antiquaire-marrakech" class="link">Marrakech</a>, où sont ses bureaux, à <a href="/zones-intervention/antiquaire-agadir" class="link">Agadir</a>, Tiznit, Taroudant, Essaouira et Ouarzazate, ce sont surtout tapis du Haut Atlas, bijoux berbères en argent et objets des riads et des villas.</p>
+      <p>Partout, le déplacement est gratuit et le premier avis sur photos aussi.</p>
+    </div>
+  </div>
+</section>
 ${ctaBand({ title: 'Votre ville n\'apparaît pas ?', text: 'Meknès, Essaouira, El Jadida, Kénitra, Mohammedia, Oujda, Tétouan, Ouarzazate : François Secula se déplace comme antiquaire partout au Maroc, avec un déplacement gratuit.' })}`;
   return {
     path: '/zones-intervention', trail,
-    title: 'Antiquaire à domicile dans tout le Maroc | François Secula',
-    description: 'François Secula, antiquaire, se déplace à Marrakech, Casablanca, Rabat, Tanger, Fès, Agadir et partout au Maroc pour estimer et acheter vos antiquités.',
+    title: 'Antiquaire à domicile partout au Maroc | François Secula',
+    description: 'Antiquaire à domicile à Marrakech, Casablanca, Rabat, Tanger, Fès, Agadir et partout au Maroc : estimation et rachat d\'antiquités, déplacement gratuit.',
     body,
     jsonld: [{ '@type': 'ItemList', name: 'Zones d\'intervention', itemListElement: VILLES.map((v, i) => ({ '@type': 'ListItem', position: i + 1, url: abs(`/zones-intervention/${v.slug}`), name: `Antiquaire à ${v.ville}` })) }],
   };
@@ -446,8 +543,10 @@ ${form ? estimationForm({ text: `Décrivez votre objet et joignez quelques photo
     <div class="lg:col-span-7">
       <h2 class="text-3xl leading-tight sm:text-4xl">${v.h2 ?? `Les antiquités à ${v.ville}`}</h2>
       <div class="prose-site mt-6">${v.contexte.map((p) => `<p>${p}</p>`).join('')}</div>
-      ${v.vendre ? `<h2 class="mt-12 text-3xl leading-tight sm:text-4xl">${v.vendre[0]}</h2>
+      ${v.vendre ? `<h2 class="mt-12 text-3xl leading-tight sm:text-4xl">${nb(v.vendre[0])}</h2>
       <div class="prose-site mt-6"><p>${v.vendre[1]}</p></div>` : ''}
+      ${(v.sections ?? []).map(([h, p]) => `<h2 class="mt-12 text-3xl leading-tight sm:text-4xl">${nb(h)}</h2>
+      <div class="prose-site mt-6"><p>${p}</p></div>`).join('\n      ')}
     </div>
     <div class="lg:col-span-5">
       <h2 class="text-2xl leading-tight">Quartiers et environs</h2>
@@ -459,14 +558,27 @@ ${form ? estimationForm({ text: `Décrivez votre objet et joignez quelques photo
     </div>
   </div>
 </section>
+${v.faq ? faq(v.faq, { title: `Questions fréquentes à ${v.ville}` }) : ''}
+<section aria-labelledby="autres-villes" class="border-t border-hairline py-16">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <h2 id="autres-villes" class="text-3xl">Antiquaire dans les autres villes du Maroc</h2>
+    <div class="mt-6">${linkList(VILLES.filter((x) => x !== v).map((x) => ({ href: `/zones-intervention/${x.slug}`, label: `Antiquaire à ${x.ville}` })))}</div>
+  </div>
+</section>
 ${ctaBand({ title: `Un objet à faire estimer à ${v.ville} ?`, form })}`;
   return {
     path, trail, title: v.title, description: v.description, body, scripts: form ? tallyScript : '',
-    jsonld: [serviceNode(`Antiquaire à ${v.ville}`, path, v.description, { '@type': 'City', name: v.ville, containedInPlace: areaServed })],
+    jsonld: [serviceNode(`Antiquaire à ${v.ville}`, path, v.description, { '@type': 'City', name: v.ville, containedInPlace: areaServed }), ...(v.faq ? [faqNode(v.faq)] : [])],
   };
 }
 
 /* ---------- Contact (Tally) ---------- */
+const contactFaq = [
+  ['Quelles photos joindre au formulaire ?', 'Une vue d\'ensemble de face, puis les détails : signature, poinçons, étiquettes, dessous ou dos de l\'objet, et les défauts éventuels. Indiquez les dimensions dans votre message.'],
+  ['Quand vais-je recevoir une réponse ?', 'Rapidement : François Secula lit chaque demande personnellement et répond dès que les photos permettent un premier avis.'],
+  ['Puis-je envoyer mes photos par WhatsApp ?', 'Oui. Vous pouvez écrire sur WhatsApp au même numéro et y joindre vos photos, si vous préférez au formulaire.'],
+  ['Que deviennent mes photos et mes coordonnées ?', 'Elles servent uniquement à répondre à votre demande. Elles ne sont jamais publiées, vendues ni transmises à des tiers.'],
+];
 function contact() {
   const trail = [HOME, { name: 'Contact', href: '/contact' }];
   // Tout contact passe par le formulaire Tally ; le telephone reste en secours.
@@ -499,13 +611,13 @@ function contact() {
     </div>
   </div>
 </section>
-${faq(generalFaq)}`;
+${faq(contactFaq)}`;
   return {
     path: '/contact', trail,
     title: 'Contact et estimation gratuite | François Secula, antiquaire',
     description: 'Contactez François Secula, antiquaire partout au Maroc : décrivez votre objet dans le formulaire pour une estimation gratuite, rapide et sans engagement.',
     body,
-    jsonld: [businessNode()],
+    jsonld: [businessNode(), faqNode(contactFaq)],
     scripts: tallyScript,
   };
 }

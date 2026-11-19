@@ -135,7 +135,7 @@ export const faq = (items, { title = 'Questions fréquentes', id = 'faq' } = {})
     </div>
     <div class="divide-y divide-hairline border-y border-hairline lg:col-span-8">
       ${items.map(([q, a]) => `<details class="faq-item">
-        <summary><h3 class="faq-q text-lg transition-colors">${q}</h3>${icon('chevron-down', 'faq-icon size-5 flex-none text-accent')}</summary>
+        <summary><h3 class="faq-q text-lg transition-colors">${String(q).replace(/ ([:;?!])/g, '&nbsp;$1')}</h3>${icon('chevron-down', 'faq-icon size-5 flex-none text-accent')}</summary>
         <p class="max-w-[65ch] pb-6 text-muted">${a}</p>
       </details>`).join('\n      ')}
     </div>
@@ -202,7 +202,7 @@ export const pageHero = ({ kicker, h1, lead, aside = '', form = false }) => `<se
   <div class="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-12 lg:items-center lg:gap-16 lg:px-8 lg:py-20">
     <div class="${aside ? 'lg:col-span-7' : 'lg:col-span-9'}">
       ${eyebrow(kicker)}
-      <h1 class="mt-5 max-w-[20ch] text-[2.5rem] leading-[1.08] sm:text-6xl">${h1}</h1>
+      <h1 class="mt-5 max-w-[20ch] text-[2.5rem] leading-[1.08] sm:text-6xl">${String(h1).replace(/ ([:;?!])/g, '&nbsp;$1')}</h1>
       <p class="mt-6 max-w-[56ch] text-lg text-on-deep-muted">${lead}</p>
       <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
         ${form ? `<a href="${FORM_HREF}" class="btn btn-primary">${icon('camera', 'size-4')} Estimation gratuite sur photos</a>` : `<a href="/contact" class="btn btn-primary">Estimation gratuite ${icon('arrow-right', 'size-4')}</a>`}

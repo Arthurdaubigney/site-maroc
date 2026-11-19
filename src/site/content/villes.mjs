@@ -12,6 +12,15 @@ export const VILLES = [
     h1: 'Antiquaire à Marrakech : estimation et rachat d\'antiquités',
     h2: 'Rachat d\'antiquités à Marrakech',
     vendre: ['Vendre vos meubles anciens à Marrakech', 'Vous souhaitez vendre des meubles anciens à Marrakech : commode européenne, coffre en cèdre, table en thuya, mobilier complet d\'un riad ou d\'une villa ? François Secula examine chaque pièce sur place et vous fait une proposition claire. Le démontage et l\'enlèvement sont organisés, même pour les meubles volumineux.'],
+    sections: [
+      ['Riads de la Médina et villas du Guéliz', 'Les riads de la Médina gardent souvent des pièces liées à la maison elle-même : portes et plafonds en cèdre peint, zelliges, luminaires en cuivre ciselé, coffres et banquettes. Les villas du Guéliz et de l\'Hivernage, construites pour beaucoup pendant le protectorat, abritent plutôt du mobilier européen, des tableaux et de l\'argenterie. À la Palmeraie, les collections réunies par des résidents étrangers mêlent souvent design, arts asiatiques et objets marocains de qualité.'],
+      ['Valeur des tapis et objets du Haut Atlas à Marrakech', 'Marrakech est la porte du Haut Atlas : tapis de la région de Glaoua, tissages d\'Azilal, bijoux en argent des vallées et poteries anciennes y circulent depuis toujours. Beaucoup de familles marrakchies conservent ces pièces sans en connaître la valeur réelle, qui dépend de l\'ancienneté et de la qualité, bien plus que de la taille.'],
+    ],
+    faq: [
+      ['Vous déplacez-vous dans la Médina de Marrakech ?', 'Oui. François Secula se déplace gratuitement dans la Médina comme au Guéliz, à l\'Hivernage, à la Palmeraie et dans les environs de Marrakech, y compris sur la route de l\'Ourika.'],
+      ['Rachetez-vous le contenu d\'un riad avant sa vente ?', 'Oui. Lors de la vente d\'un riad, François Secula examine l\'ensemble du mobilier et des objets, puis propose une offre globale ou objet par objet, avec un enlèvement organisé.'],
+      ['Où sont vos bureaux à Marrakech ?', 'Les bureaux de François Secula sont à Marrakech, quartier industriel de Sidi Ghanem. Les rendez-vous se font le plus souvent chez vous, pour examiner les objets sur place.'],
+    ],
     contexte: [
       'Marrakech concentre des collections d\'une grande diversité : objets marocains transmis dans les familles, mais aussi mobilier, tableaux et objets d\'art européens rassemblés par les résidents étrangers installés dans les riads et les villas depuis les années 1960.',
       'Lors d\'une vente de riad ou d\'un départ, le contenu de la maison mérite d\'être examiné avant d\'être dispersé : tapis anciens du Haut Atlas, luminaires en cuivre, portes sculptées et peinture orientaliste s\'y côtoient souvent.',
@@ -30,6 +39,15 @@ export const VILLES = [
     h1: 'Antiquaire à Casablanca : estimation et rachat d\'antiquités',
     h2: 'Rachat d\'antiquités à Casablanca',
     vendre: ['Vendre vos objets anciens à Casablanca', 'Vendre des objets anciens à Casablanca ne demande ni annonce ni dépôt en salle des ventes. Luminaires et mobilier Art déco d\'un appartement du centre-ville, argenterie, tableaux de peintres marocains, montres ou bijoux : envoyez quelques photos, François Secula se déplace et vous fait une proposition après examen.'],
+    sections: [
+      ['Mobilier Art déco des immeubles casablancais', 'Construits pour l\'essentiel entre les années 1920 et 1950, les immeubles du centre-ville, du boulevard Mohammed V au quartier Mers Sultan, ont accueilli un mobilier de la même époque : meubles en placage de bois précieux, luminaires en bronze et en verre, ferronnerie d\'art. Ces ensembles, parfois restés en place depuis des décennies, intéressent beaucoup les amateurs d\'Art déco.'],
+      ['Peinture marocaine moderne et École de Casablanca', 'Casablanca a vu naître dans les années 1960 l\'École de Casablanca, autour de peintres comme Farid Belkahia, Mohamed Melehi et Mohamed Chabâa. Les familles casablancaises ont souvent acheté directement aux artistes ou dans les galeries de la ville : une toile ou une œuvre sur papier de ces années-là mérite d\'être estimée par un connaisseur.'],
+    ],
+    faq: [
+      ['Intervenez-vous dans tout le Grand Casablanca ?', 'Oui : Anfa, le Maârif, Gauthier, Racine, Bourgogne, Ain Diab, Californie, Oasis, mais aussi Mohammedia, Bouskoura et les environs, avec un déplacement gratuit.'],
+      ['Rachetez-vous le mobilier d\'un appartement Art déco ?', 'Oui. François Secula examine meubles, luminaires et objets de l\'appartement et fait une proposition claire, pièce par pièce ou pour l\'ensemble.'],
+      ['Puis-je faire estimer un tableau de peintre marocain à Casablanca ?', 'Oui. Envoyez des photos du tableau, de la signature et du dos : l\'avis est gratuit et François Secula se déplace chez vous pour l\'examen.'],
+    ],
     contexte: [
       'Casablanca possède l\'un des plus riches ensembles d\'architecture Art déco au monde, et les appartements du centre-ville ont souvent conservé du mobilier, des luminaires et des objets de la même époque.',
       'Les grandes familles casablancaises ont aussi réuni des collections de peinture marocaine moderne, d\'argenterie et de bijoux. François Secula les examine sur place, avec discrétion.',
@@ -48,6 +66,15 @@ export const VILLES = [
     h1: 'Antiquaire à Rabat : estimation et rachat d\'antiquités',
     h2: 'Rachat d\'antiquités à Rabat',
     vendre: ['Vendre une collection avant une mutation', 'Diplomates, cadres expatriés, familles qui déménagent : à Rabat, une mutation impose souvent de vendre en peu de temps. François Secula s\'adapte à votre calendrier, examine l\'ensemble en une visite et propose une offre globale ou objet par objet, avec un enlèvement organisé avant votre départ.'],
+    sections: [
+      ['Tapis de Rabat et broderies de Rabat et Salé', 'Le tapis de Rabat, tapis urbain à médaillon central inspiré des modèles d\'Orient, et la broderie de Rabat, au point plat de soie aux couleurs vives, sont deux spécialités recherchées. De l\'autre côté du Bouregreg, Salé a sa propre tradition de broderie, plus monochrome. Les pièces anciennes, tissées ou brodées pour les trousseaux familiaux, se reconnaissent à leurs teintures et à la finesse du travail.'],
+      ['Collections de diplomates et de cadres expatriés', 'Capitale administrative, Rabat accueille les ambassades et de nombreux cadres en poste pour quelques années. Leurs intérieurs, au Souissi ou à Hay Riad, rassemblent souvent des objets réunis au fil des affectations : arts asiatiques, tableaux, argenterie, mobilier européen. Ces ensembles composites demandent une estimation objet par objet.'],
+    ],
+    faq: [
+      ['Vous déplacez-vous à Salé et à Témara ?', 'Oui. Depuis Rabat, François Secula intervient aussi à Salé, Témara, Skhirat et Kénitra, avec un déplacement gratuit.'],
+      ['Achetez-vous les broderies anciennes de Rabat ?', 'Oui, les broderies anciennes de Rabat et de Salé, en bon état et finement travaillées, sont recherchées. Photographiez l\'endroit, l\'envers et un détail du point.'],
+      ['Pouvez-vous intervenir rapidement avant un départ de poste ?', 'François Secula s\'adapte à votre calendrier : une première visite permet de tout examiner, puis l\'enlèvement est organisé à la date qui vous convient.'],
+    ],
     contexte: [
       'Rabat a donné son nom à un style de tapis urbain réputé, et ses broderies anciennes comptent parmi les plus fines du Maroc. On y trouve aussi de nombreux intérieurs diplomatiques et administratifs riches en mobilier européen.',
       'Les départs de diplomates et de cadres expatriés sont souvent l\'occasion de vendre une collection constituée au fil des affectations : arts asiatiques, tableaux, argenterie.',
@@ -65,6 +92,15 @@ export const VILLES = [
     h1: 'Antiquaire à Tanger : estimation et rachat d\'antiquités',
     h2: 'Rachat d\'antiquités à Tanger',
     vendre: ['Vendre le contenu d\'une maison à Tanger', 'Villa de la Vieille Montagne, appartement du boulevard Pasteur, maison de la Kasbah : avant de vendre ou de vider une maison à Tanger, faites examiner son contenu. Livres, tableaux, mobilier européen et objets de voyage y cachent souvent des pièces de collection, que François Secula estime et rachète sur place.'],
+    sections: [
+      ['L\'héritage de la zone internationale', 'De 1923 à 1956, Tanger a eu un statut international qui a attiré diplomates, banquiers, artistes et écrivains. Les villas de la Vieille Montagne et du Marshan ont gardé une partie de cet héritage : mobilier anglais et espagnol, tableaux, livres et objets de voyage. Leurs collections mêlent souvent l\'Europe et le Maroc, ce qui rend l\'expertise particulièrement intéressante.'],
+      ['Tétouan, Asilah et le Nord', 'À Tétouan, l\'héritage andalou se lit dans les broderies, les céramiques et le mobilier peint, et l\'école des beaux-arts de la ville a formé plusieurs générations de peintres marocains. À Asilah, les maisons blanches de la médina abritent souvent des œuvres d\'artistes liés au festival culturel de la ville. François Secula se déplace dans tout le Nord pour examiner ces pièces.'],
+    ],
+    faq: [
+      ['Vous déplacez-vous à Tétouan, Asilah ou Chefchaouen ?', 'Oui. Depuis Tanger, François Secula intervient dans tout le Nord : Tétouan, Asilah, Larache, M\'diq, Martil et Chefchaouen, avec un déplacement gratuit.'],
+      ['Achetez-vous les livres et documents anciens sur Tanger ?', 'Oui. Les livres, photographies, cartes et documents anciens sur Tanger et le Nord du Maroc sont recherchés. Photographiez la page de titre et quelques pages intérieures.'],
+      ['Rachetez-vous le contenu d\'une villa de la Vieille Montagne ?', 'Oui. François Secula examine l\'ensemble sur place et propose une offre globale ou objet par objet, avec un enlèvement organisé.'],
+    ],
     contexte: [
       'Longtemps ville internationale, Tanger a accueilli artistes, écrivains et collectionneurs du monde entier. Leurs maisons ont souvent conservé mobilier européen, tableaux, livres et objets de voyage.',
       'Ces collections mêlent volontiers les époques et les origines : c\'est précisément là qu\'une expertise attentive fait la différence entre un objet décoratif et une pièce de collection.',
@@ -83,6 +119,15 @@ export const VILLES = [
     h1: 'Antiquaire à Fès : estimation et rachat d\'antiquités',
     h2: 'Rachat d\'antiquités à Fès',
     vendre: ['Vendre des objets fassis anciens', 'Céramique bleue de Fès, plateaux et théières en cuivre ou en argent, bijoux en or émaillé, broderies anciennes : ces objets se transmettent depuis des générations dans les maisons de la Médina. Pour les vendre au juste prix, François Secula les examine chez vous et vous explique ce qui fait leur valeur.'],
+    sections: [
+      ['Céramique bleue de Fès et dinanderie', 'Le bleu de Fès, obtenu à partir de cobalt, orne depuis des siècles plats, jattes et grands vases. Les pièces anciennes se reconnaissent à leur émail légèrement irrégulier, à la profondeur du bleu et à l\'usure des bases. La dinanderie fassie, plateaux, brûle-parfums, lanternes en cuivre et en laiton ciselé, est tout aussi recherchée quand elle est ancienne et finement travaillée.'],
+      ['Meknès, damasquinerie et objets impériaux', 'À une heure de Fès, Meknès est réputée pour sa damasquinerie, l\'art d\'incruster des fils d\'argent dans le fer. Les objets damasquinés anciens, vases, boîtes, plateaux, sont aujourd\'hui rares. Les deux villes impériales conservent aussi des bijoux citadins en or, des broderies et des manuscrits que François Secula examine sur place.'],
+    ],
+    faq: [
+      ['Vous déplacez-vous dans la Médina de Fès ?', 'Oui, à Fès el-Bali comme à Fès el-Jdid et dans la Ville nouvelle. François Secula se déplace aussi à Meknès, Ifrane, Sefrou et dans toute la région, gratuitement.'],
+      ['La céramique de Fès ancienne a-t-elle de la valeur ?', 'Oui, les pièces anciennes au bleu de Fès, bien conservées, sont recherchées. Photographiez le décor, le revers et la base pour un premier avis gratuit.'],
+      ['Achetez-vous les bijoux de Fès en or émaillé ?', 'Oui. Les bijoux citadins de Fès en or, émaillés ou sertis, sont recherchés pour la qualité de leur travail, bien au-delà du poids de l\'or.'],
+    ],
     contexte: [
       'Capitale historique de l\'artisanat marocain, Fès a produit des céramiques au bleu caractéristique, une dinanderie d\'une grande finesse, des bijoux en or émaillé et des broderies recherchées.',
       'Les maisons de la Médina conservent souvent ces objets depuis plusieurs générations. Leur valeur dépend de l\'ancienneté et de la qualité d\'exécution, que seul un examen permet d\'établir.',
@@ -101,6 +146,15 @@ export const VILLES = [
     h1: 'Antiquaire à Agadir : estimation et rachat d\'antiquités',
     h2: 'Rachat d\'antiquités à Agadir',
     vendre: ['Vendre avant un retour en Europe', 'Beaucoup de résidents d\'Agadir vendent le contenu de leur villa avant un retour en Europe. François Secula examine l\'ensemble en une visite, du mobilier aux bijoux berbères du Souss, et propose une offre globale ou objet par objet, avec un enlèvement organisé à la date qui vous convient.'],
+    sections: [
+      ['Bijoux en argent de Tiznit et du Souss', 'Tiznit est l\'un des grands centres de la bijouterie berbère en argent : fibules, bracelets, colliers et parures émaillées de l\'Anti-Atlas y étaient fabriqués et échangés. Dans les familles du Souss, ces bijoux transmis de mère en fille ont souvent une valeur de collection bien supérieure au poids de leur argent. Taroudant, avec ses ateliers anciens, conserve aussi une tradition d\'orfèvrerie et de dinanderie.'],
+      ['Une ville reconstruite, des collections venues d\'ailleurs', 'Reconstruite après le séisme de 1960, Agadir est une ville moderne, où les objets anciens viennent souvent d\'ailleurs : de la famille, d\'Europe ou des villages de l\'arrière-pays. Les villas de Founty et du centre-ville rassemblent mobilier européen, tableaux et souvenirs de voyage, tandis que l\'arrière-pays garde tapis, coffres et poteries anciennes.'],
+    ],
+    faq: [
+      ['Vous déplacez-vous à Tiznit, Taroudant et Essaouira ?', 'Oui. Depuis Agadir, François Secula intervient dans tout le Souss et sur la côte : Tiznit, Taroudant, Taghazout, Essaouira, avec un déplacement gratuit.'],
+      ['Achetez-vous les bijoux berbères de Tiznit ?', 'Oui. Les bijoux anciens en argent de Tiznit et de l\'Anti-Atlas, émaillés ou non, sont recherchés. Photographiez chaque bijou à plat, puis le revers.'],
+      ['Pouvez-vous racheter le contenu d\'une villa avant un retour en Europe ?', 'Oui. François Secula examine l\'ensemble en une visite et propose une offre globale ou objet par objet, avec un enlèvement organisé à votre date.'],
+    ],
     contexte: [
       'Le Souss est la terre des bijoux berbères en argent et des tapis de Taznakht. Agadir accueille aussi de nombreux résidents européens dont les villas renferment mobilier, tableaux et objets rapportés d\'Europe.',
       'Lors d\'un retour en Europe ou d\'une succession, François Secula examine l\'ensemble sur place et propose une offre globale ou objet par objet.',
