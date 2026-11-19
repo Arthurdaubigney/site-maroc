@@ -135,7 +135,7 @@ export const faq = (items, { title = 'Questions fréquentes', id = 'faq' } = {})
     </div>
     <div class="divide-y divide-hairline border-y border-hairline lg:col-span-8">
       ${items.map(([q, a]) => `<details class="faq-item">
-        <summary><h3 class="faq-q text-lg transition-colors">${q}</h3>${icon('chevron-down', 'faq-icon size-5 flex-none text-accent')}</summary>
+        <summary><h3 class="faq-q text-lg transition-colors">${String(q).replace(/ ([:;?!])/g, '&nbsp;$1')}</h3>${icon('chevron-down', 'faq-icon size-5 flex-none text-accent')}</summary>
         <p class="max-w-[65ch] pb-6 text-muted">${a}</p>
       </details>`).join('\n      ')}
     </div>
@@ -144,7 +144,7 @@ export const faq = (items, { title = 'Questions fréquentes', id = 'faq' } = {})
 
 /* ---------- Formulaire d'estimation integre ----------
    Meme formulaire Tally que /contact : main.js redirige vers /merci apres l'envoi (marqueur de conversion).
-   Place juste apres l'en-tete : sur mobile, il arrive des le premier defilement. */
+   Place en bas de page, a la place du bandeau d'appel ; le bouton de l'en-tete y fait defiler. */
 export const FORM_ID = 'formulaire';
 export const FORM_HREF = `#${FORM_ID}`;
 export const tallyScript = SITE.tallyFormId ? '  <script src="https://tally.so/widgets/embed.js" async></script>' : '';
@@ -152,7 +152,7 @@ export const tallyEmbed = () => (SITE.tallyFormId
   ? `<iframe data-tally-src="https://tally.so/embed/${SITE.tallyFormId}?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1" loading="lazy" width="100%" height="700" title="Formulaire de demande d'estimation" class="w-full"></iframe>`
   : `<p class="text-muted">Le formulaire arrive très bientôt. En attendant, appelez le <a href="tel:${SITE.phone.e164}" class="link tabular-nums">${SITE.phone.display}</a>.</p>`);
 
-export const estimationForm = ({ title = 'Estimation gratuite sur photos', text = 'Décrivez votre objet et joignez quelques photos : François Secula vous répond rapidement avec un premier avis gratuit et sans engagement.' } = {}) => `<section id="${FORM_ID}" aria-labelledby="${FORM_ID}-titre" class="border-b border-hairline bg-band py-12 lg:py-20">
+export const estimationForm = ({ title = 'Estimation gratuite sur photos', text = 'Décrivez votre objet et joignez quelques photos : François Secula vous répond rapidement avec un premier avis gratuit et sans engagement.' } = {}) => `<section id="${FORM_ID}" aria-labelledby="${FORM_ID}-titre" class="border-t border-hairline bg-band py-16 lg:py-24">
   <div class="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
     <div class="lg:sticky lg:top-28 lg:col-span-5 lg:self-start">
       ${eyebrow('Formulaire d\'estimation')}
@@ -196,13 +196,12 @@ export const linkList = (items, cols = 'sm:grid-cols-2 lg:grid-cols-3') => `<ul 
 </ul>`;
 
 // En-tete de page interieure : bandeau rouge, titre serif, photo a droite
-// form = true : la page porte le formulaire integre ; le bouton principal y fait defiler et,
-// sous lg, la photo laterale est masquee pour que le formulaire arrive des le premier ecran.
+// form = true : la page porte le formulaire integre (en bas de page) ; le bouton principal y fait defiler.
 export const pageHero = ({ kicker, h1, lead, aside = '', form = false }) => `<section class="on-deep zellige zellige-fade bg-deep text-on-deep">
   <div class="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-12 lg:items-center lg:gap-16 lg:px-8 lg:py-20">
     <div class="${aside ? 'lg:col-span-7' : 'lg:col-span-9'}">
       ${eyebrow(kicker)}
-      <h1 class="mt-5 max-w-[20ch] text-[2.5rem] leading-[1.08] sm:text-6xl">${h1}</h1>
+      <h1 class="mt-5 max-w-[20ch] text-[2.5rem] leading-[1.08] sm:text-6xl">${String(h1).replace(/ ([:;?!])/g, '&nbsp;$1')}</h1>
       <p class="mt-6 max-w-[56ch] text-lg text-on-deep-muted">${lead}</p>
       <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
         ${form ? `<a href="${FORM_HREF}" class="btn btn-primary">${icon('camera', 'size-4')} Estimation gratuite sur photos</a>` : `<a href="/contact" class="btn btn-primary">Estimation gratuite ${icon('arrow-right', 'size-4')}</a>`}
@@ -210,7 +209,7 @@ export const pageHero = ({ kicker, h1, lead, aside = '', form = false }) => `<se
         <a ${waAttrs} class="btn btn-secondary">${icon('message-circle', 'size-4')} WhatsApp</a>
       </div>
     </div>
-    ${aside ? `<div class="${form ? 'hidden lg:block ' : ''}lg:col-span-5">${aside}</div>` : ''}
+    ${aside ? `<div class="lg:col-span-5">${aside}</div>` : ''}
   </div>
 </section>`;
 
