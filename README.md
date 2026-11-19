@@ -49,7 +49,8 @@ URL propres (`/objets-recherches/tapis`). Seul `dist/` est servi.
 Tout se règle dans `src/site/config.mjs`, sauf mention contraire :
 
 1. **Domaine** : `https://www.francois-antiquite.ma` (`url`) ; l'ancienne adresse site-maroc.vercel.app redirige en 301 (`vercel.json`). Restent à compléter : `geo`, `sameAs`. Téléphone (06 58 59 66 73) et bureaux (42 Q.I Sidi Ghanem 158, 40000 Marrakech) renseignés. WhatsApp sur le même numéro (`SITE.whatsapp`, lien wa.me avec message prérempli) à côté de chaque téléphone ; pas d'horaires ; l'e-mail (`SITE.editeur.email`) n'apparaît que dans les mentions légales et la politique de confidentialité : le contact principal passe par le formulaire Tally.
-2. **Formulaire Tally** : renseigner `tallyFormId`. L'iframe et le script Tally sont alors générés sur `/contact`.
+2. **Formulaire Tally** : renseigner `tallyFormId`. L'iframe et le script Tally sont alors générés sur `/contact` et, juste après l'en-tête, sur les pages listées dans `FORM_PAGES` (`src/site/pages.mjs` : accueil, achat, estimation, successions, 6 villes, 7 objets), avec un bouton « Estimation gratuite sur photos » qui y fait défiler (ancre `#formulaire`). Même formulaire et même redirection vers `/merci` après l'envoi.
+   Ces 17 pages ciblent chacune un mot-clé principal de vendeur, placé dans le `<title>` (60 caractères max), la meta description (155 max, avec appel à l'action), le H1 et le premier paragraphe ; les mots-clés secondaires sont dans les H2 et le corps du texte.
 3. **Photos** (`IMAGES`) : les 6 photos de Florian sont en place (`public/images/`, WebP 896 px + variante 448 px,
    image de partage `antiquaire-maroc-og.jpg`). Les autres catégories, la page Successions, Marrakech et Casablanca
    utilisent des photos libres de droits (CC0 : The Met, Cleveland Museum of Art, WordPress Photo Directory ;

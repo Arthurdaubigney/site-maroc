@@ -1,5 +1,5 @@
 // Interactions du site : menu mobile, repli des photos, annee du pied de page,
-// redirection vers /merci apres envoi du formulaire Tally (page /contact).
+// redirection vers /merci apres envoi du formulaire Tally (page /contact et pages avec formulaire integre).
 // Aucune dependance ; charge en defer.
 (function () {
   'use strict';
