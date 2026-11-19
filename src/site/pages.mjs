@@ -326,8 +326,8 @@ ${pageHero({
 ${ctaBand()}`;
   return {
     path: '/presentation', trail,
-    title: 'François Secula, antiquaire et expert au Maroc',
-    description: 'François Secula, antiquaire et expert en objets d\'art partout au Maroc : sa méthode d\'estimation, son expertise rapide, sa discrétion. Demandez un avis.',
+    title: 'François Secula, antiquaire partout au Maroc | Présentation',
+    description: 'Découvrez François Secula, antiquaire et expert en objets d\'art partout au Maroc : sa méthode d\'estimation, son expertise rapide et ses engagements de discrétion.',
     body,
     jsonld: [{ ...personNode(), description: 'Antiquaire et expert en objets d\'art partout au Maroc.' }],
   };
