@@ -289,11 +289,15 @@ ${pageHero({
     kicker: 'Présentation',
     h1: 'François Secula, antiquaire partout au Maroc',
     lead: 'Estimer juste, expliquer chaque décision, traiter chaque objet avec soin : voici la manière dont François Secula exerce son métier d\'antiquaire partout au Maroc, de Marrakech à Tanger.',
-    aside: florianPhoto('florian-visite'),
+    aside: florianPhoto('florian-vase-vertical'),
   })}
-<section aria-label="François Secula au travail" class="py-16 lg:py-24">
-  <div class="mx-auto grid max-w-7xl grid-cols-3 gap-3 px-4 sm:px-6 lg:px-8">
-    ${['florian-vase-vertical', 'maroc-arc', 'florian-livre'].map((k) => photo({ key: k, w: 600, h: 750, ratio: '4/5', alt: '', note: '', fallback: 'Florian, expert de l\'équipe', sizes: '(min-width: 1024px) 32vw, 31vw' })).join('\n    ')}
+<section aria-labelledby="antiquaire-maroc-titre" class="py-16 lg:py-24">
+  <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
+    <h2 id="antiquaire-maroc-titre" class="text-4xl leading-[1.05] lg:col-span-4">Antiquaire au Maroc, de Tanger à Agadir</h2>
+    <div class="prose-site text-lg lg:col-span-8">
+      <p>Antiquaire au Maroc, François Secula estime et rachète les antiquités et objets d'art des particuliers dans tout le royaume. Il intervient à Marrakech, Casablanca, Rabat, Tanger, Fès, Agadir et dans chaque région, pour examiner les objets là où ils se trouvent : un riad de la Médina, un appartement Art déco, une villa ou une maison de famille.</p>
+      <p>Bijoux berbères, tapis anciens, orfèvrerie, peinture orientaliste et marocaine, mobilier, argenterie : il connaît aussi bien les objets marocains que les pièces européennes et asiatiques réunies dans les intérieurs du Maroc. Chaque demande commence par un avis gratuit sur photos, sans engagement.</p>
+    </div>
   </div>
 </section>
 <section aria-labelledby="parcours-titre" class="bg-band py-16 lg:py-24">
