@@ -142,7 +142,38 @@ export const faq = (items, { title = 'Questions fréquentes', id = 'faq' } = {})
   </div>
 </section>`;
 
-export const ctaBand = ({ title = 'Un objet à faire estimer ?', text = 'Décrivez votre objet à François Secula : avis gratuit, expertise rapide et déplacement gratuit partout au Maroc.' } = {}) => `<section aria-labelledby="cta-titre" class="on-deep zellige bg-deep text-on-deep">
+/* ---------- Formulaire d'estimation integre ----------
+   Meme formulaire Tally que /contact : main.js redirige vers /merci apres l'envoi (marqueur de conversion).
+   Place juste apres l'en-tete : sur mobile, il arrive des le premier defilement. */
+export const FORM_ID = 'formulaire';
+export const FORM_HREF = `#${FORM_ID}`;
+export const tallyScript = SITE.tallyFormId ? '  <script src="https://tally.so/widgets/embed.js" async></script>' : '';
+export const tallyEmbed = () => (SITE.tallyFormId
+  ? `<iframe data-tally-src="https://tally.so/embed/${SITE.tallyFormId}?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1" loading="lazy" width="100%" height="700" title="Formulaire de demande d'estimation" class="w-full"></iframe>`
+  : `<p class="text-muted">Le formulaire arrive très bientôt. En attendant, appelez le <a href="tel:${SITE.phone.e164}" class="link tabular-nums">${SITE.phone.display}</a>.</p>`);
+
+export const estimationForm = ({ title = 'Estimation gratuite sur photos', text = 'Décrivez votre objet et joignez quelques photos : François Secula vous répond rapidement avec un premier avis gratuit et sans engagement.' } = {}) => `<section id="${FORM_ID}" aria-labelledby="${FORM_ID}-titre" class="border-b border-hairline bg-band py-12 lg:py-20">
+  <div class="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
+    <div class="lg:sticky lg:top-28 lg:col-span-5 lg:self-start">
+      ${eyebrow('Formulaire d\'estimation')}
+      <h2 id="${FORM_ID}-titre" class="mt-4 text-[2rem] leading-[1.1] sm:text-5xl">${title}</h2>
+      <p class="mt-5 max-w-[48ch] text-lg text-muted">${text}</p>
+      <ul class="mt-8 hidden space-y-4 lg:block">
+        ${[['camera', 'Vue d\'ensemble, signature, poinçons, défauts'], ['clock', 'Réponse rapide, avis gratuit'], ['truck', 'Déplacement gratuit partout au Maroc'], ['shield-check', 'Aucune obligation de vendre']].map(([ic, t]) => `<li class="flex items-center gap-3 font-semibold">${icon(ic, 'size-5 flex-none text-accent')}<span>${t}</span></li>`).join('\n        ')}
+      </ul>
+      <p class="mt-8 hidden text-muted lg:block">Vous préférez parler ? <a href="tel:${SITE.phone.e164}" class="link whitespace-nowrap tabular-nums">${SITE.phone.display}</a> ou <a ${waAttrs} class="link">WhatsApp</a>.</p>
+    </div>
+    <div class="min-w-0 lg:col-span-7">
+      <div class="rounded-card border border-hairline bg-card p-5 shadow-raised sm:p-8 lg:p-10">
+        ${tallyEmbed()}
+        <p class="mt-6 text-sm text-subtle">Vos informations servent uniquement à répondre à votre demande (<a href="/confidentialite" class="link">politique de confidentialité</a>, loi 09-08).</p>
+      </div>
+      <p class="mt-6 text-muted lg:hidden">Vous préférez parler ? <a href="tel:${SITE.phone.e164}" class="link whitespace-nowrap tabular-nums">${SITE.phone.display}</a> ou <a ${waAttrs} class="link">WhatsApp</a>.</p>
+    </div>
+  </div>
+</section>`;
+
+export const ctaBand = ({ title = 'Un objet à faire estimer ?', text = 'Décrivez votre objet à François Secula : avis gratuit, expertise rapide et déplacement gratuit partout au Maroc.', form = false } = {}) => `<section aria-labelledby="cta-titre" class="on-deep zellige bg-deep text-on-deep">
   <div class="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-12 lg:items-center lg:px-8 lg:py-24">
     <div class="lg:col-span-7">
       ${eyebrow('Estimation gratuite')}
@@ -150,7 +181,7 @@ export const ctaBand = ({ title = 'Un objet à faire estimer ?', text = 'Décriv
       <p class="mt-5 max-w-[52ch] text-lg text-on-deep-muted">${text}</p>
     </div>
     <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:col-span-5 lg:justify-end">
-      <a href="/contact" class="btn btn-primary px-4 sm:px-6">Estimation gratuite ${icon('arrow-right', 'size-4')}</a>
+      <a href="${form ? FORM_HREF : '/contact'}" class="btn btn-primary px-4 sm:px-6">${form ? 'Estimation gratuite sur photos' : 'Estimation gratuite'} ${icon('arrow-right', 'size-4')}</a>
       <a href="tel:${SITE.phone.e164}" class="btn btn-secondary px-4 sm:px-6">${icon('phone', 'size-4')} ${SITE.phone.display}</a>
       <a ${waAttrs} class="btn btn-secondary px-4 sm:px-6">${icon('message-circle', 'size-4')} WhatsApp</a>
     </div>
@@ -165,19 +196,21 @@ export const linkList = (items, cols = 'sm:grid-cols-2 lg:grid-cols-3') => `<ul 
 </ul>`;
 
 // En-tete de page interieure : bandeau rouge, titre serif, photo a droite
-export const pageHero = ({ kicker, h1, lead, aside = '' }) => `<section class="on-deep zellige zellige-fade bg-deep text-on-deep">
+// form = true : la page porte le formulaire integre ; le bouton principal y fait defiler et,
+// sous lg, la photo laterale est masquee pour que le formulaire arrive des le premier ecran.
+export const pageHero = ({ kicker, h1, lead, aside = '', form = false }) => `<section class="on-deep zellige zellige-fade bg-deep text-on-deep">
   <div class="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-12 lg:items-center lg:gap-16 lg:px-8 lg:py-20">
     <div class="${aside ? 'lg:col-span-7' : 'lg:col-span-9'}">
       ${eyebrow(kicker)}
       <h1 class="mt-5 max-w-[20ch] text-[2.5rem] leading-[1.08] sm:text-6xl">${h1}</h1>
       <p class="mt-6 max-w-[56ch] text-lg text-on-deep-muted">${lead}</p>
       <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-        <a href="/contact" class="btn btn-primary">Estimation gratuite ${icon('arrow-right', 'size-4')}</a>
+        ${form ? `<a href="${FORM_HREF}" class="btn btn-primary">${icon('camera', 'size-4')} Estimation gratuite sur photos</a>` : `<a href="/contact" class="btn btn-primary">Estimation gratuite ${icon('arrow-right', 'size-4')}</a>`}
         <a href="tel:${SITE.phone.e164}" class="btn btn-secondary">${icon('phone', 'size-4')} ${SITE.phone.display}</a>
         <a ${waAttrs} class="btn btn-secondary">${icon('message-circle', 'size-4')} WhatsApp</a>
       </div>
     </div>
-    ${aside ? `<div class="lg:col-span-5">${aside}</div>` : ''}
+    ${aside ? `<div class="${form ? 'hidden lg:block ' : ''}lg:col-span-5">${aside}</div>` : ''}
   </div>
 </section>`;
 

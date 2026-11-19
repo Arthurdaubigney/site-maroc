@@ -5,7 +5,17 @@ import { SERVICES } from './content/services.mjs';
 import { VILLES } from './content/villes.mjs';
 import {
   esc, abs, asset, icon, waAttrs, photo, card, sectionHead, eyebrow, faq, ctaBand, linkList, pageHero, businessId, expertId,
+  estimationForm, FORM_HREF, tallyScript, tallyEmbed,
 } from './layout.mjs';
+
+// Pages qui portent le formulaire d'estimation integre (juste apres l'en-tete), avec le bouton
+// « Estimation gratuite sur photos » qui y fait defiler. Les autres pages renvoient vers /contact.
+const FORM_PAGES = new Set([
+  '/', '/expertise-achat/achat-antiquites', '/expertise-achat/estimation-gratuite', '/expertise-achat/successions-inventaires',
+  ...['antiquaire-marrakech', 'antiquaire-casablanca', 'antiquaire-rabat', 'antiquaire-tanger', 'antiquaire-fes', 'antiquaire-agadir'].map((s) => `/zones-intervention/${s}`),
+  ...['tableaux-tapisseries', 'bijoux-berberes', 'pieces-de-monnaie', 'tapis', 'mobilier-ancien-contemporain', 'vaisselle-verre-argenterie', 'montres-bijoux'].map((s) => `/objets-recherches/${s}`),
+]);
+const hasForm = (path) => FORM_PAGES.has(path);
 
 const HOME = { name: 'Accueil', href: '/' };
 const areaServed = { '@type': 'Country', name: 'Maroc' };
@@ -108,11 +118,11 @@ function home() {
 <section aria-labelledby="hero-titre" class="on-deep zellige bg-deep text-on-deep">
   <div class="mx-auto grid max-w-7xl items-center gap-14 px-4 py-14 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8 lg:py-20">
     <div class="lg:col-span-7">
-      ${eyebrow('Antiquaire · Partout au Maroc')}
-      <h1 id="hero-titre" class="mt-6 max-w-[16ch] text-[2.5rem] leading-[1.05] sm:text-6xl xl:text-7xl">Antiquaire et expert en objets d'art partout au Maroc</h1>
-      <p class="mt-7 max-w-[50ch] text-lg text-on-deep-muted sm:text-xl">François Secula, antiquaire et expert en objets d'art partout au Maroc, se déplace gratuitement chez vous pour estimer et racheter vos antiquités. Expertise rapide, avis gratuit sur photos.</p>
+      ${eyebrow('Antiquaire Maroc · Partout dans le royaume')}
+      <h1 id="hero-titre" class="mt-6 max-w-[16ch] text-[2.5rem] leading-[1.05] sm:text-6xl xl:text-7xl">Antiquaire au Maroc, expert en antiquités et objets d'art</h1>
+      <p class="mt-7 max-w-[50ch] text-lg text-on-deep-muted sm:text-xl">Antiquaire au Maroc, François Secula estime et rachète vos antiquités et objets d'art à domicile, dans tout le royaume. Expert en antiquités, il vous donne un avis gratuit sur photos et se déplace gratuitement chez vous.</p>
       <div class="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-        <a href="/contact" class="btn btn-primary">Estimation gratuite ${icon('arrow-right', 'size-4')}</a>
+        <a href="${FORM_HREF}" class="btn btn-primary">${icon('camera', 'size-4')} Estimation gratuite sur photos</a>
         <a href="tel:${SITE.phone.e164}" class="btn btn-secondary">${icon('phone', 'size-4')} ${SITE.phone.display}</a>
         <a ${waAttrs} class="btn btn-secondary">${icon('message-circle', 'size-4')} WhatsApp</a>
       </div>
@@ -123,7 +133,7 @@ function home() {
         </ul>
       </div>
     </div>
-    <div class="mx-auto w-full max-w-sm p-2.5 sm:max-w-md lg:col-span-5 lg:max-w-none">
+    <div class="mx-auto hidden w-full p-2.5 lg:col-span-5 lg:block">
       <div class="arch-frame">
         ${photo({ key: 'florian-portrait', w: 1067, h: 1334, ratio: '4/5', priority: true, sizes: '(min-width: 1024px) 38vw, (min-width: 640px) 448px, 92vw', alt: 'Florian, expert de l\'équipe, assis dans un fauteuil ancien parmi des antiquités', note: 'Photo de Florian, expert de l\'équipe (vraie photo)', fallback: 'Florian, expert de l\'équipe', frameClass: 'arch' })}
       </div>
@@ -131,6 +141,8 @@ function home() {
     </div>
   </div>
 </section>
+
+${estimationForm({ text: 'Décrivez votre objet et joignez quelques photos : votre antiquaire au Maroc vous répond rapidement avec un premier avis gratuit et sans engagement.' })}
 
 <section aria-label="Nos engagements" class="border-b border-hairline">
   <ul class="mx-auto grid max-w-7xl gap-px bg-hairline sm:grid-cols-2 lg:grid-cols-4">
@@ -145,14 +157,14 @@ function home() {
 
 <section aria-labelledby="zones-titre" class="py-20 lg:py-28">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    ${sectionHead({ kicker: 'Zones d\'intervention', title: 'De Tanger à Agadir, François Secula vient chez vous', id: 'zones-titre', link: { href: '/zones-intervention', label: 'Toutes les zones' }, lead: 'Ses bureaux sont à Marrakech, mais il se déplace gratuitement dans tout le royaume pour examiner vos objets à domicile.' })}
+    ${sectionHead({ kicker: 'Zones d\'intervention', title: 'Antiquaire au Maroc, de Tanger à Agadir', id: 'zones-titre', link: { href: '/zones-intervention', label: 'Toutes les zones' }, lead: 'Ses bureaux sont à Marrakech, mais François Secula se déplace gratuitement dans tout le royaume pour examiner vos objets à domicile.' })}
     <div class="mt-14">${villesGrid()}</div>
   </div>
 </section>
 
 <section aria-labelledby="objets-titre" class="bg-band py-20 lg:py-28">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    ${sectionHead({ kicker: 'Ce que François Secula rachète', title: 'Objets recherchés', id: 'objets-titre', link: { href: '/objets-recherches', label: `Les ${OBJETS.length} catégories` }, lead: 'Bijoux berbères, tableaux orientalistes, argenterie, meubles anciens, pièces de monnaie, cristal : il achète aux particuliers, dans tout le Maroc.' })}
+    ${sectionHead({ kicker: 'Objets recherchés', title: 'Ce que rachète un expert en antiquités au Maroc', id: 'objets-titre', link: { href: '/objets-recherches', label: `Les ${OBJETS.length} catégories` }, lead: 'Bijoux berbères, tableaux orientalistes, argenterie, meubles anciens, pièces de monnaie, cristal : il achète aux particuliers, dans tout le Maroc.' })}
     <div class="mt-14 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 lg:grid-cols-4">
       ${featured.map((o) => objetTile(o)).join('\n      ')}
     </div>
@@ -167,8 +179,8 @@ function home() {
       </div>
     </div>
     <div class="lg:col-span-7">
-      ${eyebrow('Un antiquaire partout au Maroc')}
-      <h2 id="florian-titre" class="mt-4 max-w-[18ch] text-[2rem] leading-[1.1] sm:text-5xl">L'œil d'un antiquaire, partout au Maroc</h2>
+      ${eyebrow('Expert antiquités Maroc')}
+      <h2 id="florian-titre" class="mt-4 max-w-[18ch] text-[2rem] leading-[1.1] sm:text-5xl">L'œil d'un expert en antiquités, partout au Maroc</h2>
       <p class="mt-6 max-w-[56ch] text-lg text-muted">Depuis ses bureaux de Marrakech, François Secula se déplace dans tout le Maroc. Il allie la rigueur du marché de l'art international et une vraie connaissance des objets marocains : bijoux berbères, tapis, orfèvrerie, peinture orientaliste.</p>
       <p class="mt-4 max-w-[56ch] text-lg text-muted">Chaque objet est examiné en personne, et le prix toujours expliqué. Acheteur d'antiquités sérieux, il reste votre seul interlocuteur du premier message jusqu'à l'enlèvement.</p>
       <div class="mt-10">${guarantees()}</div>
@@ -179,14 +191,14 @@ function home() {
 
 <section aria-labelledby="deroulement-titre" class="on-deep zellige bg-deep py-20 text-on-deep lg:py-28">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    ${sectionHead({ kicker: 'Estimation gratuite', title: 'Comment se déroule une estimation', id: 'deroulement-titre', link: { href: '/expertise-achat/estimation-gratuite', label: 'Tout sur l\'estimation' }, deep: true })}
+    ${sectionHead({ kicker: 'Estimation gratuite', title: 'Comment se déroule une estimation gratuite', id: 'deroulement-titre', link: { href: '/expertise-achat/estimation-gratuite', label: 'Tout sur l\'estimation' }, deep: true })}
     <div class="mt-14">${steps()}</div>
   </div>
 </section>
 
 <section aria-labelledby="services-titre" class="py-20 lg:py-28">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    ${sectionHead({ kicker: 'Expertise & achat', title: 'Quatre services, un seul interlocuteur', id: 'services-titre', link: { href: '/expertise-achat', label: 'Tous les services' } })}
+    ${sectionHead({ kicker: 'Expertise & achat', title: 'Expertise, estimation et rachat d\'antiquités au Maroc', id: 'services-titre', link: { href: '/expertise-achat', label: 'Tous les services' } })}
     <ol class="mt-14 grid gap-px border-y border-hairline bg-hairline sm:grid-cols-2 lg:grid-cols-4">
       ${SERVICES.map((s, i) => `<li class="group relative flex flex-col bg-page py-8 sm:px-6 lg:first:ps-0">
         <span class="font-display text-4xl font-semibold text-accent" aria-hidden="true">0${i + 1}</span>
@@ -199,12 +211,13 @@ function home() {
 </section>
 
 ${faq(generalFaq)}
-${ctaBand()}`;
+${ctaBand({ form: true })}`;
   return {
     path: '/',
-    title: 'François Secula, antiquaire partout au Maroc',
-    description: 'Antiquaire partout au Maroc : expertise rapide et rachat d\'antiquités, bijoux berbères, tableaux, argenterie. Déplacement gratuit dans tout le Maroc.',
+    title: 'Antiquaire Maroc : expertise et rachat | François Secula',
+    description: 'Antiquaire au Maroc et expert en antiquités : estimation gratuite sur photos, rachat à domicile, déplacement gratuit. Envoyez vos photos dès maintenant.',
     body,
+    scripts: tallyScript,
     jsonld: [businessNode(), personNode(), websiteNode()],
   };
 }
@@ -297,16 +310,18 @@ function servicePage(s) {
   const path = `/expertise-achat/${s.slug}`;
   const trail = [HOME, { name: 'Expertise & achat', href: '/expertise-achat' }, { name: s.nav, href: path }];
   const others = SERVICES.filter((x) => x !== s);
+  const form = hasForm(path);
   const body = `
-${pageHero({ kicker: 'Expertise & achat', h1: s.h1, lead: s.lead, aside: photo({ key: s.slug === 'successions-inventaires' ? 'succession' : 'loupe', w: 800, h: 1000, ratio: '4/5', alt: s.slug === 'successions-inventaires' ? 'Salon ancien meublé d\'antiquités avant un inventaire de succession' : 'Loupe d\'expert posée sur un objet d\'art ancien, près d\'une signature', note: s.slug === 'successions-inventaires' ? 'Interieur de maison ou objets en cours d\'inventaire, sans personne identifiable' : 'Objet examine a la loupe, sans personne identifiable', fallback: s.nav.toLowerCase(), sizes: '(min-width: 1024px) 38vw, 92vw' }) })}
-<section class="bg-band py-16 lg:py-24">
+${pageHero({ kicker: 'Expertise & achat', h1: s.h1, lead: s.lead, form, aside: photo({ key: s.slug === 'successions-inventaires' ? 'succession' : 'loupe', w: 800, h: 1000, ratio: '4/5', alt: s.slug === 'successions-inventaires' ? 'Salon ancien meublé d\'antiquités avant un inventaire de succession' : 'Loupe d\'expert posée sur un objet d\'art ancien, près d\'une signature', note: s.slug === 'successions-inventaires' ? 'Interieur de maison ou objets en cours d\'inventaire, sans personne identifiable' : 'Objet examine a la loupe, sans personne identifiable', fallback: s.nav.toLowerCase(), sizes: '(min-width: 1024px) 38vw, 92vw' }) })}
+${form ? estimationForm() : ''}
+<section class="${form ? '' : 'bg-band '}py-16 lg:py-24">
   <div class="mx-auto max-w-7xl space-y-16 px-4 sm:px-6 lg:px-8">
     ${s.sections.map(([h, p, list], i) => `<div class="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-12">
       <h2 class="text-3xl leading-tight sm:text-4xl lg:col-span-4">${h}</h2>
       <div class="prose-site lg:col-span-8">
         ${p ? `<p>${p}</p>` : ''}
         ${list ? `<${i === 0 && s.slug === 'estimation-gratuite' ? 'ol' : 'ul'}>${list.map((l) => `<li>${l}</li>`).join('')}</${i === 0 && s.slug === 'estimation-gratuite' ? 'ol' : 'ul'}>` : ''}
-        ${h === 'Ce que nous achetons' ? '<p><a href="/objets-recherches" class="link">Voir tous les objets recherchés</a></p>' : ''}
+         ${/ce que nous achetons/i.test(h) ? '<p><a href="/objets-recherches" class="link">Voir tous les objets recherchés</a></p>' : ''}
       </div>
     </div>`).join('\n    ')}
   </div>
@@ -318,8 +333,8 @@ ${faq(s.faq)}
     <div class="mt-6">${linkList(others.map((o) => ({ href: `/expertise-achat/${o.slug}`, label: o.nav })))}</div>
   </div>
 </section>
-${ctaBand()}`;
-  return { path, trail, title: s.title, description: s.description, body, jsonld: [serviceNode(s.nav, path, s.description)] };
+${ctaBand({ form })}`;
+  return { path, trail, title: s.title, description: s.description, body, scripts: form ? tallyScript : '', jsonld: [serviceNode(s.nav, path, s.description)] };
 }
 
 /* ---------- Objets recherches ---------- */
@@ -345,28 +360,35 @@ ${ctaBand({ title: 'Votre objet n\'est pas dans la liste ?', text: 'Vous vous de
 function objetPage(o) {
   const path = `/objets-recherches/${o.slug}`;
   const trail = [HOME, { name: 'Objets recherchés', href: '/objets-recherches' }, { name: o.nav, href: path }];
+  const form = hasForm(path);
+  const h2s = { recherche: 'Ce que nous recherchons', valeur: 'Ce qui fait la valeur', estimer: 'Faire estimer votre objet', ...o.h2s };
   const body = `
-${pageHero({ kicker: 'Objets recherchés', h1: o.h1, lead: o.intro, aside: photo({ key: o.hero ?? o.img.key, w: 800, h: 1000, ratio: '4/5', alt: o.img.alt, note: o.img.note, fallback: o.img.fallback, sizes: '(min-width: 1024px) 38vw, 92vw' }) })}
-<section class="bg-band py-16 lg:py-24">
+${pageHero({ kicker: 'Objets recherchés', h1: o.h1, lead: o.intro, form, aside: photo({ key: o.hero ?? o.img.key, w: 800, h: 1000, ratio: '4/5', alt: o.img.alt, note: o.img.note, fallback: o.img.fallback, sizes: '(min-width: 1024px) 38vw, 92vw' }) })}
+${form ? estimationForm() : ''}
+<section class="${form ? '' : 'bg-band '}py-16 lg:py-24">
   <div class="mx-auto max-w-7xl space-y-16 px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-12">
-      <h2 class="text-3xl leading-tight sm:text-4xl lg:col-span-4">Ce que nous recherchons</h2>
+      <h2 class="text-3xl leading-tight sm:text-4xl lg:col-span-4">${h2s.recherche}</h2>
       <ul class="grid gap-3 lg:col-span-8">
         ${o.recherche.map((r) => `<li class="flex items-start gap-3 text-muted">${icon('check', 'mt-1 size-4 flex-none text-link')}<span>${r}</span></li>`).join('\n        ')}
       </ul>
     </div>
     <div class="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-12">
-      <h2 class="text-3xl leading-tight sm:text-4xl lg:col-span-4">Ce qui fait la valeur</h2>
+      <h2 class="text-3xl leading-tight sm:text-4xl lg:col-span-4">${h2s.valeur}</h2>
       <dl class="grid gap-8 sm:grid-cols-2 lg:col-span-8">
         ${o.valeur.map(([t, d]) => `<div class="border-t border-control pt-5"><dt class="font-sans text-lg font-semibold">${t}</dt><dd class="mt-2 text-muted">${d}</dd></div>`).join('\n        ')}
       </dl>
     </div>
+    ${(o.sections ?? []).map(([h, p]) => `<div class="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-12">
+      <h2 class="text-3xl leading-tight sm:text-4xl lg:col-span-4">${h}</h2>
+      <div class="prose-site lg:col-span-8"><p>${p}</p></div>
+    </div>`).join('\n    ')}
     <div class="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-12">
-      <h2 class="text-3xl leading-tight sm:text-4xl lg:col-span-4">Faire estimer votre objet</h2>
+      <h2 class="text-3xl leading-tight sm:text-4xl lg:col-span-4">${h2s.estimer}</h2>
       <div class="rounded-card border border-hairline bg-card p-5 sm:p-8 lg:col-span-8">
         <p class="flex items-start gap-3">${icon('camera', 'mt-0.5 size-5 flex-none text-link')}<span>${o.photos}</span></p>
         <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-          <a href="/contact" class="btn btn-primary min-h-12 px-4 sm:px-6">Demander une estimation ${icon('arrow-right')}</a>
+          <a href="${form ? FORM_HREF : '/contact'}" class="btn btn-primary min-h-12 px-4 sm:px-6">${form ? 'Remplir le formulaire' : 'Demander une estimation'} ${icon('arrow-right')}</a>
           <a href="tel:${SITE.phone.e164}" class="btn btn-secondary min-h-12 px-4 sm:px-6">${icon('phone')} ${SITE.phone.display}</a>
           <a ${waAttrs} class="btn btn-secondary min-h-12 px-4 sm:px-6">${icon('message-circle')} WhatsApp</a>
         </div>
@@ -384,8 +406,8 @@ ${faq(o.faq)}
     <div class="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 lg:grid-cols-3">${o.related.map((s) => objetTile(bySlug[s])).join('')}</div>
   </div>
 </section>
-${ctaBand()}`;
-  return { path, trail, title: o.title, description: o.description, body, jsonld: [serviceNode(`Achat et estimation : ${o.nav}`, path, o.description)] };
+${ctaBand({ form })}`;
+  return { path, trail, title: o.title, description: o.description, body, scripts: form ? tallyScript : '', jsonld: [serviceNode(`Achat et estimation : ${o.nav}`, path, o.description)] };
 }
 
 /* ---------- Zones d'intervention ---------- */
@@ -409,19 +431,23 @@ ${ctaBand({ title: 'Votre ville n\'apparaît pas ?', text: 'Meknès, Essaouira, 
 function villePage(v) {
   const path = `/zones-intervention/${v.slug}`;
   const trail = [HOME, { name: 'Zones d\'intervention', href: '/zones-intervention' }, { name: v.ville, href: path }];
+  const form = hasForm(path);
   const body = `
-${pageHero({ kicker: `Antiquaire à ${v.ville}`, h1: `Antiquaire et expert en objets d'art à ${v.ville}`, lead: v.lead, aside: photo({ key: v.photo.key, w: 1000, h: 750, ratio: '4/3', priority: true, alt: v.photo.alt, note: v.photo.note, fallback: v.ville, sizes: '(min-width: 1024px) 38vw, 92vw' }) })}
+${pageHero({ kicker: `Antiquaire à ${v.ville}`, h1: v.h1 ?? `Antiquaire et expert en objets d'art à ${v.ville}`, lead: v.lead, form, aside: photo({ key: v.photo.key, w: 1000, h: 750, ratio: '4/3', priority: !form, alt: v.photo.alt, note: v.photo.note, fallback: v.ville, sizes: '(min-width: 1024px) 38vw, 92vw' }) })}
+${form ? estimationForm({ text: `Décrivez votre objet et joignez quelques photos : votre antiquaire à ${v.ville} vous répond rapidement avec un premier avis gratuit et sans engagement.` }) : ''}
 <section aria-labelledby="objets-ville" class="py-16 lg:py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <h2 id="objets-ville" class="text-3xl sm:text-4xl">Souvent rencontrés à ${v.ville}</h2>
+    <h2 id="objets-ville" class="text-3xl sm:text-4xl">Antiquités souvent rachetées à ${v.ville}</h2>
     <div class="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 lg:grid-cols-4">${v.objets.map((s) => objetTile(bySlug[s])).join('')}</div>
   </div>
 </section>
 <section class="bg-band py-16 lg:py-24">
   <div class="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
     <div class="lg:col-span-7">
-      <h2 class="text-3xl leading-tight sm:text-4xl">Les antiquités à ${v.ville}</h2>
+      <h2 class="text-3xl leading-tight sm:text-4xl">${v.h2 ?? `Les antiquités à ${v.ville}`}</h2>
       <div class="prose-site mt-6">${v.contexte.map((p) => `<p>${p}</p>`).join('')}</div>
+      ${v.vendre ? `<h2 class="mt-12 text-3xl leading-tight sm:text-4xl">${v.vendre[0]}</h2>
+      <div class="prose-site mt-6"><p>${v.vendre[1]}</p></div>` : ''}
     </div>
     <div class="lg:col-span-5">
       <h2 class="text-2xl leading-tight">Quartiers et environs</h2>
@@ -433,9 +459,9 @@ ${pageHero({ kicker: `Antiquaire à ${v.ville}`, h1: `Antiquaire et expert en ob
     </div>
   </div>
 </section>
-${ctaBand({ title: `Un objet à faire estimer à ${v.ville} ?` })}`;
+${ctaBand({ title: `Un objet à faire estimer à ${v.ville} ?`, form })}`;
   return {
-    path, trail, title: v.title, description: v.description, body,
+    path, trail, title: v.title, description: v.description, body, scripts: form ? tallyScript : '',
     jsonld: [serviceNode(`Antiquaire à ${v.ville}`, path, v.description, { '@type': 'City', name: v.ville, containedInPlace: areaServed })],
   };
 }
@@ -445,7 +471,7 @@ function contact() {
   const trail = [HOME, { name: 'Contact', href: '/contact' }];
   // Tout contact passe par le formulaire Tally ; le telephone reste en secours.
   const tally = SITE.tallyFormId
-    ? `<iframe data-tally-src="https://tally.so/embed/${SITE.tallyFormId}?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1" loading="lazy" width="100%" height="700" title="Formulaire de demande d'estimation" class="w-full"></iframe>`
+    ? tallyEmbed()
     : `<!-- FORMULAIRE TALLY (A REMPLACER) : renseigner tallyFormId dans src/site/config.mjs.
      L'iframe et le script Tally sont alors generes automatiquement a la place de ce bloc. -->
       <div>
@@ -480,7 +506,7 @@ ${faq(generalFaq)}`;
     description: 'Contactez François Secula, antiquaire partout au Maroc : décrivez votre objet dans le formulaire pour une estimation gratuite, rapide et sans engagement.',
     body,
     jsonld: [businessNode()],
-    scripts: SITE.tallyFormId ? '  <script src="https://tally.so/widgets/embed.js" async></script>' : '',
+    scripts: tallyScript,
   };
 }
 
