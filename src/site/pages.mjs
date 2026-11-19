@@ -56,6 +56,31 @@ const serviceNode = (name, path, description, area = areaServed) => ({
 // Typographie francaise : espace insecable avant « : ; ? ! » dans les titres (la ponctuation ne passe jamais seule a la ligne).
 const nb = (t) => String(t).replace(/ ([:;?!])/g, '&nbsp;$1');
 
+// Corps d'une section : paragraphe et/ou liste (cochee, ou numerotee pour un deroulement).
+const sectionBody = (p, list, { ordered = false, lead = false } = {}) => `${p ? `<p class="${lead ? 'text-lg ' : ''}text-muted">${p}</p>` : ''}
+  ${list ? (ordered
+    ? `<ol class="grid gap-6 ${p ? 'mt-6' : ''}">${list.map((l, n) => `<li class="flex items-start gap-4"><span class="flex size-9 flex-none items-center justify-center rounded-full border border-hairline bg-page font-semibold tabular-nums text-link" aria-hidden="true">${n + 1}</span><span class="pt-1.5 text-muted">${l}</span></li>`).join('')}</ol>`
+    : `<ul class="grid gap-3 ${p ? 'mt-5' : ''}">${list.map((l) => `<li class="flex items-start gap-3 text-muted">${icon('check', 'mt-1 size-4 flex-none text-link')}<span>${l}</span></li>`).join('')}</ul>`) : ''}`;
+
+// Sections de texte : la premiere mene (carte large), les suivantes en grille de cartes sur deux colonnes.
+// rows = [[titre, paragraphe|null, liste|null], ...]
+const sectionCards = (rows, { ordered = false, extra = () => '' } = {}) => {
+  if (!rows.length) return '';
+  const [lead, ...rest] = rows;
+  const card = ([h, p, list], i) => `<article class="flex flex-col rounded-card border border-hairline bg-card p-6 sm:p-8${rest.length % 2 && i === rest.length - 1 ? ' md:col-span-2' : ''}">
+      <span class="block h-0.5 w-10 bg-action" aria-hidden="true"></span>
+      <h2 class="mt-5 text-2xl leading-tight sm:text-[1.75rem]">${nb(h)}</h2>
+      <div class="mt-4">${sectionBody(p, list)}${extra(h)}</div>
+    </article>`;
+  return `<div class="rounded-card border border-hairline bg-card p-6 sm:p-10 lg:grid lg:grid-cols-12 lg:gap-12">
+      <h2 class="text-3xl leading-tight sm:text-4xl lg:col-span-5">${nb(lead[0])}</h2>
+      <div class="mt-6 lg:col-span-7 lg:mt-0">${sectionBody(lead[1], lead[2], { ordered, lead: true })}${extra(lead[0])}</div>
+    </div>
+    ${rest.length ? `<div class="mt-5 grid gap-5 md:grid-cols-2">
+    ${rest.map(card).join('\n    ')}
+    </div>` : ''}`;
+};
+
 // FAQ en donnees structurees (FAQPage) : memes questions et reponses que le bloc visible, texte brut.
 const plain = (h) => String(h).replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
 const faqNode = (items) => ({
@@ -160,7 +185,7 @@ function home() {
         </ul>
       </div>
     </div>
-    <div class="mx-auto hidden w-full p-2.5 lg:col-span-5 lg:block">
+    <div class="mx-auto w-full max-w-sm p-2.5 sm:max-w-md lg:col-span-5 lg:max-w-none">
       <div class="arch-frame">
         ${photo({ key: 'florian-portrait', w: 1067, h: 1334, ratio: '4/5', priority: true, sizes: '(min-width: 1024px) 38vw, (min-width: 640px) 448px, 92vw', alt: 'Florian, expert de l\'équipe, assis dans un fauteuil ancien parmi des antiquités', note: 'Photo de Florian, expert de l\'équipe (vraie photo)', fallback: 'Florian, expert de l\'équipe', frameClass: 'arch' })}
       </div>
@@ -168,8 +193,6 @@ function home() {
     </div>
   </div>
 </section>
-
-${estimationForm({ text: 'Décrivez votre objet et joignez quelques photos : votre antiquaire au Maroc vous répond rapidement avec un premier avis gratuit et sans engagement.' })}
 
 <section aria-label="Nos engagements" class="border-b border-hairline">
   <ul class="mx-auto grid max-w-7xl gap-px bg-hairline sm:grid-cols-2 lg:grid-cols-4">
@@ -247,7 +270,7 @@ ${estimationForm({ text: 'Décrivez votre objet et joignez quelques photos : vot
 </section>
 
 ${faq(homeFaq)}
-${ctaBand({ form: true })}`;
+${estimationForm({ text: 'Décrivez votre objet et joignez quelques photos : votre antiquaire au Maroc vous répond rapidement avec un premier avis gratuit et sans engagement.' })}`;
   return {
     path: '/',
     title: 'Antiquaire Maroc : expertise et rachat | François Secula',
@@ -366,17 +389,9 @@ function servicePage(s) {
   const form = hasForm(path);
   const body = `
 ${pageHero({ kicker: 'Expertise & achat', h1: s.h1, lead: s.lead, form, aside: photo({ key: s.slug === 'successions-inventaires' ? 'succession' : 'loupe', w: 800, h: 1000, ratio: '4/5', alt: s.slug === 'successions-inventaires' ? 'Salon ancien meublé d\'antiquités avant un inventaire de succession' : 'Loupe d\'expert posée sur un objet d\'art ancien, près d\'une signature', note: s.slug === 'successions-inventaires' ? 'Interieur de maison ou objets en cours d\'inventaire, sans personne identifiable' : 'Objet examine a la loupe, sans personne identifiable', fallback: s.nav.toLowerCase(), sizes: '(min-width: 1024px) 38vw, 92vw' }) })}
-${form ? estimationForm() : ''}
-<section class="${form ? '' : 'bg-band '}py-16 lg:py-24">
-  <div class="mx-auto max-w-7xl space-y-16 px-4 sm:px-6 lg:px-8">
-    ${s.sections.map(([h, p, list], i) => `<div class="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-12">
-      <h2 class="text-3xl leading-tight sm:text-4xl lg:col-span-4">${nb(h)}</h2>
-      <div class="prose-site lg:col-span-8">
-        ${p ? `<p>${p}</p>` : ''}
-        ${list ? `<${i === 0 && s.slug === 'estimation-gratuite' ? 'ol' : 'ul'}>${list.map((l) => `<li>${l}</li>`).join('')}</${i === 0 && s.slug === 'estimation-gratuite' ? 'ol' : 'ul'}>` : ''}
-         ${/ce que nous achetons/i.test(h) ? '<p><a href="/objets-recherches" class="link">Voir tous les objets recherchés</a></p>' : ''}
-      </div>
-    </div>`).join('\n    ')}
+<section class="bg-band py-16 lg:py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    ${sectionCards(s.sections, { ordered: s.slug === 'estimation-gratuite', extra: (h) => (/ce que nous achetons/i.test(h) ? '<p class="mt-5"><a href="/objets-recherches" class="link">Voir tous les objets recherchés</a></p>' : '') })}
   </div>
 </section>
 ${faq(s.faq)}
@@ -390,7 +405,7 @@ ${faq(s.faq)}
     <div class="mt-6">${villesLinks()}</div>
   </div>
 </section>
-${ctaBand({ form })}`;
+${form ? estimationForm() : ctaBand()}`;
   return { path, trail, title: s.title, description: s.description, body, scripts: form ? tallyScript : '', jsonld: [serviceNode(s.nav, path, s.description), faqNode(s.faq)] };
 }
 
@@ -444,8 +459,7 @@ function objetPage(o) {
   const h2s = { recherche: 'Ce que nous recherchons', valeur: 'Ce qui fait la valeur', estimer: 'Faire estimer votre objet', ...o.h2s };
   const body = `
 ${pageHero({ kicker: 'Objets recherchés', h1: o.h1, lead: o.intro, form, aside: photo({ key: o.hero ?? o.img.key, w: 800, h: 1000, ratio: '4/5', alt: o.img.alt, note: o.img.note, fallback: o.img.fallback, sizes: '(min-width: 1024px) 38vw, 92vw' }) })}
-${form ? estimationForm() : ''}
-<section class="${form ? '' : 'bg-band '}py-16 lg:py-24">
+<section class="bg-band py-16 lg:py-24">
   <div class="mx-auto max-w-7xl space-y-16 px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-12">
       <h2 class="text-3xl leading-tight sm:text-4xl lg:col-span-4">${nb(h2s.recherche)}</h2>
@@ -459,10 +473,13 @@ ${form ? estimationForm() : ''}
         ${o.valeur.map(([t, d]) => `<div class="border-t border-control pt-5"><dt class="font-sans text-lg font-semibold">${t}</dt><dd class="mt-2 text-muted">${d}</dd></div>`).join('\n        ')}
       </dl>
     </div>
-    ${(o.sections ?? []).map(([h, p]) => `<div class="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-12">
-      <h2 class="text-3xl leading-tight sm:text-4xl lg:col-span-4">${nb(h)}</h2>
-      <div class="prose-site lg:col-span-8"><p>${p}</p></div>
-    </div>`).join('\n    ')}
+    ${o.sections?.length ? `<div class="grid gap-5 md:grid-cols-2">
+      ${o.sections.map(([h, p], i) => `<article class="rounded-card border border-hairline bg-card p-6 sm:p-8${o.sections.length % 2 && i === o.sections.length - 1 ? ' md:col-span-2' : ''}">
+        <span class="block h-0.5 w-10 bg-action" aria-hidden="true"></span>
+        <h2 class="mt-5 text-2xl leading-tight sm:text-[1.75rem]">${nb(h)}</h2>
+        <p class="mt-4 text-muted">${p}</p>
+      </article>`).join('\n      ')}
+    </div>` : ''}
     <div class="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-12">
       <h2 class="text-3xl leading-tight sm:text-4xl lg:col-span-4">${nb(h2s.estimer)}</h2>
       <div class="rounded-card border border-hairline bg-card p-5 sm:p-8 lg:col-span-8">
@@ -491,7 +508,7 @@ ${faq(o.faq)}
     <div class="mt-6">${villesLinks()}</div>
   </div>
 </section>
-${ctaBand({ form })}`;
+${form ? estimationForm() : ctaBand()}`;
   return { path, trail, title: o.title, description: o.description, body, scripts: form ? tallyScript : '', jsonld: [serviceNode(`Achat et estimation : ${o.nav}`, path, o.description), faqNode(o.faq)] };
 }
 
@@ -530,8 +547,7 @@ function villePage(v) {
   const trail = [HOME, { name: 'Zones d\'intervention', href: '/zones-intervention' }, { name: v.ville, href: path }];
   const form = hasForm(path);
   const body = `
-${pageHero({ kicker: `Antiquaire à ${v.ville}`, h1: v.h1 ?? `Antiquaire et expert en objets d'art à ${v.ville}`, lead: v.lead, form, aside: photo({ key: v.photo.key, w: 1000, h: 750, ratio: '4/3', priority: !form, alt: v.photo.alt, note: v.photo.note, fallback: v.ville, sizes: '(min-width: 1024px) 38vw, 92vw' }) })}
-${form ? estimationForm({ text: `Décrivez votre objet et joignez quelques photos : votre antiquaire à ${v.ville} vous répond rapidement avec un premier avis gratuit et sans engagement.` }) : ''}
+${pageHero({ kicker: `Antiquaire à ${v.ville}`, h1: v.h1 ?? `Antiquaire et expert en objets d'art à ${v.ville}`, lead: v.lead, form, aside: photo({ key: v.photo.key, w: 1000, h: 750, ratio: '4/3', priority: true, alt: v.photo.alt, note: v.photo.note, fallback: v.ville, sizes: '(min-width: 1024px) 38vw, 92vw' }) })}
 <section aria-labelledby="objets-ville" class="py-16 lg:py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <h2 id="objets-ville" class="text-3xl sm:text-4xl">Antiquités souvent rachetées à ${v.ville}</h2>
@@ -565,7 +581,7 @@ ${v.faq ? faq(v.faq, { title: `Questions fréquentes à ${v.ville}` }) : ''}
     <div class="mt-6">${linkList(VILLES.filter((x) => x !== v).map((x) => ({ href: `/zones-intervention/${x.slug}`, label: `Antiquaire à ${x.ville}` })))}</div>
   </div>
 </section>
-${ctaBand({ title: `Un objet à faire estimer à ${v.ville} ?`, form })}`;
+${form ? estimationForm({ title: `Estimation gratuite sur photos à ${v.ville}`, text: `Décrivez votre objet et joignez quelques photos : votre antiquaire à ${v.ville} vous répond rapidement avec un premier avis gratuit et sans engagement.` }) : ctaBand({ title: `Un objet à faire estimer à ${v.ville} ?` })}`;
   return {
     path, trail, title: v.title, description: v.description, body, scripts: form ? tallyScript : '',
     jsonld: [serviceNode(`Antiquaire à ${v.ville}`, path, v.description, { '@type': 'City', name: v.ville, containedInPlace: areaServed }), ...(v.faq ? [faqNode(v.faq)] : [])],

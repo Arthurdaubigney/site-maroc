@@ -144,7 +144,7 @@ export const faq = (items, { title = 'Questions fréquentes', id = 'faq' } = {})
 
 /* ---------- Formulaire d'estimation integre ----------
    Meme formulaire Tally que /contact : main.js redirige vers /merci apres l'envoi (marqueur de conversion).
-   Place juste apres l'en-tete : sur mobile, il arrive des le premier defilement. */
+   Place en bas de page, a la place du bandeau d'appel ; le bouton de l'en-tete y fait defiler. */
 export const FORM_ID = 'formulaire';
 export const FORM_HREF = `#${FORM_ID}`;
 export const tallyScript = SITE.tallyFormId ? '  <script src="https://tally.so/widgets/embed.js" async></script>' : '';
@@ -152,7 +152,7 @@ export const tallyEmbed = () => (SITE.tallyFormId
   ? `<iframe data-tally-src="https://tally.so/embed/${SITE.tallyFormId}?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1" loading="lazy" width="100%" height="700" title="Formulaire de demande d'estimation" class="w-full"></iframe>`
   : `<p class="text-muted">Le formulaire arrive très bientôt. En attendant, appelez le <a href="tel:${SITE.phone.e164}" class="link tabular-nums">${SITE.phone.display}</a>.</p>`);
 
-export const estimationForm = ({ title = 'Estimation gratuite sur photos', text = 'Décrivez votre objet et joignez quelques photos : François Secula vous répond rapidement avec un premier avis gratuit et sans engagement.' } = {}) => `<section id="${FORM_ID}" aria-labelledby="${FORM_ID}-titre" class="border-b border-hairline bg-band py-12 lg:py-20">
+export const estimationForm = ({ title = 'Estimation gratuite sur photos', text = 'Décrivez votre objet et joignez quelques photos : François Secula vous répond rapidement avec un premier avis gratuit et sans engagement.' } = {}) => `<section id="${FORM_ID}" aria-labelledby="${FORM_ID}-titre" class="border-t border-hairline bg-band py-16 lg:py-24">
   <div class="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
     <div class="lg:sticky lg:top-28 lg:col-span-5 lg:self-start">
       ${eyebrow('Formulaire d\'estimation')}
@@ -196,8 +196,7 @@ export const linkList = (items, cols = 'sm:grid-cols-2 lg:grid-cols-3') => `<ul 
 </ul>`;
 
 // En-tete de page interieure : bandeau rouge, titre serif, photo a droite
-// form = true : la page porte le formulaire integre ; le bouton principal y fait defiler et,
-// sous lg, la photo laterale est masquee pour que le formulaire arrive des le premier ecran.
+// form = true : la page porte le formulaire integre (en bas de page) ; le bouton principal y fait defiler.
 export const pageHero = ({ kicker, h1, lead, aside = '', form = false }) => `<section class="on-deep zellige zellige-fade bg-deep text-on-deep">
   <div class="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-12 lg:items-center lg:gap-16 lg:px-8 lg:py-20">
     <div class="${aside ? 'lg:col-span-7' : 'lg:col-span-9'}">
@@ -210,7 +209,7 @@ export const pageHero = ({ kicker, h1, lead, aside = '', form = false }) => `<se
         <a ${waAttrs} class="btn btn-secondary">${icon('message-circle', 'size-4')} WhatsApp</a>
       </div>
     </div>
-    ${aside ? `<div class="${form ? 'hidden lg:block ' : ''}lg:col-span-5">${aside}</div>` : ''}
+    ${aside ? `<div class="lg:col-span-5">${aside}</div>` : ''}
   </div>
 </section>`;
 
